@@ -460,19 +460,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Denis\\.nuget\\packages\\": {}
+    "C:\\Users\\Ruslan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Denis\\Desktop\\University\\7_semester\\Software Engineering\\cinema-booking\\server\\WebAPI\\WebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Ruslan\\Data\\University\\7semester\\PI\\Project\\cinema-booking\\server\\WebAPI\\WebAPI.csproj",
       "projectName": "WebAPI",
-      "projectPath": "C:\\Users\\Denis\\Desktop\\University\\7_semester\\Software Engineering\\cinema-booking\\server\\WebAPI\\WebAPI.csproj",
-      "packagesPath": "C:\\Users\\Denis\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Denis\\Desktop\\University\\7_semester\\Software Engineering\\cinema-booking\\server\\WebAPI\\obj\\",
+      "projectPath": "C:\\Users\\Ruslan\\Data\\University\\7semester\\PI\\Project\\cinema-booking\\server\\WebAPI\\WebAPI.csproj",
+      "packagesPath": "C:\\Users\\Ruslan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Ruslan\\Data\\University\\7semester\\PI\\Project\\cinema-booking\\server\\WebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Denis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Ruslan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -526,7 +526,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

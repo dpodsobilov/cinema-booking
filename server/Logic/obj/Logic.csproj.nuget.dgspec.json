@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ruslan\\Data\\University\\7semester\\PI\\Project\\cinema-booking\\server\\Data\\Data.csproj": {}
+    "C:\\Users\\Ruslan\\Data\\University\\7semester\\PI\\Project\\cinema-booking\\server\\Logic\\Logic.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ruslan\\Data\\University\\7semester\\PI\\Project\\cinema-booking\\server\\Data\\Data.csproj": {
+    "C:\\Users\\Ruslan\\Data\\University\\7semester\\PI\\Project\\cinema-booking\\server\\Logic\\Logic.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ruslan\\Data\\University\\7semester\\PI\\Project\\cinema-booking\\server\\Data\\Data.csproj",
-        "projectName": "Data",
-        "projectPath": "C:\\Users\\Ruslan\\Data\\University\\7semester\\PI\\Project\\cinema-booking\\server\\Data\\Data.csproj",
+        "projectUniqueName": "C:\\Users\\Ruslan\\Data\\University\\7semester\\PI\\Project\\cinema-booking\\server\\Logic\\Logic.csproj",
+        "projectName": "Logic",
+        "projectPath": "C:\\Users\\Ruslan\\Data\\University\\7semester\\PI\\Project\\cinema-booking\\server\\Logic\\Logic.csproj",
         "packagesPath": "C:\\Users\\Ruslan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ruslan\\Data\\University\\7semester\\PI\\Project\\cinema-booking\\server\\Data\\obj\\",
+        "outputPath": "C:\\Users\\Ruslan\\Data\\University\\7semester\\PI\\Project\\cinema-booking\\server\\Logic\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ruslan\\AppData\\Roaming\\NuGet\\NuGet.Config",
