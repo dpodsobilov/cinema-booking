@@ -3,7 +3,7 @@ namespace Data.Models;
 public class CinemaHallType
 {
     public int CinemaHallTypeId { get; set; }
-    public string? CinemaHallTypeName { get; set; } = null!;
+    public string CinemaHallTypeName { get; set; } = null!;
     
     // CinemaHallTypeId -> FK в Place
     public ICollection<Place> Places { get; set; } = null!;
