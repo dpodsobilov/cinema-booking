@@ -7,12 +7,16 @@ import { RegisterComponent } from './register/register.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterOutlet} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
+import { NavbarComponent } from './navbar/navbar.component';
+import { CinemasComponent } from './cinemas/cinemas.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavbarComponent,
+    CinemasComponent
   ],
   imports: [
     FormsModule,

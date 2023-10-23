@@ -1,0 +1,10 @@
+:root {
+  --ff-primary: 'Montserrat';
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url('https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins');
+  font-style: normal;
+  font-weight: normal;
+}
