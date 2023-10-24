@@ -1,0 +1,21 @@
+<div class="nav">
+  <!-- лого -->
+  <div  class="logo">
+    <a routerLink="/">
+      <img src="/assets/images/logo.png"/>
+    </a>
+  </div>
+
+  <!--авторизован -->
+
+  <div *ngIf="isAuthenticated"  class="nav-right">
+    <input class="mytickets" type="button" value="Мои билеты" routerLink="/login" />
+    <input class="logout" type="button" value="Выйти" routerLink="/register" />
+  </div>
+
+  <!-- не авторизован -->
+  <div *ngIf="!isAuthenticated" class="nav-right-not-auth">
+    <input class="login" type="button" value="Войти" routerLink="/login" />
+    <input class="register" type="button" value="Регистрация" routerLink="/register" />
+  </div>
+</div>

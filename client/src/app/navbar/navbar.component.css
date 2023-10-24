@@ -1,0 +1,75 @@
+.nav{
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+img{
+  margin: 10px auto 10px 20px;
+  height: 40px;
+}
+
+.nav-right{
+  display:  flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 10px;
+  justify-content: space-between;
+}
+
+.login
+{
+  margin-right: 10px;
+}
+
+input{
+  margin-right: 10px;
+}
+
+.login{
+  padding: 7px 10px;
+  background-color: #1DE782;
+  color: white;
+  border-radius: 10px;
+  border: 0;
+  font-size: 15px;
+  height: 40px;
+
+}
+.register{
+  padding: 7px 10px;
+  background-color: transparent;
+  color: white;
+  border-radius: 10px;
+  border: 1px solid #1DE782;
+  font-size: 15px;
+  height: 40px;
+}
+
+.mytickets{
+  padding: 7px 10px;
+  background-color: transparent;
+  color: white;
+  border-radius: 10px;
+  border: 1px solid #1DE782;
+  font-size: 15px;
+  height: 40px;
+}
+
+.logout{
+  padding: 7px 10px;
+  background-color: red;
+  color: white;
+  border-radius: 10px;
+  border: 0;
+  font-size: 15px;
+  height: 40px;
+}

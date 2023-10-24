@@ -1,0 +1,22 @@
+<div class="filmlist">
+
+  <div class="select-cinema">
+    <span>Кинотеатр</span>
+    <select id="selectcinema" #cinemaSelect (change)="onSelected(cinemaSelect.value)">
+      <option value="default">...</option>
+      <option [value]="cinema" *ngFor="let cinema of cinemas">{{cinema}}</option>
+    </select>
+  </div>
+  <h1>Сейчас в прокате</h1>
+
+  <div class="films">
+    <div class="film" *ngFor="let film of films">
+      <img class="poster" src="/assets/images/poster.png"/>
+      <p>{{film}}</p>
+    </div>
+  </div>
+
+    <!--    <img class="poster" src="{{baseUrl}}/img/{{film.Poster}}"/>-->
+<!--    <p>{{film.name}}</p>-->
+
+</div>
