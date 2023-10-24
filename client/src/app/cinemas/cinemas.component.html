@@ -1,5 +1,12 @@
 <div class="filmlist">
 
+  <div class="select-cinema">
+    <span>Кинотеатр</span>
+    <select id="selectcinema" #cinemaSelect (change)="onSelected(cinemaSelect.value)">
+      <option value="default">...</option>
+      <option [value]="cinema" *ngFor="let cinema of cinemas">{{cinema}}</option>
+    </select>
+  </div>
   <h1>Сейчас в прокате</h1>
 
   <div class="films">
