@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-
+import {Component, Inject} from '@angular/core';
 export interface Film{
   name: string;
   // poster: string;
@@ -20,7 +19,7 @@ const film6: string = "Криминальное чтиво"
 export class CinemasComponent {
   films:string[] = []
   cinemas:string[] = []
-  selectedCinema: string = ''
+  temp:string[]=[]
   CINEMA = [
       {
           cinema: "Кинотеатр 1",
@@ -38,17 +37,32 @@ export class CinemasComponent {
       }
   }
 
-    onSelected(value: string){
-      this.selectedCinema = value
-      if(value === 'default'){
-          this.films = [film1, film2, film3, film4, film5, film6]
+  oncinemaSelected(value: string){
+    let counter = 1
+
+    for(let i = 0; i<this.temp.length; i++){
+      if(this.temp.includes(value)){
+        counter++
       }
-        for(let i = 0; i < this.CINEMA.length; i++ ){
-            if(value === this.CINEMA[i].cinema){
-                this.films = this.CINEMA[i].films
-            }
-        }
+      else{this.temp = []}
     }
+
+    this.temp.push(value)
+
+    if (counter%2!==0){
+      for(let i = 0; i < this.CINEMA.length; i++ ){
+        if(value === this.CINEMA[i].cinema){
+          this.films = this.CINEMA[i].films
+        }
+        (document.getElementById(this.CINEMA[i].cinema) as HTMLElement).style.backgroundColor = "transparent"
+      }
+      (document.getElementById(value) as HTMLElement).style.backgroundColor = "#1DE782"
+    }
+    else{
+      (document.getElementById(value) as HTMLElement).style.backgroundColor = "transparent"
+      this.films = [film1, film2, film3, film4, film5, film6]
+    }
+  }
 }
 
 

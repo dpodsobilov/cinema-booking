@@ -9,6 +9,7 @@ import {RouterOutlet} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
 import { NavbarComponent } from './navbar/navbar.component';
 import { CinemasComponent } from './cinemas/cinemas.component';
+import { FilmComponent } from './film/film.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CinemasComponent } from './cinemas/cinemas.component';
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
-    CinemasComponent
+    CinemasComponent,
+    FilmComponent
   ],
   imports: [
     FormsModule,

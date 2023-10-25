@@ -1,0 +1,48 @@
+<div class="film-schedule">
+
+  <div class="film-info">
+    <div>
+      <img src="/assets/images/poster.png">
+    </div>
+
+    <div id="filmDescription" class="film-description">
+      <table class="table-film">
+
+        <tr>
+          <td colspan="2"><h1>Человек-паук</h1></td>
+        </tr>
+
+        <tr>
+          <td><h2>Жанр</h2></td>
+          <td>Мультфильм</td>
+        </tr>
+
+        <tr>
+          <td><h2>Длительность</h2></td>
+          <td>2ч 30мин</td>
+        </tr>
+
+        <tr>
+          <td><h2>Описание</h2></td>
+          <td>После воссоединения с Гвен Стейси дружелюбный сосед Человек-Паук попадает из Бруклина в Мультивселенную, где встречает команду Паучков, защищающих само её существование. Пытаясь справиться с новой угрозой, Майлз сталкивается с Пауками из других вселенных. Настаёт момент, когда ему необходимо решить, что значит быть героем, спасающим тех, кого любишь больше всего.</td>
+        </tr>
+
+      </table>
+    </div>
+  </div>
+
+  <div class="div-schedule cinema">
+    <p>Кинотеатр</p>
+    <div>
+      <input [id]="cinema" type="button" [value]="cinema" *ngFor="let cinema of cinemas" #cinemaSelect (click)="oncinemaSelected(cinemaSelect.value)">
+    </div>
+  </div>
+
+  <div class="div-schedule hall">
+    <p>Кинозал</p>
+    <div>
+      <input type="button" [value]="hall" *ngFor="let hall of halls" #cinemahallSelect (click)="onhallSelected(cinemahallSelect.value)">
+    </div>
+  </div>
+
+</div>
