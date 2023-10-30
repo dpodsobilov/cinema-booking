@@ -10,6 +10,7 @@ import {AppRoutingModule} from "./app-routing.module";
 import { NavbarComponent } from './navbar/navbar.component';
 import { CinemasComponent } from './cinemas/cinemas.component';
 import { FilmComponent } from './film/film.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -25,9 +26,14 @@ import { FilmComponent } from './film/film.component';
     AppRoutingModule,
     BrowserModule,
     ReactiveFormsModule,
-    RouterOutlet
+    RouterOutlet,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: "BASE_API_URL", useValue: 'http://localhost:5000'
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

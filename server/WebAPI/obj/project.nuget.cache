@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "RNdeSoqBk7gLA2REo2fcn0zx29A5DfVx11Dsq1IXBzFzsf48BuMBPB/4fydYx+TGGaZgBK2w1V6lyL+56VLt7A==",
+  "dgSpecHash": "IVVMc7HfMwttkSQ9Q7UU8MbbFzzcEHjH0WLX4X7bPCL5qvloQPif5JGxYBUtI2JGm+Bfwu7mEqcdNg48zq4ZXw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ruslan\\Data\\University\\7semester\\PI\\Project\\cinema-booking\\server\\WebAPI\\WebAPI.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Ruslan\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
+    "C:\\Users\\Ruslan\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\Ruslan\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.2\\microsoft.aspnetcore.openapi.7.0.2.nupkg.sha512",
     "C:\\Users\\Ruslan\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.11\\microsoft.entityframeworkcore.7.0.11.nupkg.sha512",
     "C:\\Users\\Ruslan\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.11\\microsoft.entityframeworkcore.abstractions.7.0.11.nupkg.sha512",

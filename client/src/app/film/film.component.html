@@ -9,39 +9,53 @@
       <table class="table-film">
 
         <tr>
-          <td colspan="2"><h1>Человек-паук</h1></td>
+          <td colspan="2"><h1>{{film.filmName}}</h1></td>
         </tr>
 
         <tr>
-          <td><h2>Жанр</h2></td>
-          <td>Мультфильм</td>
+          <td>Жанр</td>
+          <td>{{film.filmGenres}}</td>
         </tr>
 
         <tr>
-          <td><h2>Длительность</h2></td>
-          <td>2ч 30мин</td>
+          <td>Длительность</td>
+          <td>{{film.duration}}</td>
         </tr>
 
         <tr>
-          <td><h2>Описание</h2></td>
-          <td>После воссоединения с Гвен Стейси дружелюбный сосед Человек-Паук попадает из Бруклина в Мультивселенную, где встречает команду Паучков, защищающих само её существование. Пытаясь справиться с новой угрозой, Майлз сталкивается с Пауками из других вселенных. Настаёт момент, когда ему необходимо решить, что значит быть героем, спасающим тех, кого любишь больше всего.</td>
+          <td>Описание</td>
+          <td>{{film.description}}</td>
         </tr>
 
       </table>
     </div>
   </div>
 
-  <div class="div-schedule cinema">
+  <div class="div-schedule">
     <p>Кинотеатр</p>
     <div>
-      <input [id]="cinema" type="button" [value]="cinema" *ngFor="let cinema of cinemas" #cinemaSelect (click)="oncinemaSelected(cinemaSelect.value)">
+      <input [id]="'cinema-' + (cinema.cinemaId).toString()" type="button" [value]="cinema.cinemaName" *ngFor="let cinema of cinemas" #cinemaSelect (click)="oncinemaSelected(cinema)">
     </div>
   </div>
 
-  <div class="div-schedule hall">
+  <div class="div-schedule">
     <p>Кинозал</p>
     <div>
-      <input type="button" [value]="hall" *ngFor="let hall of halls" #cinemahallSelect (click)="onhallSelected(cinemahallSelect.value)">
+      <input class="cinemahall" type="button" [id]="'hall-'+ (hall.cinemaHallId).toString()" [value]="hall.cinemaHallName" *ngFor="let hall of cinemaHalls" #cinemahallSelect (click)="onCinemaHallSelected(hall)">
+    </div>
+  </div>
+
+  <div class="div-schedule">
+    <p>День</p>
+    <div>
+      <input type="button" [id]="'date-' + (date.date).toString()" [value]="date.dateValue" *ngFor="let date of dayMonths" #cinemahallSelect (click)="onDateSelected(date)">
+    </div>
+  </div>
+
+  <div class="div-schedule">
+    <p>Время</p>
+    <div>
+      <input type="button" [id]="'time-' + (time.date).toString()" [value]="time.dateValue" *ngFor="let time of times" #cinemahallSelect>
     </div>
   </div>
 

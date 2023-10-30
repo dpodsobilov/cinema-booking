@@ -2,19 +2,16 @@
 
   <div class="select-cinema">
     <span>Кинотеатр</span>
-      <input [id]="cinema" type="button" [value]="cinema" *ngFor="let cinema of cinemas" #cinemaSelect (click)="oncinemaSelected(cinemaSelect.value)">
+      <input [id]="cinema.cinemaId" type="button" [value]="cinema.cinemaName" *ngFor="let cinema of cinemaFilms" #cinemaSelect (click)="oncinemaSelected(cinema.cinemaId)">
   </div>
 
   <h1>Сейчас в прокате</h1>
 
   <div class="films">
     <div class="film" *ngFor="let film of films">
-      <img class="poster" src="/assets/images/poster.png" [routerLink]="['/film', film]"/>
-      <p>{{film}}</p>
+      <img class="poster" src="data:image/jpeg;base64,{{film.poster}}" [routerLink]="['/film', film.filmId]"/>
+      <p>{{film.filmName}}</p>
     </div>
   </div>
-
-    <!--    <img class="poster" src="{{baseUrl}}/img/{{film.Poster}}"/>-->
-<!--    <p>{{film.name}}</p>-->
 
 </div>
