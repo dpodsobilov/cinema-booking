@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-type Type1 = {
-  age: number
-  name: string
-}
+type Type = {
+  age: number;
+  name: string;
+};
 
 @Component({
   selector: 'app-root',
