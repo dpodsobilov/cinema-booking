@@ -3,11 +3,12 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css'],
+  styleUrls: ['./navbar.component.css']
 })
+
 export class NavbarComponent {
-  isAuthenticated: boolean = false;
-  login: string = '';
+  isAuthenticated:boolean = false;
+  login: string ='';
 
   // constructor(private userService: UserService, @Inject('BASE_API_URL') private baseUrl: string) {
   //   this.updateUserInfo();
