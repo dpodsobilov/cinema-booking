@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+type Type = {
+  age: number
+  name: string
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
