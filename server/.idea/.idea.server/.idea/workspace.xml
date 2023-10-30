@@ -10,45 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="97bbf355-e6dc-44f0-9257-cd85ea09e145" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../client/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/app/cinemas/cinemas.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/app/cinemas/cinemas.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/app/cinemas/cinemas.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/app/cinemas/cinemas.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/app/cinemas/cinemas.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/app/cinemas/cinemas.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/app/film/film.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/app/film/film.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/app/film/film.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/app/film/film.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/ApplicationContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/ApplicationContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/Models/Film.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/Models/Film.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Data/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Data/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic/Logic.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/Logic.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic/obj/Logic.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/obj/Logic.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic/obj/Logic.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/obj/Logic.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic/obj/Logic.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/obj/Logic.csproj.nuget.g.targets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/obj/rider.project.restore.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/Properties/launchSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/WebAPI.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/WebAPI.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/bin/Debug/net7.0/WebAPI.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/bin/Debug/net7.0/WebAPI.deps.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/bin/Debug/net7.0/WebAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/bin/Debug/net7.0/WebAPI.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/bin/Debug/net7.0/WebAPI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/bin/Debug/net7.0/WebAPI.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.assets.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/server.metadata.v5.2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/server.metadata.v5.2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/server.projects.v5.2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/server.projects.v5.2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.csproj.AssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.csproj.FileListAbsolute.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/ref/WebAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/ref/WebAPI.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/refint/WebAPI.dll" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/refint/WebAPI.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/WebAPI.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/WebAPI.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/project.packagespec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/rider.project.model.nuget.info" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/rider.project.model.nuget.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/rider.project.restore.info" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/rider.project.restore.info" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,28 +44,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "create-film",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.editor",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;create-film&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\Ruslan\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Ruslan\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
-      "C:\\Users\\Ruslan\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\Ruslan\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\Ruslan\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\Ruslan\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.WebAPI: http">
     <configuration name="WebAPI: IIS Express" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/WebAPI/WebAPI.csproj" />
@@ -167,6 +132,7 @@
       <workItem from="1698428094867" duration="16362000" />
       <workItem from="1698511425394" duration="12154000" />
       <workItem from="1698598112974" duration="11773000" />
+      <workItem from="1698691659320" duration="733000" />
     </task>
     <servers />
   </component>

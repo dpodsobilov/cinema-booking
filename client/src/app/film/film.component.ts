@@ -36,6 +36,7 @@ export class FilmComponent implements OnInit{
   tempCinema:number[]=[]
   tempHall:number[]=[]
   tempDate:string[]=[]
+  counterDate:number=0
 
   constructor(private filmService: FilmService, private route: ActivatedRoute) {
   }
@@ -181,7 +182,7 @@ export class FilmComponent implements OnInit{
     this.datesStr = []
     this.times = []
     let counter = 1
-
+    this.tempDate = []
 
     for(let i = 0; i<this.tempHall.length; i++){
       if(this.tempHall.includes(hall.cinemaHallId)){
@@ -191,7 +192,6 @@ export class FilmComponent implements OnInit{
     }
 
     this.tempHall.push(hall.cinemaHallId)
-
     if (counter%2!==0){ //если выбран элемент
       //Если выбран кинозал то заполняем даты
       for(let i = 0; i < this.schedule.length; i++ ){
@@ -233,18 +233,17 @@ export class FilmComponent implements OnInit{
 
   onDateSelected(date:DayMonth){
       this.times = []
-      let counter = 1
-
+      this.counterDate = 1
       for(let i = 0; i<this.tempDate.length; i++){
           if(this.tempDate.includes(date.dateValue)){
-              counter++
+            this.counterDate++
           }
           else{this.tempDate = []}
       }
 
       this.tempDate.push(date.dateValue)
 
-      if (counter%2!==0){ //если выбран элемент
+      if (this.counterDate%2!==0){ //если выбран элемент
         //Если выбран день то заполняем время
         for(let i = 0; i < this.schedule.length; i++ ){
           if(this.removeTime(date.date) === this.removeTime(new Date(Date.parse(this.schedule[i].dataTimeSession)))){
