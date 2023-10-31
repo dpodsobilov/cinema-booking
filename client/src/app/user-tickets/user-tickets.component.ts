@@ -22,7 +22,7 @@ export class UserTicketsComponent {
   upcomingTickets: Ticket[] = [
     {
       date: 'Пн, 23 октября 2023',
-      filmName: 'Человек Паук',
+      filmName: 'Человек-Паук',
       cinemaName: 'Кинотеатр 2',
       cinemaHallName: 'Зал 2 - Стандарт',
       seatsQuantity: 3,
@@ -31,7 +31,7 @@ export class UserTicketsComponent {
     },
     {
       date: 'Ср, 25 октября 2023',
-      filmName: 'Человек Паук',
+      filmName: 'Человек-Паук',
       cinemaName: 'Кинотеатр 2',
       cinemaHallName: 'Зал 2 - Стандарт',
       seatsQuantity: 3,
@@ -40,7 +40,7 @@ export class UserTicketsComponent {
     },
     {
       date: 'Чт, 23 октября 2023',
-      filmName: 'Человек Паук',
+      filmName: 'Человек-Паук',
       cinemaName: 'Кинотеатр 2',
       cinemaHallName: 'Зал 2 - Стандарт',
       seatsQuantity: 3,
@@ -49,9 +49,21 @@ export class UserTicketsComponent {
     },
     {
       date: 'Чт, 23 октября 2023',
-      filmName: 'Человек Паук',
+      filmName: 'Человек-Паук',
       cinemaName: 'Кинотеатр 2',
       cinemaHallName: 'Зал 2 - Стандарт',
+      seatsQuantity: 3,
+      seats: [2, 3, 4],
+      time: new Date().toLocaleTimeString().slice(0, 5),
+    },
+  ];
+
+  pastTickets: Ticket[] = [
+    {
+      date: 'Чт, 10 октября 2023',
+      filmName: 'Человек-Паук',
+      cinemaName: 'Кинотеатр 2',
+      cinemaHallName: 'Зал 1 - VIP',
       seatsQuantity: 3,
       seats: [2, 3, 4],
       time: new Date().toLocaleTimeString().slice(0, 5),
@@ -87,6 +99,4 @@ export class UserTicketsComponent {
   showTickets() {
     this.isUpcoming = !this.isUpcoming;
   }
-
-  protected readonly tick = tick;
 }
