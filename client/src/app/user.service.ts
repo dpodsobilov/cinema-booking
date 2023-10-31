@@ -8,17 +8,24 @@ export interface UserInfo {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
   @Output() errors: EventEmitter<any> = new EventEmitter();
   @Output() authChanged: EventEmitter<any> = new EventEmitter();
 
-  constructor(private http: HttpClient, @Inject('BASE_API_URL') private baseUrl: string, private router:Router) {}
+  constructor(
+    private http: HttpClient,
+    @Inject('BASE_API_URL') private baseUrl: string,
+    private router: Router,
+  ) {}
 
-  register(email: string, password: string, firstName: string, lastName: string) {
-
+  register(
+    email: string,
+    password: string,
+    firstName: string,
+    lastName: string,
+  ) {
     const formData = new FormData();
 
     formData.append('Email', email!);
@@ -26,17 +33,15 @@ export class UserService {
     formData.append('FirstName', firstName);
     formData.append('Lastname', lastName);
 
-    this.http.post(this.baseUrl+ '/register', formData).subscribe({
-      next: (result)=>{
+    this.http.post(this.baseUrl + '/register', formData).subscribe({
+      next: (result) => {
         this.login(email, password, false);
         this.router.navigate(['']);
       },
       error: (e) => {
-        this.errors.emit(e)
-      }
+        this.errors.emit(e);
+      },
     });
-
-
   }
 
   login(email: string, password: string, rememberMe: boolean) {
@@ -44,24 +49,21 @@ export class UserService {
     formData.append('email', email);
     formData.append('password', password);
 
-    const storage = rememberMe? localStorage: sessionStorage;
+    const storage = rememberMe ? localStorage : sessionStorage;
 
-
-    this.http.post(this.baseUrl +'/login', formData).subscribe(
-      {
-        next: (user: any) => {
-          const authData = window.btoa(email + ':' + password);
-          const UserInfo: UserInfo = {email: email, authData: authData};
-          storage.setItem('userInfo', JSON.stringify(UserInfo));
-          storage.setItem('isAuthenticated', 'true');
-          this.authChanged.emit();
-          this.router.navigate(['']);
-        },
-        error: (e) => {
-          this.errors.emit(e)
-        }
-      }
-    );
+    this.http.post(this.baseUrl + '/login', formData).subscribe({
+      next: (user: any) => {
+        const authData = window.btoa(email + ':' + password);
+        const UserInfo: UserInfo = { email: email, authData: authData };
+        storage.setItem('userInfo', JSON.stringify(UserInfo));
+        storage.setItem('isAuthenticated', 'true');
+        this.authChanged.emit();
+        this.router.navigate(['']);
+      },
+      error: (e) => {
+        this.errors.emit(e);
+      },
+    });
   }
 
   logout() {
@@ -75,13 +77,13 @@ export class UserService {
     this.router.navigate(['']);
   }
 
-  isAuthenticated():boolean {
+  isAuthenticated(): boolean {
     const isLocal = localStorage.getItem('isAuthenticated') == 'true';
     const isSession = sessionStorage.getItem('isAuthenticated') == 'true';
     return isLocal || isSession;
   }
 
-  getUserInfo():UserInfo {
+  getUserInfo(): UserInfo {
     let user = JSON.parse(localStorage.getItem('userInfo')!) as UserInfo;
     if (user == null) {
       user = JSON.parse(sessionStorage.getItem('userInfo')!) as UserInfo;
