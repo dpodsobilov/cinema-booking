@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CinemasComponent } from './cinemas/cinemas.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { UserTicketsComponent } from './user-tickets/user-tickets.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     NavbarComponent,
     CinemasComponent,
     NotFoundComponent,
+    UserTicketsComponent,
   ],
   imports: [
     FormsModule,

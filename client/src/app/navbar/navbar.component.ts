@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent {
-  isAuthenticated: boolean = false;
+  isAuthenticated: boolean = true;
   login: string = '';
 
   // constructor(private userService: UserService, @Inject('BASE_API_URL') private baseUrl: string) {

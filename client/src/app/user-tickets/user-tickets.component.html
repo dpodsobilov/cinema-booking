@@ -1,0 +1,26 @@
+<div class="content-container">
+  <h1>Билеты</h1>
+
+  <div class="select-tickets">
+    <input
+      type="button"
+      [ngClass]="{ active: isUpcoming }"
+      value="Предстоящие"
+      (click)="showTickets()"
+    />
+    <input
+      type="button"
+      [ngClass]="{ active: !isUpcoming }"
+      value="История"
+      (click)="showTickets()"
+    />
+  </div>
+
+  <div *ngIf="isUpcoming; then ticketsUpcoming; else ticketsHistory"></div>
+  <ng-template #ticketsUpcoming>
+    <div class="tickets">upcoming</div>
+  </ng-template>
+  <ng-template #ticketsHistory>
+    <div class="tickets">history</div>
+  </ng-template>
+</div>
