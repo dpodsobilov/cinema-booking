@@ -10,10 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="97bbf355-e6dc-44f0-9257-cd85ea09e145" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../client/src/app/film/film.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/app/film/film.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/src/app/film/film.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/app/film/film.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/server.metadata.v5.2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/server.metadata.v5.2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/server.projects.v5.2" beforeDir="false" afterPath="$PROJECT_DIR$/.vs/ProjectEvaluation/server.projects.v5.2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/WebAPI/obj/Debug/net7.0/WebAPI.csproj.AssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/ApplicationContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/ApplicationContext.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,6 +133,7 @@
       <workItem from="1698511425394" duration="12154000" />
       <workItem from="1698598112974" duration="11773000" />
       <workItem from="1698691659320" duration="733000" />
+      <workItem from="1698770517633" duration="2469000" />
     </task>
     <servers />
   </component>

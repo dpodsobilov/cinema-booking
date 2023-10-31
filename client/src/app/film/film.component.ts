@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Film, FilmService, Schedule} from "../services/film-service/film.service";
 import { ActivatedRoute } from '@angular/router';
+import {animationFrameScheduler} from "rxjs";
 
 export interface Cinema{
   cinemaId: number
@@ -15,6 +16,12 @@ export interface DayMonth{
   dateValue: string
 }
 
+export interface Time{
+  time: Date
+  timeValue: string
+  cinemaHallId: number
+}
+
 @Component({
   selector: 'app-film',
   templateUrl: './film.component.html',
@@ -26,17 +33,24 @@ export class FilmComponent implements OnInit{
   datesStr:string[] = []
   dates:Date[] = []
   dayMonths:DayMonth[] = []
-  times:DayMonth[] = []
+  times:Time[] = []
   selectedCinema: number = 0
   selectedHall: number = 0
   selectedDate:Date = new Date('00-00-00')
+  selectedTime:Date = new Date('00-00-00')
   film:Film = {filmId: 0, filmName: '', duration: '', description: '', poster: '', filmGenres: []}
   schedule:Schedule[] = []
   segmentValue:string=''
   tempCinema:number[]=[]
   tempHall:number[]=[]
   tempDate:string[]=[]
-  counterDate:number=0
+  tempTime:Time[]=[]
+  flag:boolean = false
+  _SelectedCinemaName:string=''
+  _SelectedCinemaHallName:string=''
+  _SelectedDate:string=''
+  _SelectedTime:string=''
+
 
   constructor(private filmService: FilmService, private route: ActivatedRoute) {
   }
@@ -114,6 +128,14 @@ export class FilmComponent implements OnInit{
     return months[month.toString()]
   }
 
+  getDate(date:string){
+    let converter = new Date(Date.parse(date))
+    return (
+      (converter.getDate()).toString() + " " +
+      this.parseMonth(converter.getMonth()) + " " +
+      (converter.getFullYear()).toString()
+    );
+  }
   getTime(date:string){
     let converter = new Date(Date.parse(date))
       return (
@@ -124,9 +146,11 @@ export class FilmComponent implements OnInit{
   }
 
   oncinemaSelected(cinema: Cinema){
+    this.flag = false
     this.datesStr = []
     this.cinemaHalls = []
     this.times = []
+    this.selectedTime = new Date('00-00-00')
     let counter = 1
 
     for(let i = 0; i<this.tempCinema.length; i++){
@@ -175,12 +199,15 @@ export class FilmComponent implements OnInit{
       this.datesStr = []
       this.dayMonths = []
       this.times = []
+      this.selectedTime = new Date('00-00-00')
     }
   }
 
   onCinemaHallSelected(hall: CinemaHall){
+    this.flag = false
     this.datesStr = []
     this.times = []
+    this.selectedTime = new Date('00-00-00')
     let counter = 1
     this.tempDate = []
 
@@ -214,7 +241,7 @@ export class FilmComponent implements OnInit{
     }
     else{ //Если ничего не выбрано
       (document.getElementById('hall-'+ String(hall.cinemaHallId)) as HTMLElement).style.backgroundColor = "transparent"
-
+      this.selectedTime = new Date('00-00-00')
       this.times = []
       this.selectedHall = 0
       //Заполняем даты по выбранному кинотеатру
@@ -232,52 +259,102 @@ export class FilmComponent implements OnInit{
   }
 
   onDateSelected(date:DayMonth){
-      this.times = []
-      this.counterDate = 1
-      for(let i = 0; i<this.tempDate.length; i++){
-          if(this.tempDate.includes(date.dateValue)){
-            this.counterDate++
+    this.flag = false
+    this.times = []
+    this.selectedTime = new Date('00-00-00')
+    let counter = 1
+    for(let i = 0; i<this.tempDate.length; i++){
+        if(this.tempDate.includes(date.dateValue)){
+          counter++
+        }
+        else{this.tempDate = []}
+    }
+
+    this.tempDate.push(date.dateValue)
+
+    if (counter%2!==0){ //если выбран элемент
+      //Если выбран день то заполняем время
+      for(let i = 0; i < this.schedule.length; i++ ){
+        if(this.removeTime(date.date) === this.removeTime(new Date(Date.parse(this.schedule[i].dataTimeSession)))){
+          //Если выбран кинозал заполняем время по нему
+          if((this.selectedHall !== 0) && (this.selectedHall === this.schedule[i].cinemaHallId)){
+            if(this.times.find(t => t.time === (new Date(Date.parse(this.schedule[i].dataTimeSession)))) === undefined){
+              this.times.push({
+                  time: (new Date(Date.parse(this.schedule[i].dataTimeSession))),
+                  timeValue: this.getTime(this.schedule[i].dataTimeSession),
+                  cinemaHallId: this.selectedHall
+              })
+            }
           }
-          else{this.tempDate = []}
-      }
-
-      this.tempDate.push(date.dateValue)
-
-      if (this.counterDate%2!==0){ //если выбран элемент
-        //Если выбран день то заполняем время
-        for(let i = 0; i < this.schedule.length; i++ ){
-          if(this.removeTime(date.date) === this.removeTime(new Date(Date.parse(this.schedule[i].dataTimeSession)))){
-            //Если выбран кинозал заполняем время по нему
-            if((this.selectedHall !== 0) && (this.selectedHall === this.schedule[i].cinemaHallId)){
-              if(this.times.find(t => t.date === (new Date(Date.parse(this.schedule[i].dataTimeSession)))) === undefined){
-                this.times.push({
-                    date: (new Date(Date.parse(this.schedule[i].dataTimeSession))),
-                    dateValue: this.getTime(this.schedule[i].dataTimeSession)
-                })
+          //Если кинозал не выбран, заполняем время по кинотеатру
+          if((this.selectedHall === 0) && (this.selectedCinema === this.schedule[i].cinemaId)){
+              if(this.times.find(t => (t.time && t.cinemaHallId) === ((new Date(Date.parse(this.schedule[i].dataTimeSession))) && this.schedule[i].cinemaHallId)) === undefined){
+                  this.times.push({
+                      time: (new Date(Date.parse(this.schedule[i].dataTimeSession))),
+                      timeValue: this.getTime(this.schedule[i].dataTimeSession),
+                      cinemaHallId: this.schedule[i].cinemaHallId
+                  })
               }
-            }
-            //Если кинозал не выбран, заполняем время по кинотеатру
-            if((this.selectedHall === 0) && (this.selectedCinema === this.schedule[i].cinemaId)){
-                if(this.times.find(t => t.date === (new Date(Date.parse(this.schedule[i].dataTimeSession)))) === undefined){
-                    this.times.push({
-                        date: (new Date(Date.parse(this.schedule[i].dataTimeSession))),
-                        dateValue: this.getTime(this.schedule[i].dataTimeSession)
-                    })
-                }
-            }
           }
         }
-        this.selectedDate = date.date
-        //Окрашиваем кнопку дня
-        for(let i = 0; i < this.dayMonths.length; i++ ){
-          (document.getElementById('date-' + String(this.dayMonths[i].date)) as HTMLElement).style.backgroundColor = "transparent"
-        }
-        (document.getElementById('date-' + String(date.date)) as HTMLElement).style.backgroundColor = "#1DE782"
       }
-      else{ //Если ничего не выбрано
-          (document.getElementById('date-' + String(date.date)) as HTMLElement).style.backgroundColor = "transparent"
-          this.times = []
-          this.selectedDate = new Date('00-00-00')
+      this.selectedDate = date.date
+      //Окрашиваем кнопку дня
+      for(let i = 0; i < this.dayMonths.length; i++ ){
+        (document.getElementById('date-' + String(this.dayMonths[i].date)) as HTMLElement).style.backgroundColor = "transparent"
       }
+      (document.getElementById('date-' + String(date.date)) as HTMLElement).style.backgroundColor = "#1DE782"
+    }
+    else{ //Если ничего не выбрано
+      (document.getElementById('date-' + String(date.date)) as HTMLElement).style.backgroundColor = "transparent"
+      this.times = []
+      this.selectedDate = new Date('00-00-00')
+      this.selectedTime = new Date('00-00-00')
+    }
+  }
+
+  onTimeSelected(time:Time){
+    let counter = 1
+    for(let i = 0; i<this.tempTime.length; i++){
+      if(this.tempTime.includes(time)){
+        counter++
+      }
+      else{this.tempTime = []}
+    }
+
+    this.tempTime.push(time)
+
+    if (counter%2!==0){ //если выбран элемент
+      for(let i = 0; i < this.times.length; i++ ){
+        (document.getElementById(String(this.times[i].time)+String(this.times[i].cinemaHallId)) as HTMLElement).style.backgroundColor = "transparent"
+      }
+      (document.getElementById(String(time.time)+String(time.cinemaHallId)) as HTMLElement).style.backgroundColor = "#1DE782"
+      this.selectedTime = time.time
+      this.buildConfirm(time)
+      this.flag = true
+    }
+
+    else{ //Если ничего не выбрано
+      (document.getElementById(String(time.time)+String(time.cinemaHallId)) as HTMLElement).style.backgroundColor = "transparent"
+      this.flag = false
+      this.selectedTime = new Date('00-00-00')
+    }
+  }
+
+  buildConfirm(time:Time){
+    for(let i = 0; i < this.schedule.length; i++ ){
+      if((this.schedule[i].cinemaHallId === time.cinemaHallId)
+        && ((new Date(Date.parse(this.schedule[i].dataTimeSession))).getTime() === time.time.getTime())){
+        this._SelectedCinemaName = this.schedule[i].cinemaName
+        this._SelectedCinemaHallName = this.schedule[i].cinemaHallName
+      }
+    }
+    this._SelectedDate = this.getDate(String(time.time))
+    this._SelectedTime = this.getTime(String(time.time))
+
+    // console.log(this._SelectedCinemaName)
+    // console.log(this._SelectedCinemaHallName)
+    // console.log(this._SelectedDate)
+    // console.log(this._SelectedTime)
   }
 }

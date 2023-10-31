@@ -95,7 +95,7 @@ public sealed class ApplicationContext : DbContext
             DateTime date3 = new DateTime(2023, 3, 20, 10, 30, 00);
             // Session session1 = new Session { DataTimeSession = date, DataTimeCoefficient = 3, FilmId = film1.FilmId, CinemaHallId = cinemaHall1.CinemaHallId};
             Session session2 = new Session { DataTimeSession = date, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall1.CinemaHallId};
-            Session session3 = new Session { DataTimeSession = date3, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall2.CinemaHallId};
+            Session session3 = new Session { DataTimeSession = date, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall2.CinemaHallId};
             Session session4 = new Session { DataTimeSession = date, DataTimeCoefficient = 3, FilmId = film4.FilmId, CinemaHallId = cinemaHall2.CinemaHallId};
             Session session5 = new Session { DataTimeSession = date, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall3.CinemaHallId};
             Session session6 = new Session { DataTimeSession = date2, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall1.CinemaHallId};

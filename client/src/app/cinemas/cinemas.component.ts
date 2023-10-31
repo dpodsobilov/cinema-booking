@@ -19,7 +19,6 @@ export class CinemasComponent implements OnInit{
   ngOnInit(): void {
     this.homepageService.GetHomePageFilms().subscribe((res:CinemaFilms[]) => {
       this.cinemaFilms = res;
-      console.log(this.cinemaFilms)
       this.addAllFilms()
     })
   }
