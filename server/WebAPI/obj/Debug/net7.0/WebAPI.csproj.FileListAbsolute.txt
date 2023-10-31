@@ -71,3 +71,7 @@ C:\Users\Ruslan\Data\University\7semester\PI\Project\cinema-booking\server\WebAP
 C:\Users\Ruslan\Data\University\7semester\PI\Project\cinema-booking\server\WebAPI\bin\Debug\net7.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\Ruslan\Data\University\7semester\PI\Project\cinema-booking\server\WebAPI\bin\Debug\net7.0\Data.dll
 C:\Users\Ruslan\Data\University\7semester\PI\Project\cinema-booking\server\WebAPI\bin\Debug\net7.0\Data.pdb
+C:\Users\Ruslan\Data\University\7semester\PI\Project\cinema-booking\server\WebAPI\bin\Debug\net7.0\MediatR.dll
+C:\Users\Ruslan\Data\University\7semester\PI\Project\cinema-booking\server\WebAPI\bin\Debug\net7.0\MediatR.Contracts.dll
+C:\Users\Ruslan\Data\University\7semester\PI\Project\cinema-booking\server\WebAPI\bin\Debug\net7.0\Logic.dll
+C:\Users\Ruslan\Data\University\7semester\PI\Project\cinema-booking\server\WebAPI\bin\Debug\net7.0\Logic.pdb

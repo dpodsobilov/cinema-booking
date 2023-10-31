@@ -9,20 +9,6 @@ span{
     font-size: 25px;
 }
 
-select{
-    font-size: 20px;
-    height: 25px;
-    margin-left: 10px;
-    border-radius: 5px;
-    background-color: transparent;
-    border: 1px solid #1DE782;
-    color: white;
-}
-
-option{
-    color: black;
-}
-
 h1{
     text-align: center;
     margin-bottom: 20px;
@@ -39,8 +25,21 @@ h1{
 
 .film{
     margin: 20px;
+  text-align: center
 }
 
 p{
     text-align: center
+}
+
+input{
+  margin-bottom: 10px;
+  margin-left: 10px;
+  padding: 7px 10px;
+  background-color: transparent;
+  color: white;
+  border-radius: 20px;
+  border: 1px solid #1DE782;
+  font-size: 18px;
+  height: 40px;
 }

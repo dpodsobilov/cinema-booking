@@ -10,7 +10,6 @@ public class Film
     public decimal FilmCoefficient { get; set; }
     public string Description { get; set; } = null!;
     public byte[] Poster { get; set; } = null!;
-    // добавить описание и постер
     
     // FilmId -> FK в FilmGenre
     public ICollection<FilmGenre> FilmGenres { get; set; } = null!;

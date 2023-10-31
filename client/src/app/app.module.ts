@@ -4,11 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {RouterOutlet} from "@angular/router";
-import {AppRoutingModule} from "./app-routing.module";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterOutlet } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CinemasComponent } from './cinemas/cinemas.component';
+import { FilmComponent } from './film/film.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,16 +18,23 @@ import { CinemasComponent } from './cinemas/cinemas.component';
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
-    CinemasComponent
+    CinemasComponent,
+    FilmComponent,
   ],
   imports: [
     FormsModule,
     AppRoutingModule,
     BrowserModule,
     ReactiveFormsModule,
-    RouterOutlet
+    RouterOutlet,
+    HttpClientModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: 'BASE_API_URL',
+      useValue: 'http://localhost:5000',
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

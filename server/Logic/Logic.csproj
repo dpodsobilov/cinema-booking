@@ -9,12 +9,18 @@
     <ItemGroup>
       <Folder Include="BackgroundServices\" />
       <Folder Include="Commands\" />
-      <Folder Include="DTO\" />
       <Folder Include="Exceptions\" />
       <Folder Include="Hubs\" />
       <Folder Include="Notifications\" />
-      <Folder Include="Queries\" />
       <Folder Include="Services\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MediatR" Version="12.1.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Data\Data.csproj" />
     </ItemGroup>
 
 </Project>
