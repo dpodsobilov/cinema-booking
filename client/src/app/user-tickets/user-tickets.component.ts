@@ -1,4 +1,15 @@
 import { Component } from '@angular/core';
+import { tick } from '@angular/core/testing';
+
+export interface Ticket {
+  date: string;
+  filmName: string;
+  cinemaName: string;
+  cinemaHallName: string;
+  seatsQuantity: number;
+  seats: number[];
+  time: string;
+}
 
 @Component({
   selector: 'app-user-tickets',
@@ -8,6 +19,44 @@ import { Component } from '@angular/core';
 export class UserTicketsComponent {
   isUpcoming: boolean = true;
 
+  upcomingTickets: Ticket[] = [
+    {
+      date: 'Пн, 23 октября 2023',
+      filmName: 'Человек Паук',
+      cinemaName: 'Кинотеатр 2',
+      cinemaHallName: 'Зал 2 - Стандарт',
+      seatsQuantity: 3,
+      seats: [2, 3, 4],
+      time: new Date().toLocaleTimeString().slice(0, 5),
+    },
+    {
+      date: 'Ср, 25 октября 2023',
+      filmName: 'Человек Паук',
+      cinemaName: 'Кинотеатр 2',
+      cinemaHallName: 'Зал 2 - Стандарт',
+      seatsQuantity: 3,
+      seats: [2, 3, 4],
+      time: new Date().toLocaleTimeString().slice(0, 5),
+    },
+    {
+      date: 'Чт, 23 октября 2023',
+      filmName: 'Человек Паук',
+      cinemaName: 'Кинотеатр 2',
+      cinemaHallName: 'Зал 2 - Стандарт',
+      seatsQuantity: 3,
+      seats: [2, 3, 4],
+      time: new Date().toLocaleTimeString().slice(0, 5),
+    },
+    {
+      date: 'Чт, 23 октября 2023',
+      filmName: 'Человек Паук',
+      cinemaName: 'Кинотеатр 2',
+      cinemaHallName: 'Зал 2 - Стандарт',
+      seatsQuantity: 3,
+      seats: [2, 3, 4],
+      time: new Date().toLocaleTimeString().slice(0, 5),
+    },
+  ];
   // oncinemaSelected(id: number){
   //   let counter = 1
   //
@@ -38,4 +87,6 @@ export class UserTicketsComponent {
   showTickets() {
     this.isUpcoming = !this.isUpcoming;
   }
+
+  protected readonly tick = tick;
 }
