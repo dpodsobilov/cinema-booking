@@ -7,13 +7,13 @@
       type="button"
       [ngClass]="{ active: isUpcoming }"
       value="Предстоящие"
-      (click)="showTickets()"
+      (click)="isUpcoming = true"
     />
     <input
       type="button"
       [ngClass]="{ active: !isUpcoming }"
       value="История"
-      (click)="showTickets()"
+      (click)="isUpcoming = false"
     />
   </div>
 

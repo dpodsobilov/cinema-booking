@@ -95,8 +95,4 @@ export class UserTicketsComponent {
   //     this.addAllFilms()
   //   }
   // }
-
-  showTickets() {
-    this.isUpcoming = !this.isUpcoming;
-  }
 }
