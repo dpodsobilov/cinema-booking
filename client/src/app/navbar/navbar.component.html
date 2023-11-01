@@ -15,7 +15,13 @@
       value="Мои билеты"
       routerLink="/login"
     />
-    <input class="logout" type="button" value="Выйти" routerLink="/register" />
+    <input
+      class="logout"
+      type="button"
+      value="Выйти"
+      (click)="logout()"
+      routerLink=""
+    />
   </div>
 
   <!-- не авторизован -->
