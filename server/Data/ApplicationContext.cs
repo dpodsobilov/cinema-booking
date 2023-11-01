@@ -19,11 +19,11 @@ public sealed class ApplicationContext : DbContext
 
     public ApplicationContext()
     {
-        Database.EnsureDeleted();
-        Database.EnsureCreated();
-        // if (Database.EnsureCreated())
-        // { 
-            User user1 = new User { Email = "daria@surf.ru", Password = "*", Name = "Daria", Surname = "Surf", Role = 0 };
+        // Database.EnsureDeleted();
+        // Database.EnsureCreated();
+        if (Database.EnsureCreated())
+        { 
+            User user1 = new User { Email = "daria@surf.ru", Password = "123123", Name = "Daria", Surname = "Surf", Role = 0 };
             Users.Add(user1);
             byte[] img = FileConverter.GetBinaryFile("C:\\Users\\perep\\Pictures\\meme.jpg");
             Film film1 = new Film { FilmName = "Аватар", Duration = "1 час 10 минут", FilmCoefficient = 10, Description = "Синие человечки бьют друг друга волосами и сбивают мух, которые тоже вертолеты. В главных ролях: JSON стэтхэм, Коля Валуев, Ивалера Изгорилки", Poster = img};
@@ -118,7 +118,7 @@ public sealed class ApplicationContext : DbContext
             Tickets.Add(ticket1);
             
             SaveChanges();   
-        // }
+        }
     }
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

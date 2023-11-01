@@ -1,9 +1,7 @@
 using Data;
 using Data.Models;
 using Logic.DTO;
-using Logic.Queries;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Logic.Commands;
 
@@ -25,12 +23,10 @@ public class RegisterCommand : IRequest
 public class RegisterCommandHandler : IRequestHandler<RegisterCommand>
 {
     private readonly ApplicationContext _applicationContext;
-    private readonly IMediator _mediator;
 
-    public RegisterCommandHandler(ApplicationContext applicationContext, IMediator mediator)
+    public RegisterCommandHandler(ApplicationContext applicationContext)
     {
         _applicationContext = applicationContext;
-        _mediator = mediator;
     }
     
     public async Task Handle(RegisterCommand request, CancellationToken cancellationToken)
@@ -39,7 +35,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand>
 
         if (email)
         {
-            throw new Exception("Такой логин уже зарегистрирован");
+            throw new Exception("Введенный email уже зарегистрирован");
         }
         
         await _applicationContext.Users.AddAsync(new User
@@ -49,5 +45,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand>
             Name = request.Name,
             Surname = request.Surname
         }, cancellationToken);
+        await _applicationContext.SaveChangesAsync(cancellationToken);
+        
     }
 }

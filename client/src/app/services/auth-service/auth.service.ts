@@ -60,10 +60,10 @@ export class AuthService {
           email: email,
           authData: AUTH_DATA,
           info: {
-            userId: user.UserId,
-            role: user.Role,
-            name: user.Name,
-            surname: user.Surname,
+            userId: user.userId,
+            role: user.role,
+            name: user.name,
+            surname: user.surname,
           },
         };
         storage.setItem('user', JSON.stringify(USER_INFO));

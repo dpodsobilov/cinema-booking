@@ -28,15 +28,15 @@ public class LoginQueryHandler : IRequestHandler<LoginQuery, UserDto>
     
     public async Task<UserDto> Handle(LoginQuery request, CancellationToken cancellationToken)
     {
-        var user = await _applicationContext.Users.Where(u => u.Email == request.Email && u.Password == request.Password)
+        var user = await _applicationContext.Users
+            .Where(u => u.Email == request.Email && u.Password == request.Password)
             .Select(u => new UserDto
             {
                 UserId = u.UserId,
                 Role = u.Role,
                 Name = u.Name,
                 Surname = u.Surname
-            })
-            .FirstOrDefaultAsync(cancellationToken);
+            }).FirstOrDefaultAsync(cancellationToken);
 
         if (user == null)
         {
