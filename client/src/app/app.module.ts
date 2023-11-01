@@ -10,7 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CinemasComponent } from './cinemas/cinemas.component';
 import { FilmComponent } from './film/film.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './services/auth-service/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,11 @@ import { HttpClientModule } from '@angular/common/http';
     {
       provide: 'BASE_API_URL',
       useValue: 'http://localhost:5000',
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],
