@@ -673,19 +673,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Ruslan\\.nuget\\packages\\": {}
+    "C:\\Users\\perep\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ruslan\\Data\\University\\7semester\\PI\\Project\\cinema-booking\\server\\Data\\Data.csproj",
+      "projectUniqueName": "C:\\Projects\\University\\3,14\\cinema-booking\\server\\Data\\Data.csproj",
       "projectName": "Data",
-      "projectPath": "C:\\Users\\Ruslan\\Data\\University\\7semester\\PI\\Project\\cinema-booking\\server\\Data\\Data.csproj",
-      "packagesPath": "C:\\Users\\Ruslan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ruslan\\Data\\University\\7semester\\PI\\Project\\cinema-booking\\server\\Data\\obj\\",
+      "projectPath": "C:\\Projects\\University\\3,14\\cinema-booking\\server\\Data\\Data.csproj",
+      "packagesPath": "C:\\Users\\perep\\.nuget\\packages\\",
+      "outputPath": "C:\\Projects\\University\\3,14\\cinema-booking\\server\\Data\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Ruslan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\perep\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -736,7 +741,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }

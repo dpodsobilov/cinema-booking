@@ -1,5 +1,6 @@
 using Data;
 using Logic;
+using WebAPI.Middlewares;
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
@@ -47,5 +48,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.UseCors("AllowMyOrigins");
+
+app.UseMiddleware<AuthMiddleware>();
 
 app.Run();
