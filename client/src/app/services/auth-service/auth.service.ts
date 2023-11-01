@@ -28,23 +28,17 @@ export class AuthService {
     private router: Router,
   ) {}
 
-  register(
-    email: string,
-    password: string,
-    firstName: string,
-    lastName: string,
-  ) {
+  register(email: string, password: string, name: string, surname: string) {
     const formData = new FormData();
 
     formData.append('Email', email!);
     formData.append('Password', password!);
-    formData.append('FirstName', firstName);
-    formData.append('Lastname', lastName);
+    formData.append('Name', name!);
+    formData.append('Surname', surname!);
 
     this.http.post(this.baseUrl + '/register', formData).subscribe({
       next: (result) => {
         this.login(email, password);
-        this.router.navigate(['/login']);
       },
       error: (e) => {
         this.errors.emit(e);
@@ -54,8 +48,8 @@ export class AuthService {
 
   login(email: string, password: string) {
     const formData = new FormData();
-    formData.append('email', email);
-    formData.append('password', password);
+    formData.append('email', email!);
+    formData.append('password', password!);
 
     const storage = localStorage;
 
