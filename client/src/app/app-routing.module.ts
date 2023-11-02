@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', component: CinemasComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'tickets', component: UserTicketsComponent, children: [] },
+  { path: 'tickets', component: UserTicketsComponent },
   { path: '**', pathMatch: 'full', component: NotFoundComponent },
 ];
 
