@@ -25,7 +25,7 @@ public sealed class ApplicationContext : DbContext
         { 
             User user1 = new User { Email = "daria@surf.ru", Password = "123123", Name = "Daria", Surname = "Surf", Role = 0 };
             Users.Add(user1);
-            byte[] img = FileConverter.GetBinaryFile("C:\\Users\\perep\\Pictures\\meme.jpg");
+            byte[] img = FileConverter.GetBinaryFile(".\\temp\\poster.png");
             Film film1 = new Film { FilmName = "Аватар", Duration = "1 час 10 минут", FilmCoefficient = 10, Description = "Синие человечки бьют друг друга волосами и сбивают мух, которые тоже вертолеты. В главных ролях: JSON стэтхэм, Коля Валуев, Ивалера Изгорилки", Poster = img};
             Film film2 = new Film { FilmName = "Не автар", Duration = "2 час 10 минут", FilmCoefficient = 10, Description = "Очень классный фильм", Poster = img};
             Film film3 = new Film { FilmName = "Аватар легенда об анге", Duration = "3 час 10 минут", FilmCoefficient = 10, Description = "Очень классный фильм", Poster = img};
