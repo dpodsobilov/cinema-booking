@@ -19,10 +19,10 @@ public sealed class ApplicationContext : DbContext
 
     public ApplicationContext()
     {
-        Database.EnsureDeleted();
-        Database.EnsureCreated();
-        // if (Database.EnsureCreated())
-        // { 
+        // Database.EnsureDeleted();
+        // Database.EnsureCreated();
+        if (Database.EnsureCreated())
+        { 
             User user1 = new User { Email = "daria@surf.ru", Password = "123123", Name = "Daria", Surname = "Surf", Role = 0 };
             Users.Add(user1);
             byte[] img = FileConverter.GetBinaryFile("..\\Data\\temp\\poster.png");
@@ -64,7 +64,7 @@ public sealed class ApplicationContext : DbContext
             PlaceTypes.Add(placeType2);
             PlaceTypes.Add(placeType3);
 
-            #region Добавление НЕвсех полей таблицы "Позиция места"
+            #region Добавление ВСЕХ полей таблицы "Позиция места"
             var r1N1 = new PlacePosition { Row = 1, Number = 1};
             var r1N2 = new PlacePosition { Row = 1, Number = 2};
             var r1N3 = new PlacePosition { Row = 1, Number = 3};
@@ -448,7 +448,7 @@ public sealed class ApplicationContext : DbContext
             Tickets.Add(ticket1);
             
             SaveChanges();   
-        // }
+        }
     }
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
