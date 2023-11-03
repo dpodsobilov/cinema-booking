@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { AuthService, UserInfo } from '../services/auth-service/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,21 +10,19 @@ export class NavbarComponent {
   isAuthenticated: boolean = false;
   login: string = '';
 
-  // constructor(private userService: UserService, @Inject('BASE_API_URL') private baseUrl: string) {
-  //   this.updateUserInfo();
-  //   this.userService.authChanged.subscribe(() => this.updateUserInfo());
-  // }
+  constructor(
+    private authService: AuthService,
+    @Inject('BASE_API_URL') private baseUrl: string,
+  ) {
+    this.updateUserInfo();
+    this.authService.authChanged.subscribe(() => this.updateUserInfo());
+  }
 
-  // updateUserInfo() {
-  //   this.isAuthenticated = this.userService.isAuthenticated();
-  //   if (this.isAuthenticated) {
-  //     const userInfo = this.userService.getUserInfo();
-  //     this.login = userInfo.login;
-  //     this.photo = this.baseUrl + '/img/' + userInfo.photo;
-  //   }
-  // }
+  updateUserInfo() {
+    this.isAuthenticated = this.authService.isAuthenticated();
+  }
 
-  // logout() {
-  //   this.userService.logout();
-  // }
+  logout() {
+    this.authService.logout();
+  }
 }

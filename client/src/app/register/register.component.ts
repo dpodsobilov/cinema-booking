@@ -7,7 +7,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { UserService } from '../user.service';
+import { AuthService } from '../services/auth-service/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -79,18 +79,21 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.controls['lastName'];
   }
 
-  // constructor(@Inject('BASE_API_URL') baseUrl: string, private userService: UserService) {
-  //   this.baseUrl = baseUrl;
-  //   this.userService.errors.subscribe(
-  //     () => this.registerForm.setErrors({ 'badRequest': true })
-  //   );
-  // }
+  constructor(
+    @Inject('BASE_API_URL') baseUrl: string,
+    private authService: AuthService,
+  ) {
+    this.baseUrl = baseUrl;
+    this.authService.errors.subscribe(() =>
+      this.registerForm.setErrors({ badRequest: true }),
+    );
+  }
 
   onSubmit() {
     const email = this.registerForm.get('email')?.value!;
     const password = this.registerForm.get('password')?.value!;
     const firstName = this.registerForm.get('firstName')?.value!;
     const lastName = this.registerForm.get('lastName')?.value!;
-    //this.userService.register(email, password, firstName, lastName);
+    this.authService.register(email, password, firstName, lastName);
   }
 }

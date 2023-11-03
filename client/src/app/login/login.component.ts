@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth-service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -28,17 +29,16 @@ export class LoginComponent {
     return this.loginForm.controls['password'];
   }
 
-  // constructor(private userService: UserService) {
-  //   this.userService.errors.subscribe(
-  //     () => this.loginForm.setErrors({ 'badLogin': true })
-  //   );
-  //
-  // }
+  constructor(private authService: AuthService) {
+    this.authService.errors.subscribe(() =>
+      this.loginForm.setErrors({ badLogin: true }),
+    );
+  }
 
   onSubmit() {
     const email = this.loginForm.get('email')?.value!;
     const password = this.loginForm.get('password')?.value!;
 
-    // this.userService.login(login, password, rememberMe as unknown as boolean);
+    this.authService.login(email, password);
   }
 }
