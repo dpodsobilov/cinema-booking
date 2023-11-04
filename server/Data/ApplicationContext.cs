@@ -444,7 +444,7 @@ public sealed class ApplicationContext : DbContext
             
             SaveChanges();
             
-            Ticket ticket1 = new Ticket { Price = 100, UserId = user1.UserId, SessionId = session2.SessionId, PlaceId = place1.PlaceId};
+            Ticket ticket1 = new Ticket { Price = 100, UserId = user1.UserId, SessionId = session2.SessionId, PlaceId = place3.PlaceId};
             Tickets.Add(ticket1);
             
             SaveChanges();   

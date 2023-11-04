@@ -12,6 +12,7 @@ import { CinemasComponent } from './cinemas/cinemas.component';
 import { FilmComponent } from './film/film.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth-service/auth.interceptor';
+import { PlacesComponent } from './places/places.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AuthInterceptor } from './services/auth-service/auth.interceptor';
     NavbarComponent,
     CinemasComponent,
     FilmComponent,
+    PlacesComponent,
   ],
   imports: [
     FormsModule,

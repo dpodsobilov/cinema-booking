@@ -1,0 +1,33 @@
+<div class="place-select">
+  <div class="hall">
+    <div class="screen">Экран</div>
+    <div class="row" *ngFor="let row of matrix">
+      <div class="place" *ngFor="let place of row">
+        <input
+          *ngIf="place.placeTypeId > 0"
+          type="button"
+          id="{{ place.placeId }}"
+          [ngStyle]="{ 'background-color': place.color }"
+          [value]="place.placeName"
+        />
+        <input
+          *ngIf="place.placeTypeId === 0"
+          type="button"
+          id="{{ place.placeId }}"
+          class="hidden"
+          disabled
+        />
+        <input
+          *ngIf="place.placeTypeId < 0"
+          class="unavailable"
+          type="button"
+          id="{{ place.placeId }}"
+          [value]="place.placeName"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="order-info"></div>
+</div>

@@ -55,21 +55,46 @@ public class GetCinemaHallQueryHandler : IRequestHandler<GetCinemaHallQuery, Cin
             .Select(s => s.CinemaHall).Select(h => h.CinemaHallType)
             .Select(ht => ht.Places).FirstOrDefaultAsync(cancellationToken);
         
+        // Найдем id забронированных места
+        var placeIds = await _applicationContext.Tickets
+            .Where(t => t.SessionId == request.SessionId)
+            .Select(t => t.PlaceId).ToListAsync(cancellationToken);
+        
         // Для каждого из найденных мест создадим Dto и занесем их в матрицу
         foreach (var place in places)
         {
+            var placeType = await _applicationContext.PlaceTypes
+                .Where(pt => pt.PlaceTypeId == place.PlaceTypeId)
+                .FirstOrDefaultAsync(cancellationToken);
+            
+            var placePosition = await _applicationContext.PlacePositions
+                .Where(ps => ps.PlacePositionId == place.PlacePositionId)
+                .FirstOrDefaultAsync(cancellationToken);
+
+            if (placeType == null || placePosition == null)
+            {
+                throw new Exception("Позиция или Тип места = null");
+            }
+
+            // Если место уже забронировано, то сделаем id этого места отрицательным
+            int placeTypeId = place.PlaceTypeId;
+            if (placeIds.Contains(place.PlaceId))
+            {
+                placeTypeId *= -1;
+            }
+            
             var placeDto = new PlaceDto
             {
                 PlaceId = place.PlaceId,
-                PlaceTypeId = place.PlaceTypeId,
+                PlaceTypeId = placeTypeId,
                 PlaceName = place.PlaceName,
-                PlaceTypeName = place.PlaceType.PlaceTypeName,
-                Color = place.PlaceType.PlaceTypeName,
-                Cost = place.PlaceType.DefaultCost * dataTimeCoefficient * filmCoefficient,
+                PlaceTypeName = placeType.PlaceTypeName,
+                Color = placeType.PlaceTypeColor,
+                Cost = placeType.DefaultCost * dataTimeCoefficient * filmCoefficient,
             };
 
-            var row = place.PlacePosition.Row-1;
-            var number = place.PlacePosition.Number-1;
+            var row = placePosition.Row-1;
+            var number = placePosition.Number-1;
 
             cinemaHallDto.PlaceDtos[row][number] = placeDto;
         } //Теперь матрица содержит все реально существующие места
