@@ -11,6 +11,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CinemasComponent } from './cinemas/cinemas.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UserTicketsComponent } from './user-tickets/user-tickets.component';
+import { FilmComponent } from './film/film.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AuthInterceptor } from './services/auth-service/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -18,9 +21,10 @@ import { UserTicketsComponent } from './user-tickets/user-tickets.component';
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
-    CinemasComponent,
     NotFoundComponent,
     UserTicketsComponent,
+    CinemasComponent,
+    FilmComponent,
   ],
   imports: [
     FormsModule,
@@ -28,8 +32,19 @@ import { UserTicketsComponent } from './user-tickets/user-tickets.component';
     BrowserModule,
     ReactiveFormsModule,
     RouterOutlet,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'BASE_API_URL',
+      useValue: 'http://localhost:5000',
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

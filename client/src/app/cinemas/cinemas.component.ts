@@ -1,52 +1,86 @@
-import { Component } from '@angular/core';
-
-export interface Film {
-  name: string;
-  // poster: string;
-}
-
-const film1: string = 'Пираты карибского моря';
-const film2: string = 'Железный человек';
-const film3: string = 'Человек паук';
-const film4: string = 'Зеленая миля';
-const film5: string = 'Аватар';
-const film6: string = 'Криминальное чтиво';
+import {
+  AfterViewInit,
+  Component,
+  DoCheck,
+  Inject,
+  OnInit,
+} from '@angular/core';
+import {
+  HomepageService,
+  CinemaFilms,
+  HomePageFilm,
+} from '../services/homepage-service/homepage.service';
+import { FilmService } from '../services/film-service/film.service';
 
 @Component({
   selector: 'app-cinemas',
   templateUrl: './cinemas.component.html',
   styleUrls: ['./cinemas.component.css'],
 })
-export class CinemasComponent {
-  films: string[] = [];
-  cinemas: string[] = [];
-  selectedCinema: string = '';
-  CINEMA = [
-    {
-      cinema: 'Кинотеатр 1',
-      films: [film1, film2],
-    },
-    {
-      cinema: 'Кинотеатр 2',
-      films: [film3, film4, film5, film6],
-    },
-  ];
-  constructor() {
-    this.films = [film1, film2, film3, film4, film5, film6];
-    for (let i = 0; i < this.CINEMA.length; i++) {
-      this.cinemas[i] = this.CINEMA[i].cinema;
+export class CinemasComponent implements OnInit {
+  cinemaFilms: CinemaFilms[] = [];
+  films: HomePageFilm[] = [];
+  _cinemaFilms: CinemaFilms[] = [];
+  temp: number[] = [];
+  SelectedCinema = localStorage.getItem('CinemaID');
+  constructor(
+    private homepageService: HomepageService /*private filmService: FilmService*/,
+  ) {}
+
+  ngOnInit(): void {
+    this.homepageService.GetHomePageFilms().subscribe((res: CinemaFilms[]) => {
+      this.cinemaFilms = res;
+      this.addAllFilms();
+    });
+  }
+
+  addAllFilms() {
+    this.films = [];
+    for (let i = 0; i < this.cinemaFilms.length; i++) {
+      for (let j = 0; j < this.cinemaFilms[i].films.length; j++) {
+        if (
+          this.films.find(
+            (f) => f.filmId === this.cinemaFilms[i].films[j].filmId,
+          ) === undefined
+        ) {
+          this.films.push(this.cinemaFilms[i].films[j]);
+        }
+      }
     }
   }
 
-  onSelected(value: string) {
-    this.selectedCinema = value;
-    if (value === 'default') {
-      this.films = [film1, film2, film3, film4, film5, film6];
-    }
-    for (let i = 0; i < this.CINEMA.length; i++) {
-      if (value === this.CINEMA[i].cinema) {
-        this.films = this.CINEMA[i].films;
+  oncinemaSelected(id: number) {
+    let counter = 1;
+
+    for (let i = 0; i < this.temp.length; i++) {
+      if (this.temp.includes(id)) {
+        counter++;
+      } else {
+        this.temp = [];
       }
+    }
+
+    this.temp.push(id);
+
+    if (counter % 2 !== 0) {
+      for (let i = 0; i < this.cinemaFilms.length; i++) {
+        if (id === this.cinemaFilms[i].cinemaId) {
+          this.films = this.cinemaFilms[i].films;
+        }
+        (
+          document.getElementById(
+            String(this.cinemaFilms[i].cinemaId),
+          ) as HTMLElement
+        ).style.backgroundColor = 'transparent';
+      }
+      (
+        document.getElementById(String(id)) as HTMLElement
+      ).style.backgroundColor = '#1DE782';
+    } else {
+      (
+        document.getElementById(String(id)) as HTMLElement
+      ).style.backgroundColor = 'transparent';
+      this.addAllFilms();
     }
   }
 }
