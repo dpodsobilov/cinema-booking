@@ -11,8 +11,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CinemasComponent } from './cinemas/cinemas.component';
 import { FilmComponent } from './film/film.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthInterceptor } from './services/auth-service/auth.interceptor';
+import { AuthInterceptor } from './services/auth.interceptor';
 import { PlacesComponent } from './places/places.component';
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { PlacesComponent } from './places/places.component';
     CinemasComponent,
     FilmComponent,
     PlacesComponent,
+    OrderComponent,
   ],
   imports: [
     FormsModule,

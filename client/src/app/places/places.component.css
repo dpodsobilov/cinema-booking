@@ -26,7 +26,7 @@ input{
   height: 30px;
   border: 1px solid #1DE782;
   border-radius: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
 }
 
 .row{
@@ -43,4 +43,29 @@ input{
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.order-info, .left, .right{
+  display: flex;
+  flex-direction: row;
+}
+
+.order-info{
+  border-top: 2px solid white;
+  justify-content: space-between;
+}
+
+.cost, .seats{
+  font-size: 18px;
+  margin-top: 5px;
+  margin-right: 20px;
+}
+.go-back{
+  border: 2px solid white;
+  background-color: transparent;
+  width: 150px;
+}
+.order{
+  background-color: #1DE782;
+  width: 200px;
 }

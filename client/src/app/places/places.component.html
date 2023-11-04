@@ -6,9 +6,10 @@
         <input
           *ngIf="place.placeTypeId > 0"
           type="button"
-          id="{{ place.placeId }}"
+          [id]="'place-' + place.placeId.toString()"
           [ngStyle]="{ 'background-color': place.color }"
           [value]="place.placeName"
+          (click)="onPlaceSelect(place.placeId, place.placeName, place.cost)"
         />
         <input
           *ngIf="place.placeTypeId === 0"
@@ -29,5 +30,34 @@
     </div>
   </div>
 
-  <div class="order-info"></div>
+  <div class="order-info">
+    <div class="left">
+      <div class="cost">
+        <p>Общая сумма</p>
+        <p>{{ totalCost }}</p>
+      </div>
+      <div class="seats">
+        <p>Выбранные места</p>
+        <p>
+          <span>
+            {{ selectedNames }}
+          </span>
+        </p>
+      </div>
+    </div>
+    <div class="right">
+      <input
+        class="go-back"
+        type="button"
+        value="Отмена"
+        [routerLink]="'/film/' + filmId"
+      />
+      <input
+        class="order"
+        type="button"
+        value="Забронировать"
+        (click)="goNext()"
+      />
+    </div>
+  </div>
 </div>

@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  Film,
-  FilmService,
-  Schedule,
-} from '../services/film-service/film.service';
+import { Film, FilmService, Schedule } from '../services/film.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { animationFrameScheduler } from 'rxjs';
 
 export interface Cinema {
   cinemaId: number;
@@ -97,6 +92,11 @@ export class FilmComponent implements OnInit {
     this.router.navigate(['/places'], {
       queryParams: {
         sessionId: this.SessionId,
+        filmId: this.film.filmId,
+        filmName: this.film.filmName,
+        cinema: this._SelectedCinemaName,
+        hall: this._SelectedCinemaHallName,
+        time: this.selectedTime,
       },
     });
   }
