@@ -172,6 +172,7 @@ export class FilmComponent implements OnInit {
   }
 
   getDate(date: string) {
+    console.log(date);
     let converter = new Date(Date.parse(date));
     return (
       converter.getDate().toString() +

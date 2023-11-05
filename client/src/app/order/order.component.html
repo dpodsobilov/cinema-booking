@@ -3,32 +3,47 @@
     <div class="ticket-info">
       <div class="info-section">
         <span>Дата</span>
-        <p>{{ ticket.date }}</p>
+        <p>{{ date }}</p>
       </div>
 
       <div class="info-section">
         <span>Фильм</span>
-        <p>{{ ticket.filmName | uppercase }}</p>
+        <p>{{ filmName | uppercase }}</p>
       </div>
 
       <div class="info-section">
-        <span>{{ ticket.cinemaName }}</span>
-        <p>{{ ticket.cinemaHallName }}</p>
+        <span>{{ cinemaName }}</span>
+        <p>{{ cinemaHallName }}</p>
       </div>
 
-      <div class="info-section-last">
+      <div class="info-section-double">
         <div class="info-section">
-          <span>Билет ({{ ticket.seatsQuantity }})</span>
-          <p>{{ ticket.seats }}</p>
+          <span>Билет ({{ seatsQuantity }})</span>
+          <p>{{ seats }}</p>
         </div>
         <div class="info-section">
           <span>Время</span>
-          <p>{{ ticket.time }}</p>
+          <p>{{ time }}</p>
         </div>
       </div>
 
       <div class="info-section">
-        <button class="button-active">Скачать билет</button>
+        <p>Итого: {{ totalCost }}</p>
+      </div>
+
+      <div class="info-section-double">
+        <input
+          class="button-cancel"
+          type="button"
+          value="Отмена"
+          [routerLink]="'/film/' + filmId"
+        />
+        <input
+          class="button-order"
+          type="button"
+          value="Забронировать"
+          (click)="toOrder()"
+        />
       </div>
     </div>
   </div>

@@ -68,46 +68,50 @@ export class PlacesComponent implements OnInit {
       sessionId: +this.sessionId,
       placeAndCost: this.placeAndCost,
     };
+    this.orderService.filmId = this.filmId;
     this.orderService.filmName = this.filmName;
     this.orderService.cinema = this.cinema;
     this.orderService.hall = this.hall;
     this.orderService.time = this.time;
     this.orderService.totalCost = this.totalCost;
+    this.orderService.seats = this.selectedNames;
     this.router.navigate(['/order']);
   }
 
   onPlaceSelect(placeId: number, placeName: string, cost: number) {
-    this.selectedNames = '';
-    let element = document.getElementById(
-      'place-' + String(placeId),
-    ) as HTMLElement;
-
-    if (this.temp.find((t) => t.id === placeId) === undefined) {
-      this.temp.push({ id: placeId, price: cost, name: placeName });
-      element.style.border = '5px solid white';
-      this.totalCost += cost;
-      this.tempSelectedNames.push(placeName);
-
-      this.placeAndCost.push({
-        placeId: placeId,
-        cost: cost,
-      });
+    if (this.tempSelectedNames.length >= 5) {
+      alert('Невозможно выбрать более 5 мест!');
     } else {
-      let index = this.temp.findIndex((item) => item.id === placeId);
-      this.temp.splice(index, 1);
+      let element = document.getElementById(
+        'place-' + String(placeId),
+      ) as HTMLElement;
 
-      element.style.border = '0px';
-      this.totalCost -= cost;
-      this.tempSelectedNames.splice(
-        this.tempSelectedNames.indexOf(placeName),
-        1,
-      );
+      if (this.temp.find((t) => t.id === placeId) === undefined) {
+        this.temp.push({ id: placeId, price: cost, name: placeName });
+        element.style.border = '5px solid white';
+        this.totalCost += cost;
+        this.tempSelectedNames.push(placeName);
+        this.placeAndCost.push({
+          placeId: placeId,
+          cost: cost,
+        });
+      } else {
+        let index = this.temp.findIndex((item) => item.id === placeId);
+        this.temp.splice(index, 1);
 
-      let index2 = this.placeAndCost.findIndex(
-        (item) => item.placeId === placeId,
-      );
-      this.placeAndCost.splice(index2, 1);
+        element.style.border = '0px';
+        this.totalCost -= cost;
+        this.tempSelectedNames.splice(
+          this.tempSelectedNames.indexOf(placeName),
+          1,
+        );
+
+        let index2 = this.placeAndCost.findIndex(
+          (item) => item.placeId === placeId,
+        );
+        this.placeAndCost.splice(index2, 1);
+      }
+      this.selectedNames = this.tempSelectedNames.join(', ');
     }
-    this.selectedNames = this.tempSelectedNames.join(', ');
   }
 }
