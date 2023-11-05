@@ -94,7 +94,12 @@
       <p class="cinemahall-name">{{ _SelectedCinemaHallName }}</p>
       <p class="selected-date">{{ _SelectedDate }}</p>
       <p class="selected-time">{{ _SelectedTime }}</p>
-      <input class="submit-button" type="button" value="Далее" routerLink="" />
+      <input
+        class="submit-button"
+        type="button"
+        value="Далее"
+        (click)="routeTo()"
+      />
     </div>
   </div>
 </div>

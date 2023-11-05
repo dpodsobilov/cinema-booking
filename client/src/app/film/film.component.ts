@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  Film,
-  FilmService,
-  Schedule,
-} from '../services/film-service/film.service';
-import { ActivatedRoute } from '@angular/router';
-import { animationFrameScheduler } from 'rxjs';
+import { Film, FilmService, Schedule } from '../services/film.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export interface Cinema {
   cinemaId: number;
@@ -34,14 +29,18 @@ export interface Time {
 export class FilmComponent implements OnInit {
   cinemas: Cinema[] = [];
   cinemaHalls: CinemaHall[] = [];
-  datesStr: string[] = [];
   dates: Date[] = [];
   dayMonths: DayMonth[] = [];
   times: Time[] = [];
+  schedule: Schedule[] = [];
+
+  datesStr: string[] = [];
+
   selectedCinema: number = 0;
   selectedHall: number = 0;
   selectedDate: Date = new Date('00-00-00');
   selectedTime: Date = new Date('00-00-00');
+
   film: Film = {
     filmId: 0,
     filmName: '',
@@ -50,21 +49,26 @@ export class FilmComponent implements OnInit {
     poster: '',
     filmGenres: [],
   };
-  schedule: Schedule[] = [];
+
   segmentValue: string = '';
+
   tempCinema: number[] = [];
   tempHall: number[] = [];
   tempDate: string[] = [];
   tempTime: Time[] = [];
   flag: boolean = false;
+
   _SelectedCinemaName: string = '';
   _SelectedCinemaHallName: string = '';
   _SelectedDate: string = '';
   _SelectedTime: string = '';
 
+  SessionId: string = '';
+
   constructor(
     private filmService: FilmService,
     private route: ActivatedRoute,
+    private router: Router,
   ) {}
   ngOnInit(): void {
     this.route.url.subscribe((segments) => {
@@ -83,6 +87,20 @@ export class FilmComponent implements OnInit {
           });
       });
   }
+
+  routeTo() {
+    this.router.navigate(['/places'], {
+      queryParams: {
+        sessionId: this.SessionId,
+        filmId: this.film.filmId,
+        filmName: this.film.filmName,
+        cinema: this._SelectedCinemaName,
+        hall: this._SelectedCinemaHallName,
+        time: this.selectedTime,
+      },
+    });
+  }
+
   addCinema() {
     //Тут еще должна быть проверка на localstorage и если там уже есть выбранный кинотеатр то
     //надо вызвать oncinemaSelected с этим параметром
@@ -154,6 +172,7 @@ export class FilmComponent implements OnInit {
   }
 
   getDate(date: string) {
+    console.log(date);
     let converter = new Date(Date.parse(date));
     return (
       converter.getDate().toString() +
@@ -452,14 +471,10 @@ export class FilmComponent implements OnInit {
       ) {
         this._SelectedCinemaName = this.schedule[i].cinemaName;
         this._SelectedCinemaHallName = this.schedule[i].cinemaHallName;
+        this.SessionId = String(this.schedule[i].sessionId);
       }
     }
     this._SelectedDate = this.getDate(String(time.time));
     this._SelectedTime = this.getTime(String(time.time));
-
-    // console.log(this._SelectedCinemaName)
-    // console.log(this._SelectedCinemaHallName)
-    // console.log(this._SelectedDate)
-    // console.log(this._SelectedTime)
   }
 }
