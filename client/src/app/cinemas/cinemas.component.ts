@@ -9,8 +9,8 @@ import {
   HomepageService,
   CinemaFilms,
   HomePageFilm,
-} from '../services/homepage-service/homepage.service';
-import { FilmService } from '../services/film-service/film.service';
+} from '../services/homepage.service';
+import { FilmService } from '../services/film.service';
 
 @Component({
   selector: 'app-cinemas',

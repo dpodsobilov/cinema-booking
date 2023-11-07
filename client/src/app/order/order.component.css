@@ -1,0 +1,84 @@
+.content-container {
+  display: flex;
+  justify-content: center;
+  color: white;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+.select-tickets {
+  margin: 20px;
+  text-align: center;
+}
+
+input {
+  padding: 7px 10px;
+  color: white;
+  border-radius: 10px;
+  font-size: 20px;
+  height: 40px;
+}
+
+.button-cancel{
+  border: 1px solid #1DE782;
+  background-color: transparent;
+}
+
+.button-order{
+  border: 0;
+  background-color: #1DE782;
+}
+
+input:hover {
+  cursor: pointer;
+  background-color: #1DE782;
+  color: white;
+  transition: 0.2s;
+}
+
+.active {
+  background-color: #1DE782;
+  color: white;
+}
+
+.tickets {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-family: 'Poppins', sans-serif;
+}
+
+.ticket {
+  width: 355px;
+  height: 514px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  padding: 1em;
+  margin-bottom: 2em;
+}
+span {
+  font-size: 18px;
+}
+
+p {
+  font-size: 24px;
+}
+
+.ticket-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+.info-section-double {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}

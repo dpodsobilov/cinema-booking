@@ -3,6 +3,7 @@ namespace Data.Models;
 public class Place
 {
     public int PlaceId { get; set; }
+    public string PlaceName { get; set; } = null!;
     
     // PlaceID -> FK в Ticket
     public ICollection<Ticket> Tickets { get; set; } = null!;

@@ -1,0 +1,63 @@
+<div class="place-select">
+  <div class="hall">
+    <div class="screen">Экран</div>
+    <div class="row" *ngFor="let row of matrix">
+      <div class="place" *ngFor="let place of row">
+        <input
+          *ngIf="place.placeTypeId > 0"
+          type="button"
+          [id]="'place-' + place.placeId.toString()"
+          [ngStyle]="{ 'background-color': place.color }"
+          [value]="place.placeName"
+          (click)="onPlaceSelect(place.placeId, place.placeName, place.cost)"
+        />
+        <input
+          *ngIf="place.placeTypeId === 0"
+          type="button"
+          id="{{ place.placeId }}"
+          class="hidden"
+          disabled
+        />
+        <input
+          *ngIf="place.placeTypeId < 0"
+          class="unavailable"
+          type="button"
+          id="{{ place.placeId }}"
+          [value]="place.placeName"
+          disabled
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="order-info">
+    <div class="left">
+      <div class="cost">
+        <p>Общая сумма</p>
+        <p>{{ totalCost }}</p>
+      </div>
+      <div class="seats">
+        <p>Выбранные места</p>
+        <p>
+          <span>
+            {{ selectedNames }}
+          </span>
+        </p>
+      </div>
+    </div>
+    <div class="right">
+      <input
+        class="go-back"
+        type="button"
+        value="Отмена"
+        [routerLink]="'/film/' + filmId"
+      />
+      <input
+        class="order"
+        type="button"
+        value="Забронировать"
+        (click)="goNext()"
+      />
+    </div>
+  </div>
+</div>

@@ -7,7 +7,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { AuthService } from '../services/auth-service/auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-register',
