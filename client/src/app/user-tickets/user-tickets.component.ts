@@ -1,16 +1,5 @@
 import { Component } from '@angular/core';
-import { tick } from '@angular/core/testing';
-
-export interface Ticket {
-  id: number;
-  date: string;
-  filmName: string;
-  cinemaName: string;
-  cinemaHallName: string;
-  seatsQuantity: number;
-  seats: number[];
-  time: string;
-}
+import { Ticket } from '../services/ticket.service';
 
 @Component({
   selector: 'app-user-tickets',
