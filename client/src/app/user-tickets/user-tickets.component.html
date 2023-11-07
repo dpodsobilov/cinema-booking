@@ -7,89 +7,22 @@
       type="button"
       [ngClass]="{ active: isUpcoming }"
       value="Предстоящие"
-      (click)="isUpcoming = true"
+      (click)="isUpcoming = true; tickets = upcomingTickets"
     />
     <input
       type="button"
       [ngClass]="{ active: !isUpcoming }"
       value="История"
-      (click)="isUpcoming = false"
+      (click)="isUpcoming = false; tickets = pastTickets"
     />
   </div>
 
-  <div *ngIf="isUpcoming; then ticketsUpcoming; else ticketsHistory"></div>
-  <ng-template #ticketsUpcoming>
-    <div class="tickets">
-      <div class="ticket" *ngFor="let ticket of upcomingTickets">
-        <div class="ticket-info">
-          <div class="info-section">
-            <span>Дата</span>
-            <p>{{ ticket.date }}</p>
-          </div>
-
-          <div class="info-section">
-            <span>Фильм</span>
-            <p>{{ ticket.filmName | uppercase }}</p>
-          </div>
-
-          <div class="info-section">
-            <span>{{ ticket.cinemaName }}</span>
-            <p>{{ ticket.cinemaHallName }}</p>
-          </div>
-
-          <div class="info-section-last">
-            <div class="info-section">
-              <span>Билет ({{ ticket.seatsQuantity }})</span>
-              <p>{{ ticket.seats }}</p>
-            </div>
-            <div class="info-section">
-              <span>Время</span>
-              <p>{{ ticket.time }}</p>
-            </div>
-          </div>
-
-          <div class="info-section">
-            <button class="button-active">Скачать билет</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </ng-template>
-  <ng-template #ticketsHistory>
-    <div class="tickets">
-      <div class="ticket" *ngFor="let ticket of pastTickets">
-        <div class="ticket-info">
-          <div class="info-section">
-            <span>Дата</span>
-            <p>{{ ticket.date }}</p>
-          </div>
-
-          <div class="info-section">
-            <span>Фильм</span>
-            <p>{{ ticket.filmName | uppercase }}</p>
-          </div>
-
-          <div class="info-section">
-            <span>{{ ticket.cinemaName }}</span>
-            <p>{{ ticket.cinemaHallName }}</p>
-          </div>
-
-          <div class="info-section-last">
-            <div class="info-section">
-              <span>Билет ({{ ticket.seatsQuantity }})</span>
-              <p>{{ ticket.seats }}</p>
-            </div>
-            <div class="info-section">
-              <span>Время</span>
-              <p>{{ ticket.time }}</p>
-            </div>
-          </div>
-
-          <div class="info-section">
-            <button>Скачать билет</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </ng-template>
+  <div class="tickets">
+    <app-ticket
+      class="ticket"
+      *ngFor="let ticket of tickets"
+      [ticket]="ticket"
+      [isUpcoming]="isUpcoming"
+    ></app-ticket>
+  </div>
 </div>
