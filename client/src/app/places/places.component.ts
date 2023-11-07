@@ -79,14 +79,12 @@ export class PlacesComponent implements OnInit {
   }
 
   onPlaceSelect(placeId: number, placeName: string, cost: number) {
-    if (this.tempSelectedNames.length >= 5) {
-      alert('Невозможно выбрать более 5 мест!');
-    } else {
-      let element = document.getElementById(
-        'place-' + String(placeId),
-      ) as HTMLElement;
+    let element = document.getElementById(
+      'place-' + String(placeId),
+    ) as HTMLElement;
 
-      if (this.temp.find((t) => t.id === placeId) === undefined) {
+    if (this.temp.find((t) => t.id === placeId) === undefined) {
+      if (this.tempSelectedNames.length < 5) {
         this.temp.push({ id: placeId, price: cost, name: placeName });
         element.style.border = '5px solid white';
         this.totalCost += cost;
@@ -95,23 +93,25 @@ export class PlacesComponent implements OnInit {
           placeId: placeId,
           cost: cost,
         });
-      } else {
-        let index = this.temp.findIndex((item) => item.id === placeId);
-        this.temp.splice(index, 1);
-
-        element.style.border = '0px';
-        this.totalCost -= cost;
-        this.tempSelectedNames.splice(
-          this.tempSelectedNames.indexOf(placeName),
-          1,
-        );
-
-        let index2 = this.placeAndCost.findIndex(
-          (item) => item.placeId === placeId,
-        );
-        this.placeAndCost.splice(index2, 1);
+      } else if (this.tempSelectedNames.length >= 5) {
+        alert('Невозможно выбрать более 5 мест!');
       }
-      this.selectedNames = this.tempSelectedNames.join(', ');
+    } else {
+      let index = this.temp.findIndex((item) => item.id === placeId);
+      this.temp.splice(index, 1);
+
+      element.style.border = '0px';
+      this.totalCost -= cost;
+      this.tempSelectedNames.splice(
+        this.tempSelectedNames.indexOf(placeName),
+        1,
+      );
+
+      let index2 = this.placeAndCost.findIndex(
+        (item) => item.placeId === placeId,
+      );
+      this.placeAndCost.splice(index2, 1);
     }
+    this.selectedNames = this.tempSelectedNames.join(', ');
   }
 }
