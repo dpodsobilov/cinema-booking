@@ -1,32 +1,48 @@
 <div class="place-select">
-  <div class="hall">
-    <div class="screen">Экран</div>
-    <div class="row" *ngFor="let row of matrix">
-      <div class="place" *ngFor="let place of row">
-        <input
-          *ngIf="place.placeTypeId > 0"
-          type="button"
-          [id]="'place-' + place.placeId.toString()"
-          [ngStyle]="{ 'background-color': place.color }"
-          [value]="place.placeName"
-          (click)="onPlaceSelect(place.placeId, place.placeName, place.cost)"
-        />
-        <input
-          *ngIf="place.placeTypeId === 0"
-          type="button"
-          id="{{ place.placeId }}"
-          class="hidden"
-          disabled
-        />
-        <input
-          *ngIf="place.placeTypeId < 0"
-          class="unavailable"
-          type="button"
-          id="{{ place.placeId }}"
-          [value]="place.placeName"
-          disabled
-        />
+  <div class="hall-legend">
+    <div class="hall">
+      <div class="screen">Экран</div>
+      <div class="row" *ngFor="let row of matrix">
+        <div class="place" *ngFor="let place of row">
+          <input
+            *ngIf="place.placeTypeId > 0"
+            type="button"
+            [id]="'place-' + place.placeId.toString()"
+            [ngStyle]="{ 'background-color': place.color }"
+            [value]="place.placeName"
+            (click)="onPlaceSelect(place.placeId, place.placeName, place.cost)"
+          />
+          <input
+            *ngIf="place.placeTypeId === 0"
+            type="button"
+            id="{{ place.placeId }}"
+            class="hidden"
+            disabled
+          />
+          <input
+            *ngIf="place.placeTypeId < 0"
+            class="unavailable"
+            type="button"
+            id="{{ place.placeId }}"
+            [value]="place.placeName"
+            disabled
+          />
+        </div>
       </div>
+    </div>
+
+    <div class="legend">
+      <p class="legend-header">Типы мест</p>
+      <p class="legend-p" *ngFor="let elem of legend">
+        <span class="color" [ngStyle]="{ 'background-color': elem.color }"
+          >&nbsp;</span
+        >
+        {{ elem.typeName }} - {{ elem.cost }}
+      </p>
+      <label class="checkbox">
+        <input type="checkbox" (click)="selectChild()" [(ngModel)]="isChild" />
+        Детские места -50%
+      </label>
     </div>
   </div>
 

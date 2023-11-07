@@ -50,6 +50,8 @@ export class CinemasComponent implements OnInit {
   }
 
   oncinemaSelected(id: number) {
+    localStorage.setItem('selectedCinema', id.toString());
+
     let counter = 1;
 
     for (let i = 0; i < this.temp.length; i++) {

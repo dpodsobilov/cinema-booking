@@ -45,6 +45,9 @@ input {
   border-radius: 5px;
   font-family: 'Montserrat', sans-serif;
 }
+input:hover {
+  cursor: pointer;
+}
 
 .submit-pane{
   margin: 20px auto;

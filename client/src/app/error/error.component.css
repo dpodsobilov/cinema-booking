@@ -27,3 +27,9 @@ input {
   width: 250px;
   margin-bottom: 10px;
 }
+input:hover {
+  cursor: pointer;
+  background-color: #1DE782;
+  color: white;
+  transition: 0.2s;
+}
