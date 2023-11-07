@@ -172,7 +172,6 @@ export class FilmComponent implements OnInit {
   }
 
   getDate(date: string) {
-    console.log(date);
     let converter = new Date(Date.parse(date));
     return (
       converter.getDate().toString() +
@@ -194,6 +193,7 @@ export class FilmComponent implements OnInit {
     this.datesStr = [];
     this.cinemaHalls = [];
     this.times = [];
+    this.tempDate = [];
     this.selectedTime = new Date('00-00-00');
     let counter = 1;
 
@@ -384,9 +384,9 @@ export class FilmComponent implements OnInit {
             if (
               this.times.find(
                 (t) =>
-                  (t.time && t.cinemaHallId) ===
-                  (new Date(Date.parse(this.schedule[i].dataTimeSession)) &&
-                    this.schedule[i].cinemaHallId),
+                  t.time ===
+                    new Date(Date.parse(this.schedule[i].dataTimeSession)) &&
+                  t.cinemaHallId == this.schedule[i].cinemaHallId,
               ) === undefined
             ) {
               this.times.push({
