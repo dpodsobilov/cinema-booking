@@ -14,6 +14,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { PlacesComponent } from './places/places.component';
 import { OrderComponent } from './order/order.component';
+import { SuccessComponent } from './success/success.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { OrderComponent } from './order/order.component';
     FilmComponent,
     PlacesComponent,
     OrderComponent,
+    SuccessComponent,
+    ErrorComponent,
   ],
   imports: [
     FormsModule,
