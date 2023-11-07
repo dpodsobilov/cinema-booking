@@ -1,0 +1,21 @@
+.content  {
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  width: 100%;
+  text-align: center;
+}
+
+button {
+  margin-top: 20px;
+  padding: 7px 10px;
+  background-color: transparent;
+  color: white;
+  border-radius: 20px;
+  border: 1px solid #1DE782;
+  font-size: 18px;
+  height: 40px;
+}
+
+button:hover {
+  cursor: pointer;
+}

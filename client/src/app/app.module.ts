@@ -9,6 +9,8 @@ import { RouterOutlet } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CinemasComponent } from './cinemas/cinemas.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { UserTicketsComponent } from './user-tickets/user-tickets.component';
 import { FilmComponent } from './film/film.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth.interceptor';
@@ -16,6 +18,7 @@ import { PlacesComponent } from './places/places.component';
 import { OrderComponent } from './order/order.component';
 import { SuccessComponent } from './success/success.component';
 import { ErrorComponent } from './error/error.component';
+import { TicketComponent } from './ticket/ticket.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +26,15 @@ import { ErrorComponent } from './error/error.component';
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
+    NotFoundComponent,
+    UserTicketsComponent,
     CinemasComponent,
     FilmComponent,
     PlacesComponent,
     OrderComponent,
     SuccessComponent,
     ErrorComponent,
+    TicketComponent,
   ],
   imports: [
     FormsModule,
