@@ -141,7 +141,7 @@ export class PlacesComponent implements OnInit {
         this.tempSelectedNames.push(placeName);
         this.placeAndCost.push({
           placeId: placeId,
-          cost: cost * this.childCoeff,
+          price: cost * this.childCoeff,
         });
       } else if (this.tempSelectedNames.length >= 5) {
         alert('Невозможно выбрать более 5 мест!');
@@ -151,7 +151,7 @@ export class PlacesComponent implements OnInit {
       let indexindexov = this.placeAndCost.findIndex(
         (p) => p.placeId === placeId,
       );
-      let newCost = this.placeAndCost[indexindexov].cost;
+      let newCost = this.placeAndCost[indexindexov].price;
       this.temp.splice(index, 1);
 
       element.style.border = '0px';

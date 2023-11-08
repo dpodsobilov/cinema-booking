@@ -36,6 +36,7 @@ export class OrderComponent implements OnInit {
     this.seatsQuantity = this.data.placeAndCost.length;
     this.time = this.getTime(String(this.dateTime));
     this.date = this.getDate(String(this.dateTime));
+    console.log(this.orderService.data);
   }
 
   toOrder() {
