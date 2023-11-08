@@ -1,0 +1,54 @@
+.content-container {
+  color: white;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+.select-tickets {
+  margin: 20px;
+  text-align: center;
+}
+
+input {
+  margin-bottom: 10px;
+  margin-left: 10px;
+  padding: 7px 10px;
+  background-color: transparent;
+  color: white;
+  border-radius: 20px;
+  border: 1px solid #1DE782;
+  font-size: 18px;
+  height: 40px;
+}
+
+input:hover {
+  cursor: pointer;
+  background-color: #1DE782;
+  color: white;
+  transition: 0.2s;
+}
+
+.active {
+  background-color: #1DE782;
+  color: white;
+}
+
+.tickets {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  font-family: 'Poppins', sans-serif;
+}
+
+.ticket {
+  width: 355px;
+  height: 514px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  padding: 1em;
+  margin-bottom: 2em;
+}

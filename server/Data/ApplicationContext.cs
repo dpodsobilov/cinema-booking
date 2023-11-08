@@ -423,6 +423,7 @@ public sealed class ApplicationContext : DbContext
             DateTime _date = new DateTime(2023, 1, 20, 15, 15, 00);
             DateTime date2 = new DateTime(2023, 2, 10, 18, 22, 00);
             DateTime date3 = new DateTime(2023, 3, 20, 10, 30, 00);
+            DateTime date4 = new DateTime(2024, 12, 20, 10, 30, 00);
             // Session session1 = new Session { DataTimeSession = date, DataTimeCoefficient = 3, FilmId = film1.FilmId, CinemaHallId = cinemaHall1.CinemaHallId};
             Session session2 = new Session { DataTimeSession = date, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall1.CinemaHallId};
             Session session3 = new Session { DataTimeSession = date, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall2.CinemaHallId};
@@ -430,7 +431,7 @@ public sealed class ApplicationContext : DbContext
             Session session5 = new Session { DataTimeSession = date, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall3.CinemaHallId};
             Session session6 = new Session { DataTimeSession = date2, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall1.CinemaHallId};
             Session session7 = new Session { DataTimeSession = _date, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall1.CinemaHallId};
-
+            Session session8 = new Session { DataTimeSession = date4, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall1.CinemaHallId };
 
             // Sessions.Add(session1);
             Sessions.Add(session2);
@@ -439,13 +440,16 @@ public sealed class ApplicationContext : DbContext
             Sessions.Add(session5);
             Sessions.Add(session6);
             Sessions.Add(session7);
+            Sessions.Add(session8);
 
             
             
             SaveChanges();
             
             Ticket ticket1 = new Ticket { Price = 100, UserId = user1.UserId, SessionId = session2.SessionId, PlaceId = place3.PlaceId};
+            Ticket ticket2 = new Ticket { Price = 100, UserId = user1.UserId, SessionId = session8.SessionId, PlaceId = place3.PlaceId  };
             Tickets.Add(ticket1);
+            Tickets.Add(ticket2);
             
             SaveChanges();   
         }
