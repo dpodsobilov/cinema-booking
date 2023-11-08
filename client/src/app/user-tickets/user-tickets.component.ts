@@ -1,73 +1,30 @@
-import { Component } from '@angular/core';
-import { Ticket } from '../services/ticket.service';
+import { Component, OnInit } from '@angular/core';
+import { Ticket, Tickets, TicketService } from '../services/ticket.service';
+import { UserInfo } from '../services/auth.service';
 
 @Component({
   selector: 'app-user-tickets',
   templateUrl: './user-tickets.component.html',
   styleUrls: ['./user-tickets.component.css'],
 })
-export class UserTicketsComponent {
+export class UserTicketsComponent implements OnInit {
   isUpcoming: boolean = true;
+  userId: number = 0;
 
+  upcomingTickets: Ticket[] = [];
+  pastTickets: Ticket[] = [];
   tickets: Ticket[] = [];
 
-  upcomingTickets: Ticket[] = [
-    {
-      id: 1,
-      date: 'Пн, 23 октября 2023',
-      filmName: 'Человек-Паук',
-      cinemaName: 'Кинотеатр 2',
-      cinemaHallName: 'Зал 2 - Стандарт',
-      seatsQuantity: 3,
-      seats: [2, 3, 4],
-      time: new Date().toLocaleTimeString().slice(0, 5),
-    },
-    {
-      id: 2,
-      date: 'Ср, 25 октября 2023',
-      filmName: 'Человек-Паук',
-      cinemaName: 'Кинотеатр 2',
-      cinemaHallName: 'Зал 2 - Стандарт',
-      seatsQuantity: 3,
-      seats: [2, 3, 4],
-      time: new Date().toLocaleTimeString().slice(0, 5),
-    },
-    {
-      id: 2,
-      date: 'Чт, 23 октября 2023',
-      filmName: 'Человек-Паук',
-      cinemaName: 'Кинотеатр 2',
-      cinemaHallName: 'Зал 2 - Стандарт',
-      seatsQuantity: 3,
-      seats: [2, 3, 4],
-      time: new Date().toLocaleTimeString().slice(0, 5),
-    },
-    {
-      id: 3,
-      date: 'Чт, 23 октября 2023',
-      filmName: 'Человек-Паук',
-      cinemaName: 'Кинотеатр 2',
-      cinemaHallName: 'Зал 2 - Стандарт',
-      seatsQuantity: 3,
-      seats: [2, 3, 4],
-      time: new Date().toLocaleTimeString().slice(0, 5),
-    },
-  ];
+  constructor(private ticketService: TicketService) {}
 
-  pastTickets: Ticket[] = [
-    {
-      id: 4,
-      date: 'Чт, 10 октября 2023',
-      filmName: 'Человек-Паук',
-      cinemaName: 'Кинотеатр 2',
-      cinemaHallName: 'Зал 1 - VIP',
-      seatsQuantity: 3,
-      seats: [2, 3, 4],
-      time: new Date().toLocaleTimeString().slice(0, 5),
-    },
-  ];
-
-  constructor() {
-    this.tickets = this.upcomingTickets;
+  ngOnInit() {
+    let user: UserInfo = JSON.parse(localStorage.getItem('user')!);
+    this.ticketService
+      .getUserTickets(user.info.userId)
+      .subscribe((res: Tickets) => {
+        this.upcomingTickets = res.upcomingTickets;
+        this.pastTickets = res.pastTickets;
+        this.tickets = this.upcomingTickets;
+      });
   }
 }

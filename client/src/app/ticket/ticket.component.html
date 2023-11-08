@@ -1,7 +1,7 @@
 <div class="ticket-info">
   <div class="info-section">
     <span>Дата</span>
-    <p>{{ ticket.date }}</p>
+    <p>{{ getDate(ticket.date) }}</p>
   </div>
 
   <div class="info-section">
@@ -10,18 +10,18 @@
   </div>
 
   <div class="info-section">
-    <span>{{ ticket.cinemaName }}</span>
+    <span>Кинотеатр - {{ ticket.cinemaName }}</span>
     <p>{{ ticket.cinemaHallName }}</p>
   </div>
 
   <div class="info-section-last">
     <div class="info-section">
-      <span>Билет ({{ ticket.seatsQuantity }})</span>
-      <p>{{ ticket.seats }}</p>
+      <span>Место ({{ ticket.placeTypeName }})</span>
+      <p>{{ ticket.placeName }}</p>
     </div>
     <div class="info-section">
       <span>Время</span>
-      <p>{{ ticket.time }}</p>
+      <p>{{ getTime(ticket.date) }}</p>
     </div>
   </div>
 
