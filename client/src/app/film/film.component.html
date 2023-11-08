@@ -36,6 +36,7 @@
         <div>
           <input
             [id]="'cinema-' + cinema.cinemaId.toString()"
+            [ngStyle]="{ 'background-color': cinema.color }"
             type="button"
             [value]="cinema.cinemaName"
             *ngFor="let cinema of cinemas"

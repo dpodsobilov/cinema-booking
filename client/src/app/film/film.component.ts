@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export interface Cinema {
   cinemaId: number;
   cinemaName: string;
+  color: string;
 }
 export interface CinemaHall {
   cinemaHallId: number;
@@ -104,7 +105,6 @@ export class FilmComponent implements OnInit {
   addCinema() {
     //Тут еще должна быть проверка на localstorage и если там уже есть выбранный кинотеатр то
     //надо вызвать oncinemaSelected с этим параметром
-
     this.cinemas = [];
     for (let i = 0; i < this.schedule.length; i++) {
       if (
@@ -115,7 +115,18 @@ export class FilmComponent implements OnInit {
         this.cinemas.push({
           cinemaId: this.schedule[i].cinemaId,
           cinemaName: this.schedule[i].cinemaName,
+          color: 'transparent',
         });
+      }
+    }
+    if (localStorage.getItem('selectedCinema') !== null) {
+      for (let i = 0; i < this.cinemas.length; i++) {
+        if (
+          this.cinemas[i].cinemaId ===
+          Number(localStorage.getItem('selectedCinema'))
+        ) {
+          this.oncinemaSelected(this.cinemas[i]);
+        }
       }
     }
   }
@@ -204,7 +215,6 @@ export class FilmComponent implements OnInit {
         this.tempCinema = [];
       }
     }
-
     this.tempCinema.push(cinema.cinemaId);
 
     if (counter % 2 !== 0) {
@@ -226,19 +236,13 @@ export class FilmComponent implements OnInit {
           this.selectedCinema = cinema.cinemaId;
         }
       }
-      //Окрашиваем кнопку кинотеатра
       for (let i = 0; i < this.cinemas.length; i++) {
-        (
-          document.getElementById(
-            'cinema-' + String(this.cinemas[i].cinemaId),
-          ) as HTMLElement
-        ).style.backgroundColor = 'transparent';
+        if (this.cinemas[i].cinemaId !== cinema.cinemaId) {
+          this.cinemas[i].color = 'transparent';
+        } else {
+          this.cinemas[i].color = '#1DE782';
+        }
       }
-      (
-        document.getElementById(
-          'cinema-' + String(cinema.cinemaId),
-        ) as HTMLElement
-      ).style.backgroundColor = '#1DE782';
       // Тут выводим дни когда есть сеансы в кинотеатре
       for (let i = 0; i < this.schedule.length; i++) {
         if (this.selectedCinema === this.schedule[i].cinemaId) {
@@ -250,12 +254,9 @@ export class FilmComponent implements OnInit {
       this.convertDate();
       this.getDayMonth();
     } else {
-      //Если ничего не выбрано
-      (
-        document.getElementById(
-          'cinema-' + String(cinema.cinemaId),
-        ) as HTMLElement
-      ).style.backgroundColor = 'transparent';
+      for (let i = 0; i < this.cinemas.length; i++) {
+        this.cinemas[i].color = 'transparent';
+      }
       this.selectedCinema = 0;
       this.datesStr = [];
       this.dayMonths = [];

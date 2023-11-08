@@ -39,7 +39,9 @@ input {
   border: 0;
   font-size: 15px;
   height: 40px;
-
+}
+.login:hover {
+  cursor: pointer;
 }
 .register{
   padding: 7px 10px;
@@ -49,6 +51,12 @@ input {
   border: 1px solid #1DE782;
   font-size: 15px;
   height: 40px;
+}
+.register:hover {
+  cursor: pointer;
+  background-color: #1DE782;
+  color: white;
+  transition: 0.2s;
 }
 
 .my-tickets {
@@ -60,6 +68,12 @@ input {
   font-size: 15px;
   height: 40px;
 }
+.mytickets:hover {
+  cursor: pointer;
+  background-color: #1DE782;
+  color: white;
+  transition: 0.2s;
+}
 
 .logout {
   padding: 7px 10px;
@@ -69,4 +83,7 @@ input {
   border: 0;
   font-size: 15px;
   height: 40px;
+}
+.logout:hover {
+  cursor: pointer;
 }
