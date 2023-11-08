@@ -1,17 +1,9 @@
-import {
-  AfterViewInit,
-  Component,
-  DoCheck,
-  Inject,
-  OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   HomepageService,
   CinemaFilms,
   HomePageFilm,
 } from '../services/homepage.service';
-import { FilmService } from '../services/film.service';
-
 @Component({
   selector: 'app-cinemas',
   templateUrl: './cinemas.component.html',
@@ -20,9 +12,8 @@ import { FilmService } from '../services/film.service';
 export class CinemasComponent implements OnInit {
   cinemaFilms: CinemaFilms[] = [];
   films: HomePageFilm[] = [];
-  _cinemaFilms: CinemaFilms[] = [];
   temp: number[] = [];
-  SelectedCinema = localStorage.getItem('CinemaID');
+  color: string = 'transparent';
   constructor(
     private homepageService: HomepageService /*private filmService: FilmService*/,
   ) {}
@@ -32,6 +23,7 @@ export class CinemasComponent implements OnInit {
       this.cinemaFilms = res;
       this.addAllFilms();
     });
+    localStorage.removeItem('selectedCinema');
   }
 
   addAllFilms() {
@@ -50,6 +42,7 @@ export class CinemasComponent implements OnInit {
   }
 
   oncinemaSelected(id: number) {
+    localStorage.setItem('selectedCinema', id.toString());
     let counter = 1;
 
     for (let i = 0; i < this.temp.length; i++) {

@@ -54,6 +54,12 @@ input{
   font-size: 18px;
   height: 40px;
 }
+input:hover {
+  cursor: pointer;
+  background-color: #1DE782;
+  color: white;
+  transition: 0.2s;
+}
 
 .schedule{
   display: flex;
