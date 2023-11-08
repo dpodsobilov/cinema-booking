@@ -11,7 +11,7 @@ export interface SendData {
 }
 export interface PlaceAndCost {
   placeId: number;
-  cost: number;
+  price: number;
 }
 @Injectable({
   providedIn: 'root',
