@@ -1,9 +1,4 @@
-import {
-  AfterContentInit,
-  AfterViewInit,
-  Component,
-  OnInit,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Film, FilmService, Schedule } from '../services/film.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -241,14 +236,6 @@ export class FilmComponent implements OnInit {
           this.selectedCinema = cinema.cinemaId;
         }
       }
-      // // Окрашиваем кнопку кинотеатра
-      // for (let i = 0; i < this.cinemas.length; i++) {
-      //   if(this.cinemas[i].cinemaId !== cinema.cinemaId){
-      //     this.cinemas[i].color = 'transparent'
-      //   } else {
-      //     this.cinemas[i].color = '#1DE782'
-      //   }
-      // }
       for (let i = 0; i < this.cinemas.length; i++) {
         if (this.cinemas[i].cinemaId !== cinema.cinemaId) {
           this.cinemas[i].color = 'transparent';
@@ -267,12 +254,9 @@ export class FilmComponent implements OnInit {
       this.convertDate();
       this.getDayMonth();
     } else {
-      //Если ничего не выбрано
-      (
-        document.getElementById(
-          'cinema-' + String(cinema.cinemaId),
-        ) as HTMLElement
-      ).style.backgroundColor = 'transparent';
+      for (let i = 0; i < this.cinemas.length; i++) {
+        this.cinemas[i].color = 'transparent';
+      }
       this.selectedCinema = 0;
       this.datesStr = [];
       this.dayMonths = [];
