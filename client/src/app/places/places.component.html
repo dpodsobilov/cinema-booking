@@ -5,6 +5,7 @@
       <div class="row" *ngFor="let row of matrix">
         <div class="place" *ngFor="let place of row">
           <input
+            class="free-place"
             *ngIf="place.placeTypeId > 0"
             type="button"
             [id]="'place-' + place.placeId.toString()"

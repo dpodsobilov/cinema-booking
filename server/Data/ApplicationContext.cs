@@ -25,12 +25,16 @@ public sealed class ApplicationContext : DbContext
         { 
             User user1 = new User { Email = "daria@surf.ru", Password = "123123", Name = "Daria", Surname = "Surf", Role = 0 };
             Users.Add(user1);
-            byte[] img = FileConverter.GetBinaryFile("..\\Data\\temp\\poster.png");
-            Film film1 = new Film { FilmName = "Аватар", Duration = "1 час 10 минут", FilmCoefficient = 10, Description = "Синие человечки бьют друг друга волосами и сбивают мух, которые тоже вертолеты. В главных ролях: JSON стэтхэм, Коля Валуев, Ивалера Изгорилки", Poster = img};
-            Film film2 = new Film { FilmName = "Не автар", Duration = "2 час 10 минут", FilmCoefficient = 10, Description = "Очень классный фильм", Poster = img};
-            Film film3 = new Film { FilmName = "Аватар легенда об анге", Duration = "3 час 10 минут", FilmCoefficient = 10, Description = "Очень классный фильм", Poster = img};
-            Film film4 = new Film { FilmName = "Коля Валуев: Бегущий по лезвию", Duration = "1 час 40 минут", FilmCoefficient = 10, Description = "Очень классный фильм", Poster = img};
-            Film film5 = new Film { FilmName = "Космические медведи", Duration = "1 час 50 минут", FilmCoefficient = 10, Description = "Очень классный фильм", Poster = img};
+            byte[] imgAvatar = FileConverter.GetBinaryFile("..\\Data\\temp\\avatar.png");
+            byte[] imgGuardians = FileConverter.GetBinaryFile("..\\Data\\temp\\guardians.png");
+            byte[] imgIsland = FileConverter.GetBinaryFile("..\\Data\\temp\\island.png");
+            byte[] imgBrother = FileConverter.GetBinaryFile("..\\Data\\temp\\brother.png");
+            byte[] imgRussiansPowerlifters = FileConverter.GetBinaryFile("..\\Data\\temp\\bogatyr.png");
+            Film film1 = new Film { FilmName = "Аватар", Duration = "2 часа 42 минуты", FilmCoefficient = 10, Description = "Бывший морпех Джейк Салли прикован к инвалидному креслу. Несмотря на немощное тело, Джейк в душе по-прежнему остается воином. Он получает задание совершить путешествие в несколько световых лет к базе землян на планете Пандора, где корпорации добывают редкий минерал, имеющий огромное значение для выхода Земли из энергетического кризиса.", Poster = imgAvatar};
+            Film film2 = new Film { FilmName = "Стражи Галактики", Duration = "2 часа 01 минута", FilmCoefficient = 10, Description = "Отважному путешественнику Питеру Квиллу попадает в руки таинственный артефакт, принадлежащий могущественному и безжалостному злодею Ронану, строящему коварные планы по захвату Вселенной. Питер оказывается в центре межгалактической охоты, где жертва — он сам.\n\nЕдинственный способ спасти свою жизнь — объединиться с четверкой нелюдимых изгоев: воинственным енотом по кличке Ракета, человекоподобным деревом Грутом, смертельно опасной Гаморой и одержимым жаждой мести Драксом, также известным как Разрушитель. Когда Квилл понимает, какой силой обладает украденный артефакт и какую опасность он представляет для вселенной, одиночка пойдет на все, чтобы сплотить случайных союзников для решающей битвы за судьбу галактики.", Poster = imgGuardians};
+            Film film3 = new Film { FilmName = "Остров проклятых", Duration = "2 часа 18 минут", FilmCoefficient = 10, Description = "Два американских судебных пристава отправляются на один из островов в штате Массачусетс, чтобы расследовать исчезновение пациентки клиники для умалишенных преступников. При проведении расследования им придется столкнуться с паутиной лжи, обрушившимся ураганом и смертельным бунтом обитателей клиники.", Poster = imgIsland};
+            Film film4 = new Film { FilmName = "Брат 2", Duration = "2 часа 07 минут", FilmCoefficient = 10, Description = "Участвуя в программе на телевидении, Данила Багров встречает своих друзей по службе в Чечне. Одного из них внезапно убивают. Выясняется, что у того были неприятности из-за брата-хоккеиста в Америке. Данила должен разобраться. Он вылетает в Америку и за компанию берёт с собой старшего брата.", Poster = imgBrother};
+            Film film5 = new Film { FilmName = "Три богатыря и Шамаханская царица", Duration = "1 час 15 минут", FilmCoefficient = 10, Description = "Легендарная Шамаханская царица, которая сводила с ума многих царей и простых смертных, положила свой глаз и на Киевского князя. Тот заболел любовью странной по ней. Но чтобы доставить в целости и сохранности эту чудо-богиню в Киев-Град, срочно из отпуска вызывают всех троих, уже знакомых нам, богатырей: Алёшу Поповича, Добрыню Никитича и Илью Муромца. Теперь троица должна решить, как быть дальше? Вроде бы и слухи о царице ходят нелестные, и князя жаль.", Poster = imgRussiansPowerlifters};
 
             Films.Add(film1);
             Films.Add(film2);
@@ -376,16 +380,18 @@ public sealed class ApplicationContext : DbContext
             CinemaHalls.Add(cinemaHall2);
             CinemaHalls.Add(cinemaHall3);
 
-            FilmGenre filmGenre1 = new FilmGenre { FilmId = film1.FilmId, GenreId = genre1.GenreId};
-            FilmGenre filmGenre2 = new FilmGenre { FilmId = film2.FilmId, GenreId = genre2.GenreId};
-            FilmGenre filmGenre3 = new FilmGenre { FilmId = film3.FilmId, GenreId = genre3.GenreId};
-            FilmGenre filmGenre4 = new FilmGenre { FilmId = film4.FilmId, GenreId = genre4.GenreId};
+            FilmGenre filmGenre1 = new FilmGenre { FilmId = film1.FilmId, GenreId = genre3.GenreId};
+            FilmGenre filmGenre2 = new FilmGenre { FilmId = film2.FilmId, GenreId = genre1.GenreId};
+            FilmGenre filmGenre6 = new FilmGenre { FilmId = film3.FilmId, GenreId = genre3.GenreId};
+            FilmGenre filmGenre3 = new FilmGenre { FilmId = film3.FilmId, GenreId = genre4.GenreId};
+            FilmGenre filmGenre4 = new FilmGenre { FilmId = film4.FilmId, GenreId = genre2.GenreId};
             FilmGenre filmGenre5 = new FilmGenre { FilmId = film5.FilmId, GenreId = genre5.GenreId};
             FilmGenres.Add(filmGenre1);
             FilmGenres.Add(filmGenre2);
             FilmGenres.Add(filmGenre3);
             FilmGenres.Add(filmGenre4);
             FilmGenres.Add(filmGenre5);
+            FilmGenres.Add(filmGenre6);
             
             Place place1 = new Place { PlaceTypeId = placeType1.PlaceTypeId, PlaceName = "A1", PlacePositionId = r1N3.PlacePositionId, CinemaHallTypeId = cinemaHallType1.CinemaHallTypeId};
             Place place2 = new Place { PlaceTypeId = placeType1.PlaceTypeId, PlaceName = "A2", PlacePositionId = r1N4.PlacePositionId, CinemaHallTypeId = cinemaHallType1.CinemaHallTypeId};
