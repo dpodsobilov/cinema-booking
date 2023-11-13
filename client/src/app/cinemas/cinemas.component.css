@@ -1,0 +1,65 @@
+span {
+  margin: 5px 0 5px 20px;
+  font-size: 25px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+p {
+  text-align: center
+}
+
+input {
+  margin-bottom: 10px;
+  margin-left: 10px;
+  padding: 7px 10px;
+  background-color: transparent;
+  color: white;
+  border-radius: 20px;
+  border: 1px solid #1DE782;
+  font-size: 18px;
+  height: 40px;
+}
+
+input:hover {
+  cursor: pointer;
+  background-color: #1DE782!important;
+  color: white;
+  transition: 0.2s;
+}
+
+.film-list {
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  width: 100%;
+}
+
+.films {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.film {
+  margin: 20px;
+  text-align: center
+}
+
+.film img:hover {
+  cursor: pointer;
+  border: 3px solid white;
+  transition: 0.2s;
+}
+
+img{
+  width: 250px;
+  height: 375px;
+  border-radius: 10px;
+  border: 3px solid transparent;
+}

@@ -1,11 +1,36 @@
+using Data;
+using Logic;
+using WebAPI.Middlewares;
+
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddDbContext<ApplicationContext>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<LogicPointer>());
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowMyOrigins",
+        policyBuilder =>
+        {
+            policyBuilder
+                .AllowCredentials()
+                .AllowAnyHeader()
+                .SetIsOriginAllowedToAllowWildcardSubdomains()
+                .AllowAnyMethod()
+                .WithOrigins(
+                    "http://localhost:4200"
+                );
+        });
+});
+
 
 var app = builder.Build();
 
@@ -21,5 +46,9 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("AllowMyOrigins");
+
+app.UseMiddleware<AuthMiddleware>();
 
 app.Run();

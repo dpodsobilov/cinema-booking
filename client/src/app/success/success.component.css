@@ -1,0 +1,43 @@
+.success-page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+}
+p{
+  margin-top: 80px;
+  margin-bottom: 15px;
+  font-size: 25px;
+}
+
+img{
+  width: 150px;
+  margin-bottom: 30px;
+}
+
+input {
+  padding: 7px 10px;
+  color: white;
+  border-radius: 10px;
+  font-size: 18px;
+  height: 40px;
+  border: 0;
+  background-color: #1DE782;
+  width: 250px;
+  margin-bottom: 10px;
+}
+input:hover {
+  cursor: pointer;
+}
+
+.go-back-home{
+  border: 1px solid #1DE782;
+  background-color: transparent;
+}
+.go-back-home:hover {
+  cursor: pointer;
+  background-color: #1DE782;
+  color: white;
+  transition: 0.2s;
+}
