@@ -40,8 +40,10 @@ input:hover {
 .tickets {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 2em;
+  justify-content: center;
   font-family: 'Poppins', sans-serif;
+  margin-bottom: 2em;
 }
 
 .ticket {
@@ -50,5 +52,4 @@ input:hover {
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 10px;
   padding: 1em;
-  margin-bottom: 2em;
 }
