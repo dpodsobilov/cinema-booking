@@ -1,7 +1,7 @@
 <div class="film-schedule">
   <div class="film-info">
     <div>
-      <img src="/assets/images/poster.png" />
+      <img class="poster" src="data:image/jpeg;base64,{{ film.poster }}" />
     </div>
 
     <div id="filmDescription" class="film-description">
@@ -14,7 +14,7 @@
 
         <tr>
           <td>Жанр</td>
-          <td>{{ film.filmGenres }}</td>
+          <td>{{ film.filmGenres.join(", ") }}</td>
         </tr>
 
         <tr>

@@ -68,7 +68,7 @@ input {
   font-size: 15px;
   height: 40px;
 }
-.mytickets:hover {
+.my-tickets:hover {
   cursor: pointer;
   background-color: #1DE782;
   color: white;

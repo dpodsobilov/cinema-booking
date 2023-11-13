@@ -136,7 +136,11 @@ export class PlacesComponent implements OnInit {
     if (this.temp.find((t) => t.id === placeId) === undefined) {
       if (this.tempSelectedNames.length < 5) {
         this.temp.push({ id: placeId, price: cost, name: placeName });
-        element.style.border = '4px solid white';
+        if (!this.isChild) {
+          element.style.border = '4px solid white';
+        } else {
+          element.style.border = '4px dashed white';
+        }
         this.totalCost += cost * this.childCoeff;
         this.tempSelectedNames.push(placeName);
         this.placeAndCost.push({
