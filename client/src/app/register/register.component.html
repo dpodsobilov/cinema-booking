@@ -46,6 +46,7 @@
           <div *ngIf="email.errors?.['maxlength']">
             Длина текста не может превышать 31 символ
           </div>
+          <div *ngIf="email.errors?.['alreadyInUse']">{{ errorMessage }}</div>
         </div>
 
         <label>Пароль</label>

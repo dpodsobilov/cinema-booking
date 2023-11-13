@@ -22,6 +22,8 @@ export class LoginComponent {
     ]),
   });
 
+  errorMessage = '';
+
   get email() {
     return this.loginForm.controls['email'];
   }
@@ -40,5 +42,15 @@ export class LoginComponent {
     const password = this.loginForm.get('password')?.value!;
 
     this.authService.login(email, password);
+    this.authService.errors.subscribe((e) => {
+      this.errorMessage = e.error
+        .toString()
+        .split('\n')[0]
+        .split(':')[1]
+        .trim();
+      if (this.errorMessage == 'Не удалось авторизоваться!') {
+        this.loginForm.setErrors({ badLogin: true });
+      }
+    });
   }
 }

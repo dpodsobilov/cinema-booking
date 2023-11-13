@@ -44,6 +44,8 @@ export class RegisterComponent implements OnInit {
     ]),
   });
 
+  errorMessage = '';
+
   ngOnInit() {
     this.registerForm
       .get('repeatPassword')
@@ -95,5 +97,15 @@ export class RegisterComponent implements OnInit {
     const firstName = this.registerForm.get('firstName')?.value!;
     const lastName = this.registerForm.get('lastName')?.value!;
     this.authService.register(email, password, firstName, lastName);
+    this.authService.errors.subscribe((e) => {
+      this.errorMessage = e.error
+        .toString()
+        .split('\n')[0]
+        .split(':')[1]
+        .trim();
+      if (this.errorMessage == 'Введенный email уже зарегистрирован') {
+        this.email.setErrors({ alreadyInUse: true });
+      }
+    });
   }
 }

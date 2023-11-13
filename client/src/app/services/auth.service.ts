@@ -1,5 +1,5 @@
 import { EventEmitter, Inject, Injectable, Output } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 export interface UserInfo {
@@ -40,7 +40,7 @@ export class AuthService {
       next: (result) => {
         this.login(email, password);
       },
-      error: (e) => {
+      error: (e: HttpErrorResponse) => {
         this.errors.emit(e);
       },
     });
@@ -71,7 +71,7 @@ export class AuthService {
         this.authChanged.emit();
         this.router.navigate(['']);
       },
-      error: (e) => {
+      error: (e: HttpErrorResponse) => {
         this.errors.emit(e);
       },
     });
