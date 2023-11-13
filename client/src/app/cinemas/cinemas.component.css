@@ -1,38 +1,18 @@
-.filmlist{
-    font-family: 'Montserrat', sans-serif;
-    color: white;
-    width: 100%;
+span {
+  margin: 5px 0 5px 20px;
+  font-size: 25px;
 }
 
-span{
-    margin: 5px 0 5px 20px;
-    font-size: 25px;
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-h1{
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.films{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-
-.film{
-    margin: 20px;
+p {
   text-align: center
 }
 
-p{
-    text-align: center
-}
-
-input{
+input {
   margin-bottom: 10px;
   margin-left: 10px;
   padding: 7px 10px;
@@ -43,9 +23,34 @@ input{
   font-size: 18px;
   height: 40px;
 }
+
 input:hover {
   cursor: pointer;
-  background-color: #1DE782;
+  background-color: #1DE782!important;
   color: white;
   transition: 0.2s;
+}
+
+.film-list {
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  width: 100%;
+}
+
+.films {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.film {
+  margin: 20px;
+  text-align: center
+}
+
+.film img:hover {
+  cursor: pointer;
 }

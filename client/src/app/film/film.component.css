@@ -56,7 +56,7 @@ input{
 }
 input:hover {
   cursor: pointer;
-  background-color: #1DE782;
+  background-color: #1DE782!important;
   color: white;
   transition: 0.2s;
 }
