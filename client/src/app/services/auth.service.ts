@@ -70,6 +70,9 @@ export class AuthService {
         storage.setItem('isAuthenticated', 'true');
         this.authChanged.emit();
         this.router.navigate(['']);
+        if (USER_INFO.info.role === 1) {
+          this.router.navigate(['/admin/films']);
+        }
       },
       error: (e: HttpErrorResponse) => {
         this.errors.emit(e);
