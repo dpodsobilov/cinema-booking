@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './shared/components/admin-layout/admin-layout.component';
 import { FilmsComponent } from './films/films.component';
@@ -8,6 +7,7 @@ import { TemplatesComponent } from './templates/templates.component';
 import { SessionsComponent } from './sessions/sessions.component';
 import { UsersComponent } from './users/users.component';
 import { StatsComponent } from './stats/stats.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { StatsComponent } from './stats/stats.component';
     StatsComponent,
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     RouterModule.forChild([
       {
         path: '',
