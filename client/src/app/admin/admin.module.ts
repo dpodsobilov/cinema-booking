@@ -8,6 +8,8 @@ import { SessionsComponent } from './sessions/sessions.component';
 import { UsersComponent } from './users/users.component';
 import { StatsComponent } from './stats/stats.component';
 import { SharedModule } from '../shared/shared.module';
+import { AdminPaneComponent } from './admin-pane/admin-pane.component';
+import { GenresComponent } from './genres/genres.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { SharedModule } from '../shared/shared.module';
     SessionsComponent,
     UsersComponent,
     StatsComponent,
+    AdminPaneComponent,
+    GenresComponent,
   ],
   imports: [
     SharedModule,
