@@ -1,0 +1,36 @@
+.admin-pane{
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  height: inherit;
+  border-right: 1px solid lightgray;
+  font-family: 'Montserrat', sans-serif;
+}
+
+input{
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  font-size: 20px;
+  background-color: white;
+  border: none;
+  border-bottom: 1px solid lightgray;
+}
+
+input:hover{
+  background-color: lightgray;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+input:nth-child(1){
+  border-top-left-radius: 10px;
+}
+
+input:last-child{
+  border-bottom: none;
+}
+
+.active-btn, .active-btn:hover{
+  background-color: #BDF0C1;
+}
