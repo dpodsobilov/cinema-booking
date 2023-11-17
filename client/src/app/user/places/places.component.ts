@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Place, PlacesService } from '../services/places.service';
+import { Place, PlacesService } from '../../services/places.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService, UserInfo } from '../services/auth.service';
+import { AuthService, UserInfo } from '../../services/auth.service';
 import {
   OrderService,
   PlaceAndCost,
   SendData,
-} from '../services/order.service';
+} from '../../services/order.service';
 
 export interface PlaceCost {
   id: number;

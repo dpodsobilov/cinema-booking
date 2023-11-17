@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,7 +18,11 @@ export class NavbarComponent {
     private router: Router,
     @Inject('BASE_API_URL') private baseUrl: string,
   ) {
-    this.layout = localStorage.getItem('layout')!;
+    if (this.router.url.includes('admin')) {
+      this.layout = 'admin';
+    } else {
+      this.layout = 'user';
+    }
     this.updateUserInfo();
     this.authService.authChanged.subscribe(() => this.updateUserInfo());
   }
@@ -33,13 +37,10 @@ export class NavbarComponent {
   logout() {
     this.authService.logout();
   }
-
   goUser() {
-    localStorage.setItem('layout', 'user');
     this.router.navigate(['/']);
   }
   goAdmin() {
-    localStorage.setItem('layout', 'admin');
     this.router.navigate(['/admin']);
   }
 }

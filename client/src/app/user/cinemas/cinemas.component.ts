@@ -3,7 +3,7 @@ import {
   HomepageService,
   CinemaFilms,
   HomePageFilm,
-} from '../services/homepage.service';
+} from '../../services/homepage.service';
 @Component({
   selector: 'app-cinemas',
   templateUrl: './cinemas.component.html',

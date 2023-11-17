@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-import { CinemasComponent } from './cinemas/cinemas.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { UserTicketsComponent } from './user-tickets/user-tickets.component';
-import { FilmComponent } from './film/film.component';
-import { PlacesComponent } from './places/places.component';
-import { OrderComponent } from './order/order.component';
-import { SuccessComponent } from './success/success.component';
-import { ErrorComponent } from './error/error.component';
+import { RegisterComponent } from './user/register/register.component';
+import { LoginComponent } from './user/login/login.component';
+import { CinemasComponent } from './user/cinemas/cinemas.component';
+import { NotFoundComponent } from './user/not-found/not-found.component';
+import { UserTicketsComponent } from './user/user-tickets/user-tickets.component';
+import { FilmComponent } from './user/film/film.component';
+import { PlacesComponent } from './user/places/places.component';
+import { OrderComponent } from './user/order/order.component';
+import { SuccessComponent } from './user/success/success.component';
+import { ErrorComponent } from './user/error/error.component';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
 
 const routes: Routes = [

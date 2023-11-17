@@ -71,10 +71,7 @@ export class AuthService {
         this.authChanged.emit();
         this.router.navigate(['']);
         if (USER_INFO.info.role === 1) {
-          localStorage.setItem('layout', 'admin');
           this.router.navigate(['/admin/films']);
-        } else {
-          localStorage.setItem('layout', 'user');
         }
       },
       error: (e: HttpErrorResponse) => {
@@ -86,7 +83,6 @@ export class AuthService {
   logout() {
     localStorage.removeItem('user');
     localStorage.removeItem('isAuthenticated');
-    localStorage.removeItem('layout');
     this.authChanged.emit();
     this.router.navigate(['']);
   }

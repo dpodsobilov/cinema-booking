@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Film, FilmService, Schedule } from '../services/film.service';
+import { Film, FilmService, Schedule } from '../../services/film.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 export interface Cinema {

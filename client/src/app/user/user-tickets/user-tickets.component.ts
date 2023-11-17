@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Ticket, Tickets, TicketService } from '../services/ticket.service';
-import { UserInfo } from '../services/auth.service';
+import { Ticket, Tickets, TicketService } from '../../services/ticket.service';
+import { UserInfo } from '../../services/auth.service';
 
 @Component({
   selector: 'app-user-tickets',
