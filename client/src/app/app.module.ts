@@ -19,6 +19,7 @@ import { OrderComponent } from './order/order.component';
 import { SuccessComponent } from './success/success.component';
 import { ErrorComponent } from './error/error.component';
 import { TicketComponent } from './ticket/ticket.component';
+import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { TicketComponent } from './ticket/ticket.component';
     SuccessComponent,
     ErrorComponent,
     TicketComponent,
+    MainLayoutComponent,
   ],
   imports: [
     FormsModule,
