@@ -7,3 +7,7 @@ main {
   display: flex;
   flex-direction: row;
 }
+
+.container-admin .films {
+  flex: 1;
+}

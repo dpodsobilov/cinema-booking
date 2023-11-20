@@ -1,1 +1,20 @@
-<p>genres works!</p>
+<h1>Жанры</h1>
+
+<img src="./assets/images/svg/add.svg" alt="" />
+<table>
+  <tr>
+    <th>#</th>
+    <th>Название</th>
+    <th>Действия</th>
+  </tr>
+  <tr *ngFor="let genre of genres; let indexOfElement = index">
+    <td>{{ indexOfElement + 1 }}</td>
+    <td class="film-name">{{ genre.genreName }}</td>
+    <td>
+      <div class="buttons">
+        <img src="./assets/images/svg/edit.svg" alt="" />
+        <img src="./assets/images/svg/delete.svg" alt="" />
+      </div>
+    </td>
+  </tr>
+</table>

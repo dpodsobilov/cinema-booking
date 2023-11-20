@@ -1,1 +1,27 @@
-<p>films works!</p>
+<div class="wrapper">
+  <div class="films">
+    <h1>Фильмы</h1>
+
+    <img src="./assets/images/svg/add.svg" alt="" />
+    <table>
+      <tr>
+        <th>#</th>
+        <th>Название</th>
+        <th>Действия</th>
+      </tr>
+      <tr *ngFor="let film of films; let indexOfElement = index">
+        <td>{{ indexOfElement + 1 }}</td>
+        <td class="film-name">{{ film.filmName }}</td>
+        <td>
+          <div class="buttons">
+            <img src="./assets/images/svg/edit.svg" alt="" />
+            <img src="./assets/images/svg/delete.svg" alt="" />
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="genres">
+    <app-genres></app-genres>
+  </div>
+</div>
