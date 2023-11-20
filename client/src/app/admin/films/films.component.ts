@@ -10,18 +10,13 @@ import {
   styleUrls: ['./films.component.css'],
 })
 export class FilmsComponent implements OnInit {
-  films: AdminFilm[] = [
-    {
-      filmName: 'Три богатыря и Шамаханская царица',
-      filmId: 2,
-    },
-  ];
+  films: AdminFilm[] = [];
 
   constructor(private adminFilmService: AdminFilmService) {}
 
   ngOnInit(): void {
-    // this.adminFilmService.getFilms().subscribe((res: AdminFilm[]) => {
-    //   this.films = res;
-    // });
+    this.adminFilmService.getFilms().subscribe((res: AdminFilm[]) => {
+      this.films = res;
+    });
   }
 }

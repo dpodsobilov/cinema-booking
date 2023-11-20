@@ -20,8 +20,8 @@ export class GenresComponent implements OnInit {
   constructor(private adminFilmService: AdminFilmService) {}
 
   ngOnInit(): void {
-    // this.adminFilmService.getGenres().subscribe((res: AdminGenre[]) => {
-    //   this.genres = res;
-    // })
+    this.adminFilmService.getGenres().subscribe((res: AdminGenre[]) => {
+      this.genres = res;
+    });
   }
 }
