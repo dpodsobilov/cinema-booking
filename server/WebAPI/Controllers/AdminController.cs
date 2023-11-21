@@ -1,5 +1,7 @@
 ﻿using Logic.DTO;
+using Logic.DTO.Admin;
 using Logic.Queries;
+using Logic.Queries.Admin;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 
@@ -29,4 +31,19 @@ public class AdminController
         var genres = await _mediator.Send(new GetAdminGenreQuery());
         return genres;
     }
+    
+    [HttpGet("Cinemas")]
+    public async Task<IList<AdminCinemaDto>> GetCinemasInfo()
+    {
+        var cinemas = await _mediator.Send(new GetAdminCinemaQuery());
+        return cinemas;
+    }
+    
+    [HttpGet("Halls")]
+    public async Task<IList<AdminHallDto>> GetHallsInfo(int param)
+    {
+        var halls = await _mediator.Send(new GetAdminHallQuery(param));
+        return halls;
+    }
+    
 }

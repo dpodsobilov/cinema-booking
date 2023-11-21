@@ -1,1 +1,34 @@
-<p>admin-cinemas works!</p>
+<div class="wrapper">
+  <div class="cinemas">
+    <h1>Кинотеатры</h1>
+
+    <img src="./assets/images/svg/add.svg" alt="" />
+    <table>
+      <tr>
+        <th>#</th>
+        <th>Название</th>
+        <th>Адрес</th>
+        <th>Действия</th>
+      </tr>
+      <tr
+        class="cinema-info"
+        *ngFor="let cinema of cinemas; let indexOfElement = index"
+        (click)="selectStr(cinema.cinemaId)"
+        [ngClass]="{ selected: this.selectedString === cinema.cinemaId }"
+      >
+        <td>{{ indexOfElement + 1 }}</td>
+        <td>{{ cinema.cinemaName }}</td>
+        <td>{{ cinema.cinemaAddress }}</td>
+        <td>
+          <div class="buttons">
+            <img src="./assets/images/svg/edit.svg" alt="" />
+            <img src="./assets/images/svg/delete.svg" alt="" />
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="halls">
+    <app-halls></app-halls>
+  </div>
+</div>
