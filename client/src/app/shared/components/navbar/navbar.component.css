@@ -1,0 +1,89 @@
+img {
+  margin: 10px auto 10px 20px;
+  height: 40px;
+}
+
+input {
+  margin-right: 10px;
+}
+
+.nav {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+.nav-right {
+  display:  flex;
+  flex-direction: row;
+  align-items: center;
+  margin-right: 10px;
+  justify-content: space-between;
+}
+
+.login {
+  margin-right: 10px;
+  padding: 7px 10px;
+  background-color: #1DE782;
+  color: white;
+  border-radius: 10px;
+  border: 0;
+  font-size: 15px;
+  height: 40px;
+}
+.login:hover {
+  cursor: pointer;
+}
+.register{
+  padding: 7px 10px;
+  background-color: transparent;
+  color: white;
+  border-radius: 10px;
+  border: 1px solid #1DE782;
+  font-size: 15px;
+  height: 40px;
+}
+.register:hover {
+  cursor: pointer;
+  background-color: #1DE782;
+  color: white;
+  transition: 0.2s;
+}
+
+.my-tickets {
+  padding: 7px 10px;
+  background-color: transparent;
+  color: white;
+  border-radius: 10px;
+  border: 1px solid #1DE782;
+  font-size: 15px;
+  height: 40px;
+}
+.my-tickets:hover {
+  cursor: pointer;
+  background-color: #1DE782;
+  color: white;
+  transition: 0.2s;
+}
+
+.logout {
+  padding: 7px 10px;
+  background-color: red;
+  color: white;
+  border-radius: 10px;
+  border: 0;
+  font-size: 15px;
+  height: 40px;
+}
+.logout:hover {
+  cursor: pointer;
+}

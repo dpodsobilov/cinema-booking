@@ -24,7 +24,9 @@ public sealed class ApplicationContext : DbContext
         if (Database.EnsureCreated())
         { 
             User user1 = new User { Email = "daria@surf.ru", Password = "123123", Name = "Daria", Surname = "Surf", Role = 0 };
+            User admin = new User { Email = "admin@admin.ru", Password = "admin123", Name = "Admin", Surname = "Admin", Role = 1 };
             Users.Add(user1);
+            Users.Add(admin);
             byte[] imgAvatar = FileConverter.GetBinaryFile("..\\Data\\temp\\avatar.png");
             byte[] imgGuardians = FileConverter.GetBinaryFile("..\\Data\\temp\\guardians.png");
             byte[] imgIsland = FileConverter.GetBinaryFile("..\\Data\\temp\\island.png");

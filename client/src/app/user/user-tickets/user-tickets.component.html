@@ -1,0 +1,29 @@
+<div class="content-container">
+  <h1>Билеты</h1>
+
+  <div class="select-tickets">
+    <input
+      id="upcoming"
+      type="button"
+      [ngClass]="{ active: isUpcoming }"
+      value="Предстоящие"
+      (click)="isUpcoming = true; tickets = upcomingTickets"
+    />
+
+    <input
+      type="button"
+      [ngClass]="{ active: !isUpcoming }"
+      value="История"
+      (click)="isUpcoming = false; tickets = pastTickets"
+    />
+  </div>
+
+  <div class="tickets">
+    <app-ticket
+      class="ticket"
+      *ngFor="let ticket of tickets"
+      [ticket]="ticket"
+      [isUpcoming]="isUpcoming"
+    ></app-ticket>
+  </div>
+</div>

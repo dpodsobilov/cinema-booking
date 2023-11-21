@@ -1,31 +1,28 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
+import { LoginComponent } from './user/login/login.component';
+import { RegisterComponent } from './user/register/register.component';
 import { AppRoutingModule } from './app-routing.module';
-import { NavbarComponent } from './navbar/navbar.component';
-import { CinemasComponent } from './cinemas/cinemas.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { UserTicketsComponent } from './user-tickets/user-tickets.component';
-import { FilmComponent } from './film/film.component';
+import { CinemasComponent } from './user/cinemas/cinemas.component';
+import { NotFoundComponent } from './user/not-found/not-found.component';
+import { UserTicketsComponent } from './user/user-tickets/user-tickets.component';
+import { FilmComponent } from './user/film/film.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth.interceptor';
-import { PlacesComponent } from './places/places.component';
-import { OrderComponent } from './order/order.component';
-import { SuccessComponent } from './success/success.component';
-import { ErrorComponent } from './error/error.component';
-import { TicketComponent } from './ticket/ticket.component';
+import { PlacesComponent } from './user/places/places.component';
+import { OrderComponent } from './user/order/order.component';
+import { SuccessComponent } from './user/success/success.component';
+import { ErrorComponent } from './user/error/error.component';
+import { TicketComponent } from './user/ticket/ticket.component';
+import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    NavbarComponent,
     NotFoundComponent,
     UserTicketsComponent,
     CinemasComponent,
@@ -35,15 +32,9 @@ import { TicketComponent } from './ticket/ticket.component';
     SuccessComponent,
     ErrorComponent,
     TicketComponent,
+    MainLayoutComponent,
   ],
-  imports: [
-    FormsModule,
-    AppRoutingModule,
-    BrowserModule,
-    ReactiveFormsModule,
-    RouterOutlet,
-    HttpClientModule,
-  ],
+  imports: [AppRoutingModule, BrowserModule, SharedModule],
   providers: [
     {
       provide: 'BASE_API_URL',
