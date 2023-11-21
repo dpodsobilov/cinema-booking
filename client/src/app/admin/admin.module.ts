@@ -10,6 +10,7 @@ import { StatsComponent } from './stats/stats.component';
 import { SharedModule } from '../shared/shared.module';
 import { AdminPaneComponent } from './admin-pane/admin-pane.component';
 import { GenresComponent } from './genres/genres.component';
+import { HallsComponent } from './halls/halls.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { GenresComponent } from './genres/genres.component';
     StatsComponent,
     AdminPaneComponent,
     GenresComponent,
+    HallsComponent,
   ],
   imports: [
     SharedModule,

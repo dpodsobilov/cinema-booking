@@ -3,7 +3,7 @@ using Logic.DTO;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Logic.Queries;
+namespace Logic.Queries.Admin;
 
 public class GetAdminFilmQuery : IRequest<IList<AdminFilmDto>> { }
 

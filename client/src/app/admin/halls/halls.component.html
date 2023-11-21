@@ -1,0 +1,27 @@
+<h1>Кинозалы</h1>
+<img src="./assets/images/svg/add.svg" alt="" />
+<table>
+  <tr>
+    <th>#</th>
+    <th>Название</th>
+    <th>Шаблон</th>
+    <th>Действия</th>
+  </tr>
+  <tr
+    class="hall-info"
+    *ngFor="
+      let hall of this.adminCinemasService.hallsForSelectedCinema;
+      let indexOfElement = index
+    "
+  >
+    <td>{{ indexOfElement + 1 }}</td>
+    <td>{{ hall.cinemaHallName }}</td>
+    <td>{{ hall.cinemaHallTypeName }}</td>
+    <td>
+      <div class="buttons">
+        <img src="./assets/images/svg/edit.svg" alt="" />
+        <img src="./assets/images/svg/delete.svg" alt="" />
+      </div>
+    </td>
+  </tr>
+</table>

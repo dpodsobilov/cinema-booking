@@ -1,9 +1,3 @@
-.wrapper {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 1em;
-}
 
 h1 {
   margin-bottom: 0.5em;
@@ -21,7 +15,7 @@ table, tr, th, td {
   font-weight: normal;
 }
 
-.cinema-info:hover{
+.hall-info:hover{
   background-color: lightgray;
   cursor: pointer;
   transition: 0.2s;
@@ -37,13 +31,4 @@ td {
   justify-content: center;
   align-items: center;
   gap: 0.5em;
-}
-
-.cinemas, .halls {
-  width: 40%;
-  margin: 1em;
-}
-
-.selected, .selected:hover{
-  background-color: #BDF0C1;
 }
