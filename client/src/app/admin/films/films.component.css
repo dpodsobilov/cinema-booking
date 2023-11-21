@@ -21,7 +21,7 @@ table, tr, th, td {
   font-weight: normal;
 }
 
-.content{
+.content:hover{
   background-color: lightgray;
   cursor: pointer;
   transition: 0.2s;
