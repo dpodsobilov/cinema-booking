@@ -46,4 +46,11 @@ public class AdminController
         return halls;
     }
     
+    [HttpGet("Users")]
+    public async Task<IList<AdminUserDto>> GetUsersInfo()
+    {
+        var users = await _mediator.Send(new GetAdminUsersQuery());
+        return users;
+    }
+    
 }
