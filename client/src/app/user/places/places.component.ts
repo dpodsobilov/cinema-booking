@@ -66,6 +66,34 @@ export class PlacesComponent implements OnInit {
         this.matrix = res.placeDtos;
         this.buildLegend();
       });
+    // Присасываемся к сокету
+    this.placesService.startConnection();
+    // Обрабатываем пришедшее событие
+    this.placesService.placesHubConnection.on(
+      'updatePlaces',
+      (placesId: number[]) => {
+        for (let places of this.matrix) {
+          for (let place of places) {
+            if (placesId.find((p) => p === place.placeId)) {
+              place.placeTypeId *= -1;
+              // корректируем выбранные пользователем места, общую их цену и строку вывода "названий мест"
+              this.totalCost -= this.placeAndCost.find(
+                (pc) => pc.placeId === place.placeId,
+              )!.price;
+              this.tempSelectedNames.splice(
+                this.tempSelectedNames.indexOf(place.placeName),
+                1,
+              );
+              this.selectedNames = this.tempSelectedNames.join(', ');
+              let index = this.placeAndCost.findIndex(
+                (item) => item.placeId === place.placeId,
+              );
+              this.placeAndCost.splice(index, 1);
+            }
+          }
+        }
+      },
+    );
   }
 
   buildLegend() {

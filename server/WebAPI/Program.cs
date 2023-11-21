@@ -1,5 +1,6 @@
 using Data;
 using Logic;
+using Logic.Hubs;
 using WebAPI.Middlewares;
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
@@ -31,6 +32,10 @@ builder.Services.AddCors(options =>
         });
 });
 
+builder.Services.AddSignalR(options =>
+{
+    options.EnableDetailedErrors = true;
+});
 
 var app = builder.Build();
 
@@ -50,5 +55,7 @@ app.MapControllers();
 app.UseCors("AllowMyOrigins");
 
 app.UseMiddleware<AuthMiddleware>();
+
+app.MapHub<PlacesHub>("/Places");
 
 app.Run();
