@@ -7,7 +7,7 @@
     <th>Название</th>
     <th>Действия</th>
   </tr>
-  <tr *ngFor="let genre of genres; let indexOfElement = index">
+  <tr class="content" *ngFor="let genre of genres; let indexOfElement = index">
     <td>{{ indexOfElement + 1 }}</td>
     <td class="film-name">{{ genre.genreName }}</td>
     <td>

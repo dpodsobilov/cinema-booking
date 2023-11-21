@@ -9,7 +9,10 @@
         <th>Название</th>
         <th>Действия</th>
       </tr>
-      <tr *ngFor="let film of films; let indexOfElement = index">
+      <tr
+        class="content"
+        *ngFor="let film of films; let indexOfElement = index"
+      >
         <td>{{ indexOfElement + 1 }}</td>
         <td class="film-name">{{ film.filmName }}</td>
         <td>

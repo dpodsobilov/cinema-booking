@@ -21,6 +21,12 @@ table, tr, th, td {
   font-weight: normal;
 }
 
+.content{
+  background-color: lightgray;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
 td {
   vertical-align: middle;
   padding: 0.5em;
