@@ -11,6 +11,7 @@ import { OrderComponent } from './user/order/order.component';
 import { SuccessComponent } from './user/success/success.component';
 import { ErrorComponent } from './user/error/error.component';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
+import { adminGuard } from './services/admin/admin.guard';
 
 const routes: Routes = [
   {
@@ -31,6 +32,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
+    canActivate: [adminGuard],
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
   },
