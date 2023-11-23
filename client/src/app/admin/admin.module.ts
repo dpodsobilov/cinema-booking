@@ -11,6 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AdminPaneComponent } from './admin-pane/admin-pane.component';
 import { GenresComponent } from './genres/genres.component';
 import { HallsComponent } from './halls/halls.component';
+import { NotFoundComponent } from '../user/not-found/not-found.component';
 
 @NgModule({
   declarations: [

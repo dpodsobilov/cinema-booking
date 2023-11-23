@@ -12,6 +12,7 @@ import { SuccessComponent } from './user/success/success.component';
 import { ErrorComponent } from './user/error/error.component';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
 import { adminGuard } from './services/admin/admin.guard';
+import { loginGuard } from './services/login.guard';
 
 const routes: Routes = [
   {
@@ -20,8 +21,12 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: '/', pathMatch: 'full' },
       { path: '', component: CinemasComponent },
-      { path: 'register', component: RegisterComponent },
-      { path: 'login', component: LoginComponent },
+      {
+        path: 'register',
+        canActivate: [loginGuard],
+        component: RegisterComponent,
+      },
+      { path: 'login', canActivate: [loginGuard], component: LoginComponent },
       { path: 'film/:id', component: FilmComponent },
       { path: 'places', component: PlacesComponent },
       { path: 'order', component: OrderComponent },
