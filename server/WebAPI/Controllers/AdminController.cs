@@ -1,15 +1,17 @@
-﻿using Logic.DTO;
+﻿using Logic.Commands.Admin;
+using Logic.DTO;
 using Logic.DTO.Admin;
 using Logic.Queries;
 using Logic.Queries.Admin;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace WebAPI.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class AdminController
+public class AdminController : ControllerBase
 {
     private readonly IMediator _mediator;
 
@@ -51,6 +53,13 @@ public class AdminController
     {
         var users = await _mediator.Send(new GetAdminUsersQuery());
         return users;
+    }
+
+    [HttpDelete("Film")]
+    public async Task<IActionResult> DeleteFilm(int filmId)
+    {
+        await _mediator.Send(new DeleteFilmCommand(filmId));
+        return Ok();
     }
     
 }
