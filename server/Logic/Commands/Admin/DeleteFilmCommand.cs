@@ -29,12 +29,12 @@ public class DeleteFilmCommandHandler : IRequestHandler<DeleteFilmCommand>
             .FirstOrDefaultAsync(cancellationToken);
         if (film != null)
         {
-            _applicationContext.Films.Remove(film);
+            film.IsDeleted = true;
             await _applicationContext.SaveChangesAsync(cancellationToken);
         }
         else
         {
-            throw new Exception("Такого фильма нет!");
+            throw new Exception("Ошибка!");
         }
     }
 }
