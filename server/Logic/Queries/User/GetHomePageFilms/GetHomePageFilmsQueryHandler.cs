@@ -16,18 +16,23 @@ public class GetHomePageFilmsQueryHandler : IRequestHandler<GetHomePageFilmsQuer
     
     public async Task<IList<HomePageDto>> Handle(GetHomePageFilmsQuery request, CancellationToken cancellationToken)
     {
-        // var films = await _applicationContext.Films.Select(film => new HomePageFilmDTO
-        // {
-        //     FilmId = film.FilmId,
-        //     FilmName = film.FilmName,
-        //     Poster = film.Poster
-        // }).ToListAsync(cancellationToken);
-        var cinemas = await _applicationContext.Sessions.Select(session => session.CinemaHall.Cinema)
+        // ДОБАВИТЬ ПРОВЕРКИ ПО ДАТЕ У СЕАНСОВ
+        
+        var cinemas = await _applicationContext.Sessions.Where(session => session.IsDeleted == false
+                                            && session.CinemaHall.IsDeleted == false
+                                            && session.CinemaHall.Cinema.IsDeleted == false
+                                            && session.CinemaHall.CinemaHallType.IsDeleted == false)
+            .Select(session => session.CinemaHall.Cinema)
             .Distinct().ToListAsync(cancellationToken);
         var homePageDto = new List<HomePageDto>();
         foreach (var cinema in cinemas)
         {
-            var films = await _applicationContext.Sessions.Where(session => session.CinemaHall.Cinema.CinemaId == cinema.CinemaId)
+            var films = await _applicationContext.Sessions.
+                Where(session => session.CinemaHall.Cinema.CinemaId == cinema.CinemaId 
+                                 && session.Film.IsDeleted == false
+                                 && session.CinemaHall.IsDeleted == false
+                                 && session.CinemaHall.Cinema.IsDeleted == false
+                                 && session.CinemaHall.CinemaHallType.IsDeleted == false)
                 .Select(session => new HomePageFilmDto
                 {
                     FilmId = session.FilmId,

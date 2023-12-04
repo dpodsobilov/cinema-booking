@@ -19,7 +19,8 @@ public class GetAdminGenreQueryHandler : IRequestHandler<GetAdminGenreQuery, ILi
     public async Task<IList<AdminGenreDto>> Handle(GetAdminGenreQuery request, CancellationToken cancellationToken)
     {
 
-        var genres = await _applicationContext.Genres.Select(genre => new AdminGenreDto
+        var genres = await _applicationContext.Genres.Where(genre => genre.IsDeleted == false)
+            .Select(genre => new AdminGenreDto
         {
             GenreId = genre.GenreId,
             GenreName = genre.GenreName

@@ -27,7 +27,7 @@ public class GetAdminHallQueryHandler : IRequestHandler<GetAdminHallQuery, IList
     public async Task<IList<AdminHallDto>> Handle(GetAdminHallQuery request, CancellationToken cancellationToken)
     {
         var halls = await _applicationContext.CinemaHalls
-            .Where(hall => hall.CinemaId == request.CinemaId)
+            .Where(hall => hall.CinemaId == request.CinemaId && hall.IsDeleted == false)
             .Select(hall => new AdminHallDto()
         {
             CinemaHallId = hall.CinemaHallId,
