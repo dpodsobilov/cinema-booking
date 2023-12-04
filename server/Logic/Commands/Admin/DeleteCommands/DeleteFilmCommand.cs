@@ -29,7 +29,16 @@ public class DeleteFilmCommandHandler : IRequestHandler<DeleteFilmCommand>
             .FirstOrDefaultAsync(cancellationToken);
         if (film != null)
         {
+            var session = await _applicationContext.Sessions.Where(session => session.FilmId == request.FilmId)
+                .ToListAsync(cancellationToken);
+            
+            foreach (var element in session)
+            {
+                element.IsDeleted = true;
+            }
+            
             film.IsDeleted = true;
+            
             await _applicationContext.SaveChangesAsync(cancellationToken);
         }
         else

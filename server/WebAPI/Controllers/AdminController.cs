@@ -62,6 +62,13 @@ public class AdminController : ControllerBase
         return Ok();
     }
     
+    [HttpGet("Sessions")]
+    public async Task<IList<AdminSessionDto>> GetSessions()
+    {
+        var sessions = await _mediator.Send(new GetAdminSessionQuery());
+        return sessions;
+    }
+    
     [HttpDelete("Session")]
     public async Task<IActionResult> DeleteSession(int sessionId)
     {

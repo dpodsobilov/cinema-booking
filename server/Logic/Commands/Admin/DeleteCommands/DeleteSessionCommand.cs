@@ -27,9 +27,28 @@ public class DeleteSessionCommandHandler : IRequestHandler<DeleteSessionCommand>
     {
         var session = await _applicationContext.Sessions.Where(session => session.SessionId == request.SessionId)
             .FirstOrDefaultAsync(cancellationToken);
+        
         if (session != null)
         {
             session.IsDeleted = true;
+            
+            /*var filmId = session.FilmId;
+            
+            var check = await _applicationContext.Sessions
+                .Where(sessionCheck => sessionCheck.FilmId == filmId && sessionCheck.IsDeleted == false)
+                .FirstOrDefaultAsync(cancellationToken);
+
+            if (check != null)
+            {
+                var film = await _applicationContext.Films.Where(film => film.FilmId == filmId)
+                    .FirstOrDefaultAsync(cancellationToken);
+                if (film != null)
+                {
+                    film.IsDeleted = true;
+                }
+                else{throw new Exception("Ошибка!");}
+            }*/
+            
             await _applicationContext.SaveChangesAsync(cancellationToken);
         }
         else
