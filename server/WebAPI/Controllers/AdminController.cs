@@ -62,4 +62,11 @@ public class AdminController : ControllerBase
         return Ok();
     }
     
+    [HttpDelete("Session")]
+    public async Task<IActionResult> DeleteSession(int sessionId)
+    {
+        await _mediator.Send(new DeleteSessionCommand(sessionId));
+        return Ok();
+    }
+    
 }
