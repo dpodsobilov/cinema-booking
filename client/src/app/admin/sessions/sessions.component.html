@@ -1,1 +1,47 @@
-<p>sessions works!</p>
+<div class="wrapper">
+  <div class="sessions">
+    <h1>Сеансы</h1>
+    <div class="film-filter">
+      Фильм
+      <select (change)="filmFilter($event)">
+        <option value="All">Все</option>
+        <option *ngFor="let film of films" value="{{ film }}">
+          {{ film }}
+        </option>
+      </select>
+    </div>
+    <img src="./assets/images/svg/add.svg" alt="" />
+    <table>
+      <tr>
+        <th>#</th>
+        <th>Фильм</th>
+        <th>Кинотеатр</th>
+        <th>Кинозал</th>
+        <th>Дата</th>
+        <th>Время</th>
+        <th>Действия</th>
+      </tr>
+      <tr
+        class="content"
+        *ngFor="let session of sessions; let indexOfElement = index"
+      >
+        <td>{{ indexOfElement + 1 }}</td>
+        <td class="session-name">{{ session.filmName }}</td>
+        <td class="session-name">{{ session.cinemaName }}</td>
+        <td class="session-name">{{ session.cinemaHallName }}</td>
+        <td class="session-name">{{ session.sessionDate }}</td>
+        <td class="session-name">{{ session.sessionTime }}</td>
+        <td>
+          <div class="buttons">
+            <img src="./assets/images/svg/edit.svg" alt="" />
+            <img
+              src="./assets/images/svg/delete.svg"
+              alt=""
+              (click)="deleteSession(session.sessionId)"
+            />
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

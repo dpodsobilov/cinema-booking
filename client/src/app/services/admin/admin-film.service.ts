@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Film } from '../film.service';
 
 export interface AdminFilm {
   filmId: number;
@@ -28,5 +27,23 @@ export class AdminFilmService {
 
   getGenres(): Observable<AdminGenre[]> {
     return this.http.get<AdminGenre[]>(this.baseUrl + '/Admin/Genres');
+  }
+
+  deleteFilm(filmId: number) {
+    return this.http.delete(
+      this.baseUrl + '/Admin/Film?' + 'filmId=' + filmId,
+      {
+        observe: 'response',
+      },
+    );
+  }
+
+  deleteGenre(genreId: number) {
+    return this.http.delete(
+      this.baseUrl + '/Admin/Genre?' + 'genreId=' + genreId,
+      {
+        observe: 'response',
+      },
+    );
   }
 }
