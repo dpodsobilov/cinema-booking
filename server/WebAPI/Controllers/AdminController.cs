@@ -69,4 +69,10 @@ public class AdminController : ControllerBase
         return Ok();
     }
     
+    [HttpDelete("Genre")]
+    public async Task<IActionResult> DeleteGenre(int genreId)
+    {
+        await _mediator.Send(new DeleteGenreCommand(genreId));
+        return Ok();
+    }
 }
