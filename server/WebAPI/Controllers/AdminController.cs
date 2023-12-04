@@ -52,5 +52,12 @@ public class AdminController
         var users = await _mediator.Send(new GetAdminUsersQuery());
         return users;
     }
-    
+
+    [HttpGet("Stats")]
+    public async Task<IList<AdminStatDto>> GetStats()
+    {
+        var stats = await _mediator.Send(new GetAdminStatsQuery());
+        return stats;
+    }
+
 }
