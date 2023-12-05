@@ -69,6 +69,13 @@ public class AdminController : ControllerBase
         return templates;
     }
 
+    [HttpGet("Stats")]
+    public async Task<IList<AdminStatDto>> GetStats()
+    {
+        var stats = await _mediator.Send(new GetAdminStatsQuery());
+        return stats;
+    }
+
     [HttpDelete("Film")]
     public async Task<IActionResult> DeleteFilm(int filmId)
     {

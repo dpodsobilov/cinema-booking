@@ -20,6 +20,7 @@ public class GetAdminStatsQueryHandler : IRequestHandler<GetAdminStatsQuery, ILi
     {
 
         var orderedTicketsFilms = await _applicationContext.Films
+            .Where(film => film.IsDeleted == false)
             .GroupJoin(
                 _applicationContext.Sessions,
                 film => film.FilmId,
@@ -38,6 +39,7 @@ public class GetAdminStatsQueryHandler : IRequestHandler<GetAdminStatsQuery, ILi
             ).ToListAsync(cancellationToken);
 
         var totalTicketsFilms = await _applicationContext.Films
+                .Where(film => film.IsDeleted == false)
                 .GroupJoin(
                     _applicationContext.Sessions,
                     film => film.FilmId,
@@ -81,7 +83,7 @@ public class GetAdminStatsQueryHandler : IRequestHandler<GetAdminStatsQuery, ILi
                 TotalTickets = totalTicketsFilms[i].PlaceCount,
                 Percentage = (int)(totalTicketsFilms[i].PlaceCount == 0 
                             ? 0 
-                            : Math.Round(double.Parse(orderedTicketsFilms[i].TicketCount) * 100 / totalTicketsFilms[i].PlaceCount))
+                            : Math.Round(double.Parse(orderedTicketsFilms[i].TicketCount.ToString()) * 100 / totalTicketsFilms[i].PlaceCount))
             });
         }
 
