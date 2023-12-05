@@ -11,12 +11,7 @@ import {
   styleUrls: ['./genres.component.css'],
 })
 export class GenresComponent implements OnInit {
-  genres: AdminGenre[] = [
-    {
-      genreId: 1,
-      genreName: 'Жанр',
-    },
-  ];
+  genres: AdminGenre[] = [];
 
   constructor(private adminFilmService: AdminFilmService) {}
 
