@@ -7,6 +7,7 @@ export interface FilmStatsString {
   filmName: string;
   orderedTickets: number;
   totalTickets: number;
+  percentage: number;
 }
 
 @Injectable({
