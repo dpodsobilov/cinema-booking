@@ -54,19 +54,26 @@ public class AdminController : ControllerBase
         var users = await _mediator.Send(new GetAdminUsersQuery());
         return users;
     }
-
-    [HttpDelete("Film")]
-    public async Task<IActionResult> DeleteFilm(int filmId)
-    {
-        await _mediator.Send(new DeleteFilmCommand(filmId));
-        return Ok();
-    }
     
     [HttpGet("Sessions")]
     public async Task<IList<AdminSessionDto>> GetSessions()
     {
         var sessions = await _mediator.Send(new GetAdminSessionQuery());
         return sessions;
+    }
+    
+    [HttpGet("Templates")]
+    public async Task<IList<AdminTemplatesDto>> GetTemplates()
+    {
+        var templates = await _mediator.Send(new GetAdminTemplatesQuery());
+        return templates;
+    }
+
+    [HttpDelete("Film")]
+    public async Task<IActionResult> DeleteFilm(int filmId)
+    {
+        await _mediator.Send(new DeleteFilmCommand(filmId));
+        return Ok();
     }
     
     [HttpDelete("Session")]
@@ -80,6 +87,27 @@ public class AdminController : ControllerBase
     public async Task<IActionResult> DeleteGenre(int genreId)
     {
         await _mediator.Send(new DeleteGenreCommand(genreId));
+        return Ok();
+    }
+    
+    [HttpDelete("Template")]
+    public async Task<IActionResult> DeleteTemplate(int templateId)
+    {
+        await _mediator.Send(new DeleteTemplateCommand(templateId));
+        return Ok();
+    }
+    
+    [HttpDelete("Hall")]
+    public async Task<IActionResult> DeleteHall(int cinemaHallId)
+    {
+        await _mediator.Send(new DeleteHallCommand(cinemaHallId));
+        return Ok();
+    }
+    
+    [HttpDelete("Cinema")]
+    public async Task<IActionResult> DeleteCinema(int cinemaId)
+    {
+        await _mediator.Send(new DeleteCinemaCommand(cinemaId));
         return Ok();
     }
 }
