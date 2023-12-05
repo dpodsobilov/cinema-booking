@@ -1,0 +1,21 @@
+<div class="wrapper">
+  <div class="statistics">
+    <h1>Статистика</h1>
+    <table>
+      <tr>
+        <th>#</th>
+        <th>Название</th>
+        <th>Забронированные билеты</th>
+        <th>Общее число билетов</th>
+        <th>%</th>
+      </tr>
+      <tr class="content" *ngFor="let film of statistics; let $index = index">
+        <td>{{ $index + 1 }}</td>
+        <td>{{ film.filmName }}</td>
+        <td>{{ film.orderedTickets }}</td>
+        <td>{{ film.totalTickets }}</td>
+        <td>{{ film.percentage }}</td>
+      </tr>
+    </table>
+  </div>
+</div>

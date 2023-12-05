@@ -8,7 +8,8 @@ public class Session
     [Column(TypeName = "timestamp")]
     public DateTime  DataTimeSession { get; set; }
     public decimal DataTimeCoefficient { get; set; }
-    
+    public bool IsDeleted { get; set; } = false;
+
     // SessionId -> FK в Ticket
     public ICollection<Ticket> Tickets { get; set; } = null!;
     

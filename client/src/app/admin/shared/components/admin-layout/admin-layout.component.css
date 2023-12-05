@@ -1,0 +1,13 @@
+main {
+  background-image: url("../../../../../assets/images/background.png");
+  background-size: cover;
+  min-height: 100%;
+}
+.container-admin{
+  display: flex;
+  flex-direction: row;
+}
+
+.container-admin .films {
+  flex: 1;
+}
