@@ -1,6 +1,8 @@
 ﻿using Logic.Commands.Admin;
+using Logic.Commands.Admin.CreateCommands;
 using Logic.DTO;
 using Logic.DTO.Admin;
+using Logic.DTO.Admin.ForCreating;
 using Logic.Queries;
 using Logic.Queries.Admin;
 using Microsoft.AspNetCore.Mvc;
@@ -117,4 +119,20 @@ public class AdminController : ControllerBase
         await _mediator.Send(new DeleteCinemaCommand(cinemaId));
         return Ok();
     }
+    
+    [HttpPost("Genre")]
+    public async Task<IActionResult> CreateGenre(CreationGenreDto request)
+    {
+        await _mediator.Send(new CreateGenreCommand(request));
+        return Ok();
+    }
+    
+    [HttpPost("Film")]
+    public async Task<IActionResult> CreateFilm(CreationFilmDto request)
+    {
+        await _mediator.Send(new CreateFilmCommand(request));
+        return Ok();
+    }
+    
+    
 }

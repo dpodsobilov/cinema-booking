@@ -9,6 +9,7 @@ public class Film
     public string Duration { get; set; } = null!;
     public decimal FilmCoefficient { get; set; }
     public string Description { get; set; } = null!;
+    public int Year { get; set; }
     public byte[] Poster { get; set; } = null!;
 
     public bool IsDeleted { get; set; } = false;
