@@ -16,18 +16,37 @@ public class GetHomePageFilmsQueryHandler : IRequestHandler<GetHomePageFilmsQuer
     
     public async Task<IList<HomePageDto>> Handle(GetHomePageFilmsQuery request, CancellationToken cancellationToken)
     {
-        // var films = await _applicationContext.Films.Select(film => new HomePageFilmDTO
-        // {
-        //     FilmId = film.FilmId,
-        //     FilmName = film.FilmName,
-        //     Poster = film.Poster
-        // }).ToListAsync(cancellationToken);
-        var cinemas = await _applicationContext.Sessions.Select(session => session.CinemaHall.Cinema)
+        // ДОБАВИТЬ ПРОВЕРКИ ПО ДАТЕ У СЕАНСОВ
+        
+        var cinemas = await _applicationContext.Sessions.Where(session => session.IsDeleted == false
+                                            && session.CinemaHall.IsDeleted == false
+                                            && session.CinemaHall.Cinema.IsDeleted == false
+                                            && session.CinemaHall.CinemaHallType.IsDeleted == false)
+            .Select(session => session.CinemaHall.Cinema)
             .Distinct().ToListAsync(cancellationToken);
         var homePageDto = new List<HomePageDto>();
+        
+        var noSessionFilm = await _applicationContext.Films
+            .Join(_applicationContext.Sessions,
+                film => film.FilmId,
+                session => session.FilmId,
+                (film, session) => new { FilmId = film.FilmId, SessionDeleted = session.IsDeleted })
+            .GroupBy(x => x.FilmId)
+            .Where(group => group.All(x => x.SessionDeleted == true))
+            .Select(group => group.Key)
+            .ToListAsync(cancellationToken);
+        
         foreach (var cinema in cinemas)
         {
-            var films = await _applicationContext.Sessions.Where(session => session.CinemaHall.Cinema.CinemaId == cinema.CinemaId)
+            var films = await _applicationContext.Sessions.
+                Where(session => session.CinemaHall.Cinema.CinemaId == cinema.CinemaId 
+                                 && session.Film.IsDeleted == false
+                                 && session.CinemaHall.IsDeleted == false
+                                 && session.CinemaHall.Cinema.IsDeleted == false
+                                 && session.CinemaHall.CinemaHallType.IsDeleted == false
+                                 && !noSessionFilm.Contains(session.FilmId))
+                .Where(film => _applicationContext.Sessions
+                    .Any(session => session.FilmId == film.FilmId && !session.IsDeleted))
                 .Select(session => new HomePageFilmDto
                 {
                     FilmId = session.FilmId,

@@ -1,0 +1,56 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1em;
+}
+
+h1 {
+  margin-bottom: 0.5em;
+  font-family: 'Poppins', sans-serif;
+}
+
+table {
+  width: 100%;
+}
+
+table, tr, th, td {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-collapse: collapse;
+  font-family: 'Poppins', sans-serif;
+  font-weight: normal;
+}
+
+.content:hover{
+  background-color: lightgray;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+td {
+  vertical-align: middle;
+  padding: 0.5em;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.sessions {
+  width: 60%;
+  margin: 1em;
+}
+
+.film-filter{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+select{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  width: fit-content;
+}

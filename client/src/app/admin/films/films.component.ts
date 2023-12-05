@@ -19,4 +19,14 @@ export class FilmsComponent implements OnInit {
       this.films = res;
     });
   }
+
+  deleteFilm(filmId: number) {
+    this.adminFilmService.deleteFilm(filmId).subscribe((response) => {
+      if (response.status === 200) {
+        this.adminFilmService.getFilms().subscribe((res: AdminFilm[]) => {
+          this.films = res;
+        });
+      } else alert('Ошибка! Удаление не выполнено!');
+    });
+  }
 }

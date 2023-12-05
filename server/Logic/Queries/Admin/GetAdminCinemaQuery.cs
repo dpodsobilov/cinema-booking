@@ -19,7 +19,9 @@ public class GetAdminCinemaQueryHandler : IRequestHandler<GetAdminCinemaQuery, I
     
     public async Task<IList<AdminCinemaDto>> Handle(GetAdminCinemaQuery request, CancellationToken cancellationToken)
     {
-        var cinemas = await _applicationContext.Cinemas.Select(cinema => new AdminCinemaDto()
+        var cinemas = await _applicationContext.Cinemas
+            .Where(cinema => cinema.IsDeleted == false)
+            .Select(cinema => new AdminCinemaDto()
         {
             CinemaId = cinema.CinemaId,
             CinemaName = cinema.CinemaName,

@@ -19,7 +19,8 @@ public class GetAdminFilmQueryHandler : IRequestHandler<GetAdminFilmQuery, IList
     public async Task<IList<AdminFilmDto>> Handle(GetAdminFilmQuery request, CancellationToken cancellationToken)
     {
 
-        var films = await _applicationContext.Films.Select(film => new AdminFilmDto
+        var films = await _applicationContext.Films.Where(film => film.IsDeleted == false)
+            .Select(film => new AdminFilmDto
         {
             FilmId = film.FilmId,
             FilmName = film.FilmName

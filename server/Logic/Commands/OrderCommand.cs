@@ -58,6 +58,14 @@ public class OrderCommandHandler : IRequestHandler<OrderCommand>
             {
                 throw new Exception("Такой билет уже есть!");
             }
+
+            var check2 = await _applicationContext.Sessions
+                .Where(session => session.SessionId == request.SessionId && session.IsDeleted == true)
+                .FirstOrDefaultAsync(cancellationToken);
+            if (check2 != null)
+            {
+                throw new Exception("Такого сеанса уже нет!");
+            }
             
             await _applicationContext.Tickets.AddAsync(new Ticket()
             {

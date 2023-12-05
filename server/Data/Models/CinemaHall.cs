@@ -4,6 +4,7 @@ public class CinemaHall
 {
     public int CinemaHallId { get; set; }
     public string CinemaHallName { get; set; } = null!;
+    public bool IsDeleted { get; set; } = false;
     
     // CinemaHallId -> FK в Session
     public ICollection<Session> Sessions { get; set; } = null!;
