@@ -78,7 +78,10 @@ public class GetAdminStatsQueryHandler : IRequestHandler<GetAdminStatsQuery, ILi
             {
                 FilmName = orderedTicketsFilms[i].FilmName,
                 OrderedTickets = orderedTicketsFilms[i].TicketCount,
-                TotalTickets = totalTicketsFilms[i].PlaceCount
+                TotalTickets = totalTicketsFilms[i].PlaceCount,
+                Percentage = (int)(totalTicketsFilms[i].PlaceCount == 0 
+                            ? 0 
+                            : Math.Round(double.Parse(orderedTicketsFilms[i].TicketCount) * 100 / totalTicketsFilms[i].PlaceCount))
             });
         }
 

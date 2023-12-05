@@ -7,4 +7,6 @@ public class AdminStatDto
     public int OrderedTickets { get; set; }
 
     public int TotalTickets { get; set; }
+    
+    public int Percentage { get; set; }
 }
