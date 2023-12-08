@@ -8,9 +8,9 @@ namespace Logic.Commands.Admin.CreateCommands;
 
 public class CreateCinemaHallCommand : IRequest
 {
-    public string CinemaHallName { get; set; }
-    public int CinemaHallTypeId { get; set; }
-    public int CinemaId { get; set; }
+    public string CinemaHallName { get; }
+    public int CinemaHallTypeId { get; }
+    public int CinemaId { get; }
     public CreateCinemaHallCommand(CreationCinemaHallDto creationCinemaHallDto)
     {
         CinemaHallName = creationCinemaHallDto.CinemaHallName;
