@@ -141,5 +141,11 @@ public class AdminController : ControllerBase
         return Ok();
     }
     
+    [HttpPost("CinemaHall")]
+    public async Task<IActionResult> CreateCinemaHall(CreationCinemaHallDto request)
+    {
+        await _mediator.Send(new CreateCinemaHallCommand(request));
+        return Ok();
+    }
     
 }
