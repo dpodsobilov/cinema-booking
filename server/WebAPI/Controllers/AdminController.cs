@@ -77,6 +77,22 @@ public class AdminController : ControllerBase
         var stats = await _mediator.Send(new GetAdminStatsQuery());
         return stats;
     }
+    
+    //для компоненты добавления шаблона
+    [HttpGet("PlacesTypes")]
+    public async Task<IList<AdminGetTemplatePlaceTypeDto>> GetPlacesTypes()
+    {
+        var placesTypes = await _mediator.Send(new GetAdminTemplatePlacesTypesQuery());
+        return placesTypes;
+    }
+    
+    //для таблицы с типами мест
+    [HttpGet("PlaceType")]
+    public async Task<IList<AdminGetPlaceTypeDto>> GetPlaceType()
+    {
+        var placeType = await _mediator.Send(new GetAdminPlaceTypeQuery());
+        return placeType;
+    }
 
     [HttpDelete("Film")]
     public async Task<IActionResult> DeleteFilm(int filmId)
