@@ -1,0 +1,29 @@
+<div class="types">
+  <h1>Типы мест</h1>
+  <img src="./assets/images/svg/add.svg" alt="" />
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Название</th>
+      <th>Цвет</th>
+      <th>Цена</th>
+      <th>Действия</th>
+    </tr>
+    <tr class="content" *ngFor="let type of types; let indexOfElement = index">
+      <td class="type-name">{{ indexOfElement + 1 }}</td>
+      <td class="type-name">{{ type.name }}</td>
+      <td class="type-name">{{ type.color }}</td>
+      <td class="type-name">{{ type.cost }}</td>
+      <td>
+        <div class="buttons">
+          <img src="./assets/images/svg/edit.svg" alt="" />
+          <img
+            src="./assets/images/svg/delete.svg"
+            alt=""
+            (click)="deleteType(type.typeId)"
+          />
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
