@@ -1,7 +1,7 @@
 <div class="outline">
   <div class="modal">
     <div class="header">
-      <p>Добавление жанра</p>
+      <p>{{ isEditing ? "Изменение жанра" : "Добавление жанра" }}</p>
       <p class="close" (click)="close()">&times;</p>
     </div>
     <div class="form-container">

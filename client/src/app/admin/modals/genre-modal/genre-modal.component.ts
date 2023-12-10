@@ -13,6 +13,7 @@ import { logBuilderStatusWarnings } from '@angular-devkit/build-angular/src/buil
 })
 export class GenreModalComponent implements OnInit {
   genreName: string = '';
+  @Input() isEditing = false;
   @Input() oldGenre: AdminGenre = { genreId: null!, genreName: null! };
   @Output() closeEvent = new EventEmitter<boolean>();
   @Output() saveEvent = new EventEmitter<AdminGenreCreation>();

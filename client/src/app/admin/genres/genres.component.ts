@@ -16,6 +16,7 @@ export class GenresComponent implements OnInit {
   isModalOpen: boolean = false;
   newGenre: AdminGenreCreation = { name: '' };
   oldGenre: AdminGenre = { genreId: null!, genreName: null! };
+  isEditing: boolean = false;
 
   constructor(private adminFilmService: AdminFilmService) {}
 
@@ -30,6 +31,7 @@ export class GenresComponent implements OnInit {
 
     if (oldGenre != undefined) {
       this.oldGenre = oldGenre;
+      this.isEditing = true;
     }
   }
 
@@ -37,6 +39,7 @@ export class GenresComponent implements OnInit {
     this.newGenre = null!;
     this.oldGenre = null!;
     this.isModalOpen = !isClose;
+    this.isEditing = false;
   }
 
   addGenre(genre: AdminGenreCreation) {

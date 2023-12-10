@@ -30,6 +30,7 @@
 <ng-container *ngIf="isModalOpen">
   <app-genre-modal
     [oldGenre]="oldGenre"
+    [isEditing]="isEditing"
     (closeEvent)="closeModal($event)"
     (saveEvent)="addGenre($event)"
     (editEvent)="editGenre($event)"
