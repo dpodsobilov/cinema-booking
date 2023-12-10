@@ -1,8 +1,10 @@
 ﻿using Logic.Commands.Admin;
 using Logic.Commands.Admin.CreateCommands;
+using Logic.Commands.Admin.EditCommand;
 using Logic.DTO;
 using Logic.DTO.Admin;
 using Logic.DTO.Admin.ForCreating;
+using Logic.DTO.Admin.ForEditing;
 using Logic.Queries;
 using Logic.Queries.Admin;
 using Microsoft.AspNetCore.Mvc;
@@ -70,12 +72,35 @@ public class AdminController : ControllerBase
         var templates = await _mediator.Send(new GetAdminTemplatesQuery());
         return templates;
     }
+    
+    [HttpGet("Template")]
+    public async Task<AdminTemplateDto> GetTemplate(int param)
+    {
+        var template = await _mediator.Send(new GetAdminTemplateQuery(param));
+        return template;
+    }
 
     [HttpGet("Stats")]
     public async Task<IList<AdminStatDto>> GetStats()
     {
         var stats = await _mediator.Send(new GetAdminStatsQuery());
         return stats;
+    }
+    
+    //для компоненты добавления шаблона
+    [HttpGet("PlacesTypes")]
+    public async Task<IList<AdminGetTemplatePlaceTypeDto>> GetPlacesTypes()
+    {
+        var placesTypes = await _mediator.Send(new GetAdminTemplatePlacesTypesQuery());
+        return placesTypes;
+    }
+    
+    //для таблицы с типами мест
+    [HttpGet("PlaceType")]
+    public async Task<IList<AdminGetPlaceTypeDto>> GetPlaceType()
+    {
+        var placeType = await _mediator.Send(new GetAdminPlaceTypeQuery());
+        return placeType;
     }
 
     [HttpDelete("Film")]
@@ -131,6 +156,41 @@ public class AdminController : ControllerBase
     public async Task<IActionResult> CreateFilm(CreationFilmDto request)
     {
         await _mediator.Send(new CreateFilmCommand(request));
+        return Ok();
+    }
+    
+    [HttpPost("Cinema")]
+    public async Task<IActionResult> CreateCinema(CreationCinemaDto request)
+    {
+        await _mediator.Send(new CreateCinemaCommand(request));
+        return Ok();
+    }
+    
+    [HttpPost("Hall")]
+    public async Task<IActionResult> CreateCinemaHall(CreationCinemaHallDto request)
+    {
+        await _mediator.Send(new CreateCinemaHallCommand(request));
+        return Ok();
+    }
+    
+    [HttpPost("Template")]
+    public async Task<IActionResult> CreateTemplate(CreationTemplateDto request)
+    {
+        await _mediator.Send(new CreateTemplateCommand(request));
+        return Ok();
+    }
+    
+    [HttpPut("Template")]
+    public async Task<IActionResult> EditTemplate(EditTemplateDto request)
+    {
+        await _mediator.Send(new EditTemplateCommand(request));
+        return Ok();
+    }
+    
+    [HttpPut("Genre")]
+    public async Task<IActionResult> EditGenre(AdminGenreDto request)
+    {
+        await _mediator.Send(new EditGenreCommand(request));
         return Ok();
     }
     

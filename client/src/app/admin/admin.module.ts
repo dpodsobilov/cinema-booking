@@ -12,6 +12,8 @@ import { AdminPaneComponent } from './admin-pane/admin-pane.component';
 import { GenresComponent } from './genres/genres.component';
 import { HallsComponent } from './halls/halls.component';
 import { NotFoundComponent } from '../user/not-found/not-found.component';
+import { AddTemplateComponent } from './add-template/add-template.component';
+import { PlaceTypeComponent } from './place-type/place-type.component';
 import { GenreModalComponent } from './modals/genre-modal/genre-modal.component';
 
 @NgModule({
@@ -26,6 +28,8 @@ import { GenreModalComponent } from './modals/genre-modal/genre-modal.component'
     AdminPaneComponent,
     GenresComponent,
     HallsComponent,
+    AddTemplateComponent,
+    PlaceTypeComponent,
     GenreModalComponent,
   ],
   imports: [
@@ -42,6 +46,7 @@ import { GenreModalComponent } from './modals/genre-modal/genre-modal.component'
           { path: 'sessions', component: SessionsComponent },
           { path: 'users', component: UsersComponent },
           { path: 'stats', component: StatsComponent },
+          { path: 'templates/add-template', component: AddTemplateComponent },
         ],
       },
     ]),

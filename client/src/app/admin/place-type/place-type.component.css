@@ -1,8 +1,5 @@
-.wrapper {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 1em;
+.types{
+  margin: 15px;
 }
 
 h1 {
@@ -11,11 +8,7 @@ h1 {
 }
 
 table {
-  width: fit-content;
-}
-
-.place-type{
-  width: fit-content;
+  width: 100%;
 }
 
 table, tr, th, td {
@@ -41,13 +34,4 @@ td {
   justify-content: center;
   align-items: center;
   gap: 0.5em;
-}
-
-.templates {
-  width: 60%;
-  margin: 1em;
-}
-
-img:hover{
-  cursor: pointer;
 }
