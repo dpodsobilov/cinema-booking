@@ -70,6 +70,13 @@ public class AdminController : ControllerBase
         var templates = await _mediator.Send(new GetAdminTemplatesQuery());
         return templates;
     }
+    
+    [HttpGet("Template")]
+    public async Task<AdminTemplateDto> GetTemplate(int param)
+    {
+        var template = await _mediator.Send(new GetAdminTemplateQuery(param));
+        return template;
+    }
 
     [HttpGet("Stats")]
     public async Task<IList<AdminStatDto>> GetStats()
