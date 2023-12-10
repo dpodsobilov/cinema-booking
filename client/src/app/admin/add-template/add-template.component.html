@@ -31,6 +31,13 @@
         <span class="type-name">{{ type.placeTypeName }}</span>
       </label>
     </div>
+    <span>Название</span>
+    <input
+      id="template-name"
+      class="template-name"
+      type="text"
+      [(ngModel)]="templateName"
+    />
     <input class="reset" type="button" value="Очистить" (click)="reset()" />
     <input class="save" type="button" value="Сохранить" (click)="save()" />
   </div>

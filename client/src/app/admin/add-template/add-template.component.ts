@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   AddTemplateService,
   Places,
   PlacesTypes,
+  ResponseMatrix,
 } from '../../services/admin/add-template.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AdminCinemas } from '../../services/admin/admin-cinemas.service';
 
 @Component({
   selector: 'app-add-template',
@@ -12,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./add-template.component.css'],
 })
 export class AddTemplateComponent implements OnInit {
+  templateName: string = '';
   templateId: number = 0;
   newColor: string = '';
   matrix: Places[][] = [[]];
@@ -21,6 +24,7 @@ export class AddTemplateComponent implements OnInit {
   constructor(
     private addTemplatesService: AddTemplateService,
     private route: ActivatedRoute,
+    private router: Router,
   ) {
     this.route.queryParams.subscribe((params) => {
       this.templateId = params['templateId'];
@@ -45,7 +49,11 @@ export class AddTemplateComponent implements OnInit {
     }
     //Если редактируем, то получаем текущий с сервера
     else {
-      // тут нужно получить с сервера матрицу шаблона для его редактирования
+      this.addTemplatesService
+        .getTemplateMatrix(this.templateId)
+        .subscribe((res: ResponseMatrix) => {
+          this.matrix = res.matr;
+        });
     }
     //инициализации матрицы для отправки
     for (let i = 0; i < 10; i++) {
@@ -80,15 +88,28 @@ export class AddTemplateComponent implements OnInit {
           this.matrix[i][j] = { placeTypeId: 0, color: 'lightgrey' };
         }
       }
+      this.templateName = '';
     }
   }
   save() {
-    if (confirm('Вы уверены что хотите сохранить изменения?')) {
-      for (let i = 0; i < this.matrix.length; i++) {
-        for (let j = 0; j < this.matrix[i].length; j++) {
-          this.sendMatrix[i][j] = this.matrix[i][j].placeTypeId;
+    if (this.templateName !== '') {
+      if (confirm('Вы уверены что хотите сохранить изменения?')) {
+        for (let i = 0; i < this.matrix.length; i++) {
+          for (let j = 0; j < this.matrix[i].length; j++) {
+            this.sendMatrix[i][j] = this.matrix[i][j].placeTypeId;
+          }
         }
+
+        this.addTemplatesService.sendMatr.CinemaHallTypeName =
+          this.templateName;
+        this.addTemplatesService.sendMatr.TemplatePlaceTypes = this.sendMatrix;
+
+        this.addTemplatesService.sendMatrix().subscribe((response) => {
+          if (response.status === 200) {
+            this.router.navigate(['/admin/templates/']);
+          } else alert('Ошибка! Удаление не выполнено!');
+        });
       }
-    }
+    } else alert('Введите название шаблона!');
   }
 }

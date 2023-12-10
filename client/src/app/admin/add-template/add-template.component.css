@@ -82,7 +82,7 @@ label{
 }
 
 .reset{
-  margin-top: 5px;
+  margin-top: 0;
   margin-left: 0;
   width: 150px;
   height: 30px;
@@ -96,4 +96,15 @@ label{
   height: 30px;
   background-color: #1DE782;
   color: white;
+}
+
+.template-name{
+  margin-top: 5px;
+  margin-left: 0;
+  width: 150px;
+  height: 30px;;
+  background-color: white;
+  border: 1px solid black;
+  text-align: center;
+
 }

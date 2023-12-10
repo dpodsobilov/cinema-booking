@@ -16,7 +16,12 @@
         <td class="template-name">{{ template.templateName }}</td>
         <td>
           <div class="buttons">
-            <img src="./assets/images/svg/edit.svg" alt="" />
+            <img
+              src="./assets/images/svg/edit.svg"
+              alt=""
+              routerLink="add-template"
+              [queryParams]="{ templateId: template.templateId }"
+            />
             <img
               src="./assets/images/svg/delete.svg"
               alt=""
