@@ -1,8 +1,10 @@
 ﻿using Logic.Commands.Admin;
 using Logic.Commands.Admin.CreateCommands;
+using Logic.Commands.Admin.EditCommand;
 using Logic.DTO;
 using Logic.DTO.Admin;
 using Logic.DTO.Admin.ForCreating;
+using Logic.DTO.Admin.ForEditing;
 using Logic.Queries;
 using Logic.Queries.Admin;
 using Microsoft.AspNetCore.Mvc;
@@ -177,5 +179,13 @@ public class AdminController : ControllerBase
         await _mediator.Send(new CreateTemplateCommand(request));
         return Ok();
     }
+    
+    [HttpPut("Template")]
+    public async Task<IActionResult> EditTemplate(EditTemplateDto request)
+    {
+        await _mediator.Send(new EditTemplateCommand(request));
+        return Ok();
+    }
+    
     
 }
