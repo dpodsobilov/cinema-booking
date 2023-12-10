@@ -12,6 +12,7 @@ import { AdminPaneComponent } from './admin-pane/admin-pane.component';
 import { GenresComponent } from './genres/genres.component';
 import { HallsComponent } from './halls/halls.component';
 import { NotFoundComponent } from '../user/not-found/not-found.component';
+import { GenreModalComponent } from './modals/genre-modal/genre-modal.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { NotFoundComponent } from '../user/not-found/not-found.component';
     AdminPaneComponent,
     GenresComponent,
     HallsComponent,
+    GenreModalComponent,
   ],
   imports: [
     SharedModule,

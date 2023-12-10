@@ -18,7 +18,6 @@ form {
 }
 
 .container1 {
-  /*margin: 15px 30px auto;*/
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -26,7 +25,6 @@ form {
 }
 
 .container2 {
-  /*display: inline-block;*/
   width: 90%;
 }
 
@@ -35,7 +33,6 @@ label {
   display: block;
   margin: 5px 0;
 }
-
 
 input {
   padding: 10px;
@@ -53,6 +50,7 @@ input:hover {
   margin: 20px auto;
   width: 90%;
 }
+
 .submit-button {
   font-size: 15px;
   background-color: #1DE782;

@@ -12,6 +12,10 @@ export interface AdminGenre {
   genreName: string;
 }
 
+export interface AdminGenreCreation {
+  name: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -45,5 +49,11 @@ export class AdminFilmService {
         observe: 'response',
       },
     );
+  }
+
+  addGenre(genre: AdminGenreCreation) {
+    return this.http.post(this.baseUrl + '/Admin/Genre?', genre, {
+      observe: 'response',
+    });
   }
 }

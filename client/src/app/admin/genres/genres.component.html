@@ -1,6 +1,6 @@
 <h1>Жанры</h1>
 
-<img src="./assets/images/svg/add.svg" alt="" />
+<img src="./assets/images/svg/add.svg" alt="" (click)="openModal()" />
 <table>
   <tr>
     <th>#</th>
@@ -22,3 +22,10 @@
     </td>
   </tr>
 </table>
+
+<ng-container *ngIf="isModalOpen">
+  <app-genre-modal
+    (closeEvent)="closeModal($event)"
+    (saveEvent)="addGenre($event)"
+  ></app-genre-modal>
+</ng-container>

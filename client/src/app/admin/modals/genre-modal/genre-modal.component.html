@@ -1,0 +1,28 @@
+<div class="outline">
+  <div class="modal">
+    <div class="header">
+      <p>Добавление жанра</p>
+      <p class="close" (click)="close()">&times;</p>
+    </div>
+    <div class="form-container">
+      <form autocomplete="off" [formGroup]="genreForm" (ngSubmit)="onSubmit()">
+        <label>Название жанра</label>
+        <input type="text" formControlName="genreNameControl" />
+        <div class="error" *ngIf="name.invalid && (name.dirty || name.touched)">
+          <div *ngIf="name.errors?.['required']">
+            Поле обязательно для заполнения
+          </div>
+        </div>
+        <div class="error" *ngIf="!genreForm.valid">{{ errorMessage }}</div>
+        <div class="submit-pane">
+          <input
+            class="submit-button"
+            type="submit"
+            value="Добавить"
+            [disabled]="!genreForm.valid"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,7 @@ import {
   AdminFilm,
   AdminFilmService,
   AdminGenre,
+  AdminGenreCreation,
 } from '../../services/admin/admin-film.service';
 
 @Component({
@@ -12,6 +13,8 @@ import {
 })
 export class GenresComponent implements OnInit {
   genres: AdminGenre[] = [];
+  isModalOpen: boolean = false;
+  genre: AdminGenreCreation = { name: '' };
 
   constructor(private adminFilmService: AdminFilmService) {}
 
@@ -28,6 +31,25 @@ export class GenresComponent implements OnInit {
           this.genres = res;
         });
       } else alert('Ошибка! Удаление не выполнено!');
+    });
+  }
+
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal(event: boolean) {
+    this.isModalOpen = false;
+  }
+
+  addGenre(genre: AdminGenreCreation) {
+    this.genre = genre;
+    this.adminFilmService.addGenre(this.genre).subscribe((response) => {
+      if (response.status === 200) {
+        this.adminFilmService.getGenres().subscribe((res: AdminGenre[]) => {
+          this.genres = res;
+        });
+      } else alert('Ошибка! Добавление не выполнено!');
     });
   }
 }
