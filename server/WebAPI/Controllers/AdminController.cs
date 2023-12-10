@@ -148,4 +148,11 @@ public class AdminController : ControllerBase
         return Ok();
     }
     
+    [HttpPost("Template")]
+    public async Task<IActionResult> CreateTemplate(CreationTemplateDto request)
+    {
+        await _mediator.Send(new CreateTemplateCommand(request));
+        return Ok();
+    }
+    
 }
