@@ -21,6 +21,7 @@ export class AddTemplateComponent implements OnInit {
   placesTypes: PlacesTypes[] = [];
   selectedType: number = 0;
   sendMatrix: number[][] = [[]];
+
   constructor(
     private addTemplatesService: AddTemplateService,
     private route: ActivatedRoute,
@@ -52,7 +53,7 @@ export class AddTemplateComponent implements OnInit {
       this.addTemplatesService
         .getTemplateMatrix(this.templateId)
         .subscribe((res: ResponseMatrix) => {
-          this.matrix = res.matr;
+          this.matrix = res.adminPlaceDtos;
         });
     }
     //инициализации матрицы для отправки
@@ -100,15 +101,28 @@ export class AddTemplateComponent implements OnInit {
           }
         }
 
-        this.addTemplatesService.sendMatr.CinemaHallTypeName =
-          this.templateName;
-        this.addTemplatesService.sendMatr.TemplatePlaceTypes = this.sendMatrix;
+        if (this.templateId === 0) {
+          this.addTemplatesService.sendMatr.CinemaHallTypeName =
+            this.templateName;
+          this.addTemplatesService.sendMatr.TemplatePlaceTypes =
+            this.sendMatrix;
+          this.addTemplatesService.createMatrix().subscribe((response) => {
+            if (response.status === 200) {
+              this.router.navigate(['/admin/templates/']);
+            } else alert('Ошибка! Создание не выполнено!');
+          });
+        } else {
+          this.addTemplatesService.updMatr.CinemaHallTypeId = this.templateId;
+          this.addTemplatesService.updMatr.CinemaHallTypeName =
+            this.templateName;
+          this.addTemplatesService.updMatr.TemplatePlaceTypes = this.sendMatrix;
 
-        this.addTemplatesService.sendMatrix().subscribe((response) => {
-          if (response.status === 200) {
-            this.router.navigate(['/admin/templates/']);
-          } else alert('Ошибка! Удаление не выполнено!');
-        });
+          this.addTemplatesService.updateMatrix().subscribe((response) => {
+            if (response.status === 200) {
+              this.router.navigate(['/admin/templates/']);
+            } else alert('Ошибка! Изменение не выполнено!');
+          });
+        }
       }
     } else alert('Введите название шаблона!');
   }

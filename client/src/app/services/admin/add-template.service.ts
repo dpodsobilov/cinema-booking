@@ -16,14 +16,27 @@ export interface SendMatrix {
   CinemaHallTypeName: string;
   TemplatePlaceTypes: number[][];
 }
+
+export interface UpdateMatrix {
+  CinemaHallTypeId: number;
+  CinemaHallTypeName: string;
+  TemplatePlaceTypes: number[][];
+}
+
 export interface ResponseMatrix {
-  matr: Places[][];
+  adminPlaceDtos: Places[][];
 }
 @Injectable({
   providedIn: 'root',
 })
 export class AddTemplateService {
   sendMatr: SendMatrix = { CinemaHallTypeName: '', TemplatePlaceTypes: [] };
+  updMatr: UpdateMatrix = {
+    CinemaHallTypeId: 0,
+    CinemaHallTypeName: '',
+    TemplatePlaceTypes: [],
+  };
+
   constructor(
     private http: HttpClient,
     @Inject('BASE_API_URL') private baseUrl: string,
@@ -33,8 +46,14 @@ export class AddTemplateService {
     return this.http.get<PlacesTypes[]>(this.baseUrl + '/Admin/PlacesTypes');
   }
 
-  sendMatrix() {
+  createMatrix() {
     return this.http.post(this.baseUrl + '/Admin/Template', this.sendMatr, {
+      observe: 'response',
+    });
+  }
+
+  updateMatrix() {
+    return this.http.put(this.baseUrl + '/Admin/Template', this.updMatr, {
       observe: 'response',
     });
   }
