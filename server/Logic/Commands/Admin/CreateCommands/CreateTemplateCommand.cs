@@ -13,12 +13,12 @@ namespace Logic.Commands.Admin.CreateCommands;
 public class CreateTemplateCommand : IRequest
 {
     public string CinemaHallTypeName { get; }
-    public List<List<PlaceForCreationTemplateDto>> TemplatePlaces { get; }
+    public List<List<int>> TemplatePlaceTypes { get; }
     
     public CreateTemplateCommand(CreationTemplateDto creationTemplateDto)
     {
         CinemaHallTypeName = creationTemplateDto.CinemaHallTypeName;
-        TemplatePlaces = creationTemplateDto.TemplatePlaces;
+        TemplatePlaceTypes = creationTemplateDto.TemplatePlaceTypes;
     }
 }
 
@@ -81,11 +81,11 @@ public class CreateTemplateCommandHandler : IRequestHandler<CreateTemplateComman
     {
         // Все типы, которые есть в шаблоне
         HashSet<int> types = new HashSet<int>();
-        foreach (var row in request.TemplatePlaces)
+        foreach (var templatePlaceTypes in request.TemplatePlaceTypes)
         {
-            foreach (var place in row)
+            foreach (var type in templatePlaceTypes)
             {
-                types.Add(place.PlaceTypeId);
+                types.Add(type);
             }
         }
 
@@ -130,17 +130,17 @@ public class CreateTemplateCommandHandler : IRequestHandler<CreateTemplateComman
         var rowForName = 0; // текущий ряд для юзера
         var numberForName = 0; // текущее место для юзера
         
-        foreach (var templatePlaces in request.TemplatePlaces)
+        foreach (var templatePlaceTypes in request.TemplatePlaceTypes)
         {
             row++; // взяли новый ряд в матрице
             number = 0; // обнулили номер места в матрице
             numberForName = 0; // обнулили номер места для юзера
             
-            foreach (var templatePlace in templatePlaces)
+            foreach (var templatePlaceType in templatePlaceTypes)
             {
                 number++; // идя по ряду, увеличиваем номер места в матрице
 
-                if (templatePlace.PlaceTypeId == 0) continue; // нас интересуют ТОЛЬКО существующие места
+                if (templatePlaceType == 0) continue; // нас интересуют ТОЛЬКО существующие места
                 
                 if (numberForName == 0) // если это первое найденное место в ряду
                 {
@@ -151,7 +151,7 @@ public class CreateTemplateCommandHandler : IRequestHandler<CreateTemplateComman
                 // Теперь создадим место
                 var place = new Place
                 {
-                    PlaceTypeId = templatePlace.PlaceTypeId,
+                    PlaceTypeId = templatePlaceType,
                     CinemaHallTypeId = cinemaHallType.CinemaHallTypeId,
                     PlacePositionId = await _applicationContext.PlacePositions
                         .Where(pp => pp.Row == row && pp.Number == number)
