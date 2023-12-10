@@ -1,0 +1,44 @@
+<div class="hall-legend">
+  <div class="hall">
+    <div class="screen">Экран</div>
+    <div class="row" *ngFor="let row of matrix; let indexOfRow = index">
+      <div class="place" *ngFor="let place of row; let indexOfColumn = index">
+        <input
+          class="places"
+          type="button"
+          [ngStyle]="{ 'background-color': place.color }"
+          (click)="onPlaceSelect(indexOfRow, indexOfColumn)"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="legend-btn">
+    <div class="legend">
+      <p class="legend-header">Типы мест</p>
+      <label *ngFor="let type of placesTypes">
+        <input
+          class="radio"
+          type="radio"
+          [(ngModel)]="selectedType"
+          [value]="type.placeTypeId"
+          name="types"
+        />
+        <span
+          class="color"
+          [ngStyle]="{ 'background-color': type.placeTypeColor }"
+        ></span>
+        <span class="type-name">{{ type.placeTypeName }}</span>
+      </label>
+    </div>
+    <span>Название</span>
+    <input
+      id="template-name"
+      class="template-name"
+      type="text"
+      [(ngModel)]="templateName"
+    />
+    <input class="reset" type="button" value="Очистить" (click)="reset()" />
+    <input class="save" type="button" value="Сохранить" (click)="save()" />
+  </div>
+</div>

@@ -12,6 +12,8 @@ import { AdminPaneComponent } from './admin-pane/admin-pane.component';
 import { GenresComponent } from './genres/genres.component';
 import { HallsComponent } from './halls/halls.component';
 import { NotFoundComponent } from '../user/not-found/not-found.component';
+import { AddTemplateComponent } from './add-template/add-template.component';
+import { PlaceTypeComponent } from './place-type/place-type.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { NotFoundComponent } from '../user/not-found/not-found.component';
     AdminPaneComponent,
     GenresComponent,
     HallsComponent,
+    AddTemplateComponent,
+    PlaceTypeComponent,
   ],
   imports: [
     SharedModule,
@@ -40,6 +44,7 @@ import { NotFoundComponent } from '../user/not-found/not-found.component';
           { path: 'sessions', component: SessionsComponent },
           { path: 'users', component: UsersComponent },
           { path: 'stats', component: StatsComponent },
+          { path: 'templates/add-template', component: AddTemplateComponent },
         ],
       },
     ]),
