@@ -58,6 +58,7 @@ public class CreateFilmCommandHandler : IRequestHandler<CreateFilmCommand>
         if (oldFilm != null && oldFilm.IsDeleted)
         {
             oldFilm.IsDeleted = false;
+            oldFilm.Description = request.Description;
             await _applicationContext.SaveChangesAsync(cancellationToken);
             return;
         }

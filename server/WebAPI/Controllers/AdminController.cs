@@ -70,6 +70,13 @@ public class AdminController : ControllerBase
         var templates = await _mediator.Send(new GetAdminTemplatesQuery());
         return templates;
     }
+    
+    [HttpGet("Template")]
+    public async Task<AdminTemplateDto> GetTemplate(int param)
+    {
+        var template = await _mediator.Send(new GetAdminTemplateQuery(param));
+        return template;
+    }
 
     [HttpGet("Stats")]
     public async Task<IList<AdminStatDto>> GetStats()
@@ -134,5 +141,25 @@ public class AdminController : ControllerBase
         return Ok();
     }
     
+    [HttpPost("Cinema")]
+    public async Task<IActionResult> CreateCinema(CreationCinemaDto request)
+    {
+        await _mediator.Send(new CreateCinemaCommand(request));
+        return Ok();
+    }
+    
+    [HttpPost("Hall")]
+    public async Task<IActionResult> CreateCinemaHall(CreationCinemaHallDto request)
+    {
+        await _mediator.Send(new CreateCinemaHallCommand(request));
+        return Ok();
+    }
+    
+    [HttpPost("Template")]
+    public async Task<IActionResult> CreateTemplate(CreationTemplateDto request)
+    {
+        await _mediator.Send(new CreateTemplateCommand(request));
+        return Ok();
+    }
     
 }
