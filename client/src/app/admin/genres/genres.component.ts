@@ -14,13 +14,50 @@ import {
 export class GenresComponent implements OnInit {
   genres: AdminGenre[] = [];
   isModalOpen: boolean = false;
-  genre: AdminGenreCreation = { name: '' };
+  newGenre: AdminGenreCreation = { name: '' };
+  oldGenre: AdminGenre = { genreId: null!, genreName: null! };
 
   constructor(private adminFilmService: AdminFilmService) {}
 
   ngOnInit(): void {
     this.adminFilmService.getGenres().subscribe((res: AdminGenre[]) => {
       this.genres = res;
+    });
+  }
+
+  openModal(oldGenre?: AdminGenre) {
+    this.isModalOpen = true;
+
+    if (oldGenre != undefined) {
+      this.oldGenre = oldGenre;
+    }
+  }
+
+  closeModal(isClose: boolean) {
+    this.newGenre = null!;
+    this.oldGenre = null!;
+    this.isModalOpen = !isClose;
+  }
+
+  addGenre(genre: AdminGenreCreation) {
+    this.newGenre = genre;
+    this.adminFilmService.addGenre(this.newGenre).subscribe((response) => {
+      if (response.status === 200) {
+        this.adminFilmService.getGenres().subscribe((res: AdminGenre[]) => {
+          this.genres = res;
+        });
+      } else alert('Ошибка! Добавление не выполнено!');
+    });
+  }
+
+  editGenre(genre: AdminGenre) {
+    this.oldGenre = genre;
+    this.adminFilmService.editGenre(genre).subscribe((response) => {
+      if (response.status === 200) {
+        this.adminFilmService.getGenres().subscribe((res: AdminGenre[]) => {
+          this.genres = res;
+        });
+      } else alert('Ошибка! Изменение не выполнено!');
     });
   }
 
@@ -31,25 +68,6 @@ export class GenresComponent implements OnInit {
           this.genres = res;
         });
       } else alert('Ошибка! Удаление не выполнено!');
-    });
-  }
-
-  openModal() {
-    this.isModalOpen = true;
-  }
-
-  closeModal(event: boolean) {
-    this.isModalOpen = false;
-  }
-
-  addGenre(genre: AdminGenreCreation) {
-    this.genre = genre;
-    this.adminFilmService.addGenre(this.genre).subscribe((response) => {
-      if (response.status === 200) {
-        this.adminFilmService.getGenres().subscribe((res: AdminGenre[]) => {
-          this.genres = res;
-        });
-      } else alert('Ошибка! Добавление не выполнено!');
     });
   }
 }

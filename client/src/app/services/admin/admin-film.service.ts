@@ -56,4 +56,10 @@ export class AdminFilmService {
       observe: 'response',
     });
   }
+
+  editGenre(genre: AdminGenre) {
+    return this.http.put(this.baseUrl + '/Admin/Genre?', genre, {
+      observe: 'response',
+    });
+  }
 }

@@ -12,7 +12,11 @@
     <td class="film-name">{{ genre.genreName }}</td>
     <td>
       <div class="buttons">
-        <img src="./assets/images/svg/edit.svg" alt="" />
+        <img
+          src="./assets/images/svg/edit.svg"
+          alt=""
+          (click)="openModal(genre)"
+        />
         <img
           src="./assets/images/svg/delete.svg"
           alt=""
@@ -25,7 +29,9 @@
 
 <ng-container *ngIf="isModalOpen">
   <app-genre-modal
+    [oldGenre]="oldGenre"
     (closeEvent)="closeModal($event)"
     (saveEvent)="addGenre($event)"
+    (editEvent)="editGenre($event)"
   ></app-genre-modal>
 </ng-container>

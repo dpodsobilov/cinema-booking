@@ -1,5 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { AdminGenreCreation } from '../../../services/admin/admin-film.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  AdminGenre,
+  AdminGenreCreation,
+} from '../../../services/admin/admin-film.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { logBuilderStatusWarnings } from '@angular-devkit/build-angular/src/builders/browser-esbuild/builder-status-warnings';
 
@@ -8,14 +11,22 @@ import { logBuilderStatusWarnings } from '@angular-devkit/build-angular/src/buil
   templateUrl: './genre-modal.component.html',
   styleUrls: ['./genre-modal.component.css'],
 })
-export class GenreModalComponent {
+export class GenreModalComponent implements OnInit {
   genreName: string = '';
+  @Input() oldGenre: AdminGenre = { genreId: null!, genreName: null! };
   @Output() closeEvent = new EventEmitter<boolean>();
   @Output() saveEvent = new EventEmitter<AdminGenreCreation>();
+  @Output() editEvent = new EventEmitter<AdminGenre>();
 
-  genreForm = new FormGroup({
-    genreNameControl: new FormControl('', [Validators.required]),
-  });
+  genreForm: FormGroup = null!;
+
+  ngOnInit() {
+    this.genreForm = new FormGroup({
+      genreNameControl: new FormControl(this.oldGenre.genreName, [
+        Validators.required,
+      ]),
+    });
+  }
 
   errorMessage = '';
 
@@ -29,9 +40,19 @@ export class GenreModalComponent {
 
   onSubmit() {
     this.genreName = this.genreForm.get('genreNameControl')?.value!;
-    this.saveEvent.emit({
-      name: this.genreName,
-    });
+
+    // если старое имя есть, значит мы редактируем
+    if (this.oldGenre.genreId != undefined) {
+      this.editEvent.emit({
+        genreId: this.oldGenre.genreId,
+        genreName: this.genreName,
+      });
+    } else {
+      this.saveEvent.emit({
+        name: this.genreName,
+      });
+    }
+
     this.close();
   }
 }

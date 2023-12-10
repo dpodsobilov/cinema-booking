@@ -6,7 +6,7 @@
     </div>
     <div class="form-container">
       <form autocomplete="off" [formGroup]="genreForm" (ngSubmit)="onSubmit()">
-        <label>Название жанра</label>
+        <label>Название</label>
         <input type="text" formControlName="genreNameControl" />
         <div class="error" *ngIf="name.invalid && (name.dirty || name.touched)">
           <div *ngIf="name.errors?.['required']">
