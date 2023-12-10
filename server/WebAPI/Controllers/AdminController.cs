@@ -187,5 +187,12 @@ public class AdminController : ControllerBase
         return Ok();
     }
     
+    [HttpPut("Genre")]
+    public async Task<IActionResult> EditGenre(AdminGenreDto request)
+    {
+        await _mediator.Send(new EditGenreCommand(request));
+        return Ok();
+    }
+    
     
 }
