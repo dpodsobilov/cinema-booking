@@ -43,25 +43,10 @@ public class CreateTemplateCommandHandler : IRequestHandler<CreateTemplateComman
         var oldCinemaHallType = await  _applicationContext.CinemaHallTypes
             // сравнение по названию
             .Where(cht => cht.CinemaHallTypeName.ToLower().Equals(request.CinemaHallTypeName.ToLower()))
+            // достаём только существующие шаблоны
+            .Where(cht => cht.IsDeleted == false)
             .FirstOrDefaultAsync(cancellationToken);
-
-        // Если такой есть и он удалён - восстанавливаем
-        if (oldCinemaHallType != null && oldCinemaHallType.IsDeleted)
-        {
-            oldCinemaHallType.IsDeleted = false;
-            
-            // Удаляем старые места этого шаблона
-            var places = await _applicationContext.Places
-                .Where(p => p.CinemaHallTypeId == oldCinemaHallType.CinemaHallTypeId)
-                .ToListAsync(cancellationToken);
-            _applicationContext.Places.RemoveRange(places);
-            
-            //Добавляем этому шаблону новые места
-            await AddPlacesForCinemaHallType(oldCinemaHallType, request, cancellationToken);
-            
-            await _applicationContext.SaveChangesAsync(cancellationToken);
-            return;
-        }
+        
         // Если такого нет - добавляем в бд
         if (oldCinemaHallType == null)
         {
@@ -76,15 +61,15 @@ public class CreateTemplateCommandHandler : IRequestHandler<CreateTemplateComman
             // Добавили ему места
             var cinemaHallType = await _applicationContext.CinemaHallTypes
                 .Where(cht => cht.CinemaHallTypeName.Equals(request.CinemaHallTypeName))
+                .Where(cht => cht.IsDeleted == false)
                 .FirstAsync(cancellationToken);
-            await AddPlacesForCinemaHallType(cinemaHallType, request, cancellationToken);
             
-            await _applicationContext.SaveChangesAsync(cancellationToken);
+            await AddPlacesForCinemaHallType(cinemaHallType, request, cancellationToken);
             return;
         }
 
         // Иначе юзеру придёт ошибка
-        throw new Exception("Такой шаблон уже существует");
+        throw new Exception("Такой шаблон уже существует!");
         
     }
 
@@ -180,7 +165,8 @@ public class CreateTemplateCommandHandler : IRequestHandler<CreateTemplateComman
         }
         // Добавим полученный лист мест в бд
         await _applicationContext.Places.AddRangeAsync(places, cancellationToken);
-
+        
+        await _applicationContext.SaveChangesAsync(cancellationToken);
     }
     
 }
