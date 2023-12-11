@@ -18,7 +18,7 @@
           <input
             class="submit-button"
             type="submit"
-            value="Добавить"
+            value="{{ isEditing ? 'Изменить' : 'Добавить' }}"
             [disabled]="!genreForm.valid"
           />
         </div>
