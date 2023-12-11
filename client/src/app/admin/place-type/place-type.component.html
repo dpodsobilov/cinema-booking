@@ -1,6 +1,6 @@
 <div class="types">
   <h1>Типы мест</h1>
-  <img src="./assets/images/svg/add.svg" alt="" />
+  <img src="./assets/images/svg/add.svg" alt="" (click)="openModal()" />
   <table>
     <tr>
       <th>#</th>
@@ -12,11 +12,20 @@
     <tr class="content" *ngFor="let type of types; let indexOfElement = index">
       <td class="type-name">{{ indexOfElement + 1 }}</td>
       <td class="type-name">{{ type.name }}</td>
-      <td class="type-name">{{ type.color }}</td>
+      <td class="type-name">
+        <div
+          class="type-color"
+          [ngStyle]="{ backgroundColor: type.color }"
+        ></div>
+      </td>
       <td class="type-name">{{ type.cost }}</td>
       <td>
         <div class="buttons">
-          <img src="./assets/images/svg/edit.svg" alt="" />
+          <img
+            src="./assets/images/svg/edit.svg"
+            alt=""
+            (click)="openModal(type)"
+          />
           <img
             src="./assets/images/svg/delete.svg"
             alt=""
@@ -27,3 +36,13 @@
     </tr>
   </table>
 </div>
+
+<ng-container *ngIf="isModalOpen">
+  <app-place-type-modal
+    [oldPlaceType]="oldPlaceType"
+    [isEditing]="isEditing"
+    (closeEvent)="closeModal($event)"
+    (saveEvent)="addGenre($event)"
+    (editEvent)="editPlaceType($event)"
+  ></app-place-type-modal>
+</ng-container>

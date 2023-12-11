@@ -15,7 +15,7 @@ export class GenresComponent implements OnInit {
   genres: AdminGenre[] = [];
   isModalOpen: boolean = false;
   newGenre: AdminGenreCreation = { name: '' };
-  oldGenre: AdminGenre = { genreId: null!, genreName: null! };
+  oldGenre: AdminGenre = { genreId: 0, genreName: '' };
   isEditing: boolean = false;
 
   constructor(private adminFilmService: AdminFilmService) {}
@@ -36,8 +36,8 @@ export class GenresComponent implements OnInit {
   }
 
   closeModal(isClose: boolean) {
-    this.newGenre = null!;
-    this.oldGenre = null!;
+    this.newGenre = { name: '' };
+    this.oldGenre = { genreId: 0, genreName: '' };
     this.isModalOpen = !isClose;
     this.isEditing = false;
   }

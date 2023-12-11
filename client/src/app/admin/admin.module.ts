@@ -15,6 +15,7 @@ import { NotFoundComponent } from '../user/not-found/not-found.component';
 import { AddTemplateComponent } from './add-template/add-template.component';
 import { PlaceTypeComponent } from './place-type/place-type.component';
 import { GenreModalComponent } from './modals/genre-modal/genre-modal.component';
+import { PlaceTypeModalComponent } from './modals/place-type-modal/place-type-modal.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { GenreModalComponent } from './modals/genre-modal/genre-modal.component'
     AddTemplateComponent,
     PlaceTypeComponent,
     GenreModalComponent,
+    PlaceTypeModalComponent,
   ],
   imports: [
     SharedModule,

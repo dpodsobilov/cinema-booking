@@ -19,7 +19,7 @@ table, tr, th, td {
   font-weight: normal;
 }
 
-td {
+th, td {
   vertical-align: middle;
   padding: 0.5em;
 }
