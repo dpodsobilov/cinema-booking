@@ -1,0 +1,70 @@
+<div class="outline">
+  <div class="modal">
+    <div class="header">
+      <p>{{ isEditing ? "Изменение кинозала" : "Добавление кинозала" }}</p>
+      <p class="close" (click)="close()">&times;</p>
+    </div>
+    <div class="form-container">
+      <form autocomplete="off" [formGroup]="hallForm" (ngSubmit)="onSubmit()">
+        <label>Название</label>
+        <input type="text" formControlName="hallName" />
+        <div
+          class="error"
+          *ngIf="hallName.invalid && (hallName.dirty || hallName.touched)"
+        >
+          <div *ngIf="hallName.errors?.['required']">
+            Поле обязательно для заполнения
+          </div>
+        </div>
+
+        <label>Шаблон</label>
+        <select formControlName="hallTypeName">
+          <option [value]="null" disabled>Выберите шаблон</option>
+          <option
+            [value]="hallType.templateId"
+            *ngFor="let hallType of templates"
+          >
+            {{ hallType.templateName }}
+          </option>
+        </select>
+        <div
+          class="error"
+          *ngIf="
+            hallTypeName.invalid && (hallTypeName.dirty || hallTypeName.touched)
+          "
+        >
+          <div *ngIf="hallTypeName.errors?.['required']">
+            Поле обязательно для заполнения
+          </div>
+        </div>
+
+        <label>Кинотеатр</label>
+        <select formControlName="cinemaName">
+          <option [value]="null" disabled>Выберите кинотеатр</option>
+          <option [value]="cinema.cinemaId" *ngFor="let cinema of cinemas">
+            {{ cinema.cinemaName }}
+          </option>
+        </select>
+        <div
+          class="error"
+          *ngIf="cinemaName.invalid && (cinemaName.dirty || cinemaName.touched)"
+        >
+          <div *ngIf="cinemaName.errors?.['required']">
+            Поле обязательно для заполнения
+          </div>
+        </div>
+
+        <div class="error" *ngIf="!hallForm.valid">{{ errorMessage }}</div>
+
+        <div class="submit-pane">
+          <input
+            class="submit-button"
+            type="submit"
+            value="{{ isEditing ? 'Изменить' : 'Добавить' }}"
+            [disabled]="!hallForm.valid"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

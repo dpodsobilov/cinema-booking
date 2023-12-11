@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  AdminCinemas,
+  AdminCinema,
   AdminCinemasService,
-  AdminHalls,
+  AdminHall,
 } from '../../services/admin/admin-cinemas.service';
 import { AdminSession } from '../../services/admin/admin-session.service';
 
@@ -12,12 +12,12 @@ import { AdminSession } from '../../services/admin/admin-session.service';
   styleUrls: ['./admin-cinemas.component.css'],
 })
 export class AdminCinemasComponent implements OnInit {
-  cinemas: AdminCinemas[] = [];
+  cinemas: AdminCinema[] = [];
   selectedString: any;
   constructor(public adminCinemasService: AdminCinemasService) {}
 
   ngOnInit(): void {
-    this.adminCinemasService.getCinemas().subscribe((res: AdminCinemas[]) => {
+    this.adminCinemasService.getCinemas().subscribe((res: AdminCinema[]) => {
       this.cinemas = res;
     });
   }
@@ -27,7 +27,7 @@ export class AdminCinemasComponent implements OnInit {
     this.adminCinemasService.selectedStr = str;
     this.adminCinemasService.hallsForSelectedCinema = [];
 
-    this.adminCinemasService.getHalls(str).subscribe((res: AdminHalls[]) => {
+    this.adminCinemasService.getHalls(str).subscribe((res: AdminHall[]) => {
       this.adminCinemasService.hallsForSelectedCinema = res;
     });
   }
@@ -37,7 +37,7 @@ export class AdminCinemasComponent implements OnInit {
       if (response.status === 200) {
         this.adminCinemasService
           .getCinemas()
-          .subscribe((res: AdminCinemas[]) => {
+          .subscribe((res: AdminCinema[]) => {
             this.cinemas = res;
           });
         if (this.adminCinemasService.selectedStr === cinemaId) {

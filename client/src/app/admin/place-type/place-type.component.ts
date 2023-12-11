@@ -4,6 +4,7 @@ import {
   AdminPlaceTypeCreation,
   PlaceTypeService,
 } from '../../services/admin/place-type.service';
+import { AdminGenre } from '../../services/admin/admin-film.service';
 @Component({
   selector: 'app-place-type',
   templateUrl: './place-type.component.html',
@@ -40,7 +41,7 @@ export class PlaceTypeComponent implements OnInit {
     this.isEditing = false;
   }
 
-  addGenre(placeType: AdminPlaceTypeCreation) {
+  addPlaceType(placeType: AdminPlaceTypeCreation) {
     this.newPlaceType = placeType;
 
     this.placeTypeService.addType(this.newPlaceType).subscribe((response) => {
@@ -52,7 +53,24 @@ export class PlaceTypeComponent implements OnInit {
     });
   }
 
-  deleteType(typeId: number) {}
+  editPlaceType(placeType: PlaceType) {
+    this.oldPlaceType = placeType;
+    this.placeTypeService.editType(placeType).subscribe((response) => {
+      if (response.status === 200) {
+        this.placeTypeService.getTypes().subscribe((res: PlaceType[]) => {
+          this.types = res;
+        });
+      } else alert('Ошибка! Изменение не выполнено!');
+    });
+  }
 
-  editPlaceType($event: PlaceType) {}
+  deleteType(placeTypeId: number) {
+    this.placeTypeService.deleteType(placeTypeId).subscribe((response) => {
+      if (response.status === 200) {
+        this.placeTypeService.getTypes().subscribe((res: PlaceType[]) => {
+          this.types = res;
+        });
+      } else alert('Ошибка! Удаление не выполнено!');
+    });
+  }
 }

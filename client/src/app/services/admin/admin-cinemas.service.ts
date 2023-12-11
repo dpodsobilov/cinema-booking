@@ -1,14 +1,20 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-export interface AdminCinemas {
+export interface AdminCinema {
   cinemaId: number;
   cinemaName: string;
   cinemaAddress: string;
 }
 
-export interface AdminHalls {
+export interface AdminHall {
   cinemaHallId: number;
+  cinemaHallName: string;
+  cinemaHallTypeName: string;
+  cinemaId: number;
+}
+
+export interface AdminHallCreation {
   cinemaHallName: string;
   cinemaHallTypeName: string;
   cinemaId: number;
@@ -18,19 +24,19 @@ export interface AdminHalls {
   providedIn: 'root',
 })
 export class AdminCinemasService {
-  hallsForSelectedCinema: AdminHalls[] = [];
+  hallsForSelectedCinema: AdminHall[] = [];
   selectedStr: number = 0;
   constructor(
     private http: HttpClient,
     @Inject('BASE_API_URL') private baseUrl: string,
   ) {}
 
-  getCinemas(): Observable<AdminCinemas[]> {
-    return this.http.get<AdminCinemas[]>(this.baseUrl + '/Admin/Cinemas');
+  getCinemas(): Observable<AdminCinema[]> {
+    return this.http.get<AdminCinema[]>(this.baseUrl + '/Admin/Cinemas');
   }
 
-  getHalls(cinemaId: number): Observable<AdminHalls[]> {
-    return this.http.get<AdminHalls[]>(
+  getHalls(cinemaId: number): Observable<AdminHall[]> {
+    return this.http.get<AdminHall[]>(
       this.baseUrl + '/Admin/Halls?' + 'param=' + cinemaId,
     );
   }
@@ -42,6 +48,19 @@ export class AdminCinemasService {
       },
     );
   }
+
+  addHall(hall: AdminHallCreation) {
+    return this.http.post(this.baseUrl + '/Admin/Hall?', hall, {
+      observe: 'response',
+    });
+  }
+
+  editHall(hall: AdminHall) {
+    return this.http.put(this.baseUrl + '/Admin/Hall?', hall, {
+      observe: 'response',
+    });
+  }
+
   deleteHall(cinemaHallId: number) {
     return this.http.delete(
       this.baseUrl + '/Admin/Hall?' + 'cinemaHallId=' + cinemaHallId,

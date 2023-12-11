@@ -41,4 +41,13 @@ export class PlaceTypeService {
       observe: 'response',
     });
   }
+
+  deleteType(placeTypeId: number) {
+    return this.http.delete(
+      this.baseUrl + '/Admin/PlaceType?' + 'placeTypeId=' + placeTypeId,
+      {
+        observe: 'response',
+      },
+    );
+  }
 }
