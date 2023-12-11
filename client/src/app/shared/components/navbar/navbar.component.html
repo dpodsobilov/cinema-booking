@@ -10,6 +10,12 @@
 
   <div *ngIf="isAuthenticated" class="nav-right">
     <input
+      class="my-tickets"
+      type="button"
+      value="Справка"
+      (click)="goSystemInfo()"
+    />
+    <input
       *ngIf="isAdmin === 1 && layout === 'admin'"
       class="my-tickets"
       type="button"
