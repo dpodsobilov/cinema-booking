@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   AddTemplateService,
   Places,
@@ -6,7 +6,6 @@ import {
   ResponseMatrix,
 } from '../../services/admin/add-template.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AdminCinemas } from '../../services/admin/admin-cinemas.service';
 
 @Component({
   selector: 'app-add-template',
@@ -29,6 +28,7 @@ export class AddTemplateComponent implements OnInit {
   ) {
     this.route.queryParams.subscribe((params) => {
       this.templateId = params['templateId'];
+      this.templateName = params['templateName'];
     });
   }
   ngOnInit(): void {
@@ -100,8 +100,8 @@ export class AddTemplateComponent implements OnInit {
             this.sendMatrix[i][j] = this.matrix[i][j].placeTypeId;
           }
         }
-
-        if (this.templateId === 0) {
+        console.log(this.templateId);
+        if (this.templateId == undefined) {
           this.addTemplatesService.sendMatr.CinemaHallTypeName =
             this.templateName;
           this.addTemplatesService.sendMatr.TemplatePlaceTypes =

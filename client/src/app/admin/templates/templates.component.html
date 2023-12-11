@@ -20,7 +20,10 @@
               src="./assets/images/svg/edit.svg"
               alt=""
               routerLink="add-template"
-              [queryParams]="{ templateId: template.templateId }"
+              [queryParams]="{
+                templateId: template.templateId,
+                templateName: template.templateName
+              }"
             />
             <img
               src="./assets/images/svg/delete.svg"
