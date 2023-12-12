@@ -1,5 +1,5 @@
 <h1>Кинозалы</h1>
-<img src="./assets/images/svg/add.svg" alt="" />
+<img src="./assets/images/svg/add.svg" alt="" (click)="openModal()" />
 <table>
   <tr>
     <th>#</th>
@@ -19,13 +19,27 @@
     <td>{{ hall.cinemaHallTypeName }}</td>
     <td>
       <div class="buttons">
-        <img src="./assets/images/svg/edit.svg" alt="" />
+        <img
+          src="./assets/images/svg/edit.svg"
+          alt=""
+          (click)="openModal(hall)"
+        />
         <img
           src="./assets/images/svg/delete.svg"
           alt=""
-          (click)="hallDelete(hall.cinemaHallId)"
+          (click)="deleteHall(hall.cinemaHallId)"
         />
       </div>
     </td>
   </tr>
 </table>
+
+<ng-container *ngIf="isModalOpen">
+  <app-hall-modal
+    [oldHall]="oldHall"
+    [isEditing]="isEditing"
+    (closeEvent)="closeModal($event)"
+    (saveEvent)="addHall($event)"
+    (editEvent)="editHall($event)"
+  ></app-hall-modal>
+</ng-container>

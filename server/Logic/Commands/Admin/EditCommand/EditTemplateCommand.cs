@@ -72,6 +72,10 @@ public class EditTemplateCommandHandler : IRequestHandler<EditTemplateCommand>
         
         // Само редактирование
         cinemaHallType.CinemaHallTypeName = request.CinemaHallTypeName;
+        var oldPlaces = await _applicationContext.Places
+            .Where(p => p.CinemaHallTypeId == cinemaHallType.CinemaHallTypeId)
+            .ToListAsync(cancellationToken);
+        _applicationContext.Places.RemoveRange(oldPlaces);
         await AddPlacesForCinemaHallType(cinemaHallType, request, cancellationToken);
         
         await _applicationContext.SaveChangesAsync(cancellationToken);

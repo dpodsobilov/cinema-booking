@@ -105,6 +105,14 @@ public class AdminController : ControllerBase
         return placeType;
     }
 
+    // для карточки фильма
+    [HttpGet("Film")]
+    public async Task<AdminFilmCardInfoDto> GetFilmCardInfo(int filmId)
+    {
+        var film = await _mediator.Send(new GetAdminFilmCardInfoQuery(filmId));
+        return film;
+    }
+
     #endregion
 
     #region Delete

@@ -43,4 +43,8 @@ export class NavbarComponent {
   goAdmin() {
     this.router.navigate(['/admin']);
   }
+
+  goSystemInfo() {
+    this.router.navigate(['/system-info']);
+  }
 }

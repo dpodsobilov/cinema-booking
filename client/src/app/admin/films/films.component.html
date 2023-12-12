@@ -2,7 +2,7 @@
   <div class="films">
     <h1>Фильмы</h1>
 
-    <img src="./assets/images/svg/add.svg" alt="" />
+    <img src="./assets/images/svg/add.svg" alt="" (click)="openModal()" />
     <table>
       <tr>
         <th>#</th>
@@ -17,7 +17,11 @@
         <td class="film-name">{{ film.filmName }}</td>
         <td>
           <div class="buttons">
-            <img src="./assets/images/svg/edit.svg" alt="" />
+            <img
+              src="./assets/images/svg/edit.svg"
+              alt=""
+              (click)="openModal(film)"
+            />
             <img
               src="./assets/images/svg/delete.svg"
               alt=""
@@ -32,3 +36,13 @@
     <app-genres></app-genres>
   </div>
 </div>
+
+<ng-container *ngIf="isModalOpen">
+  <app-film-modal
+    [oldFilm]="oldFilm"
+    [isEditing]="isEditing"
+    (closeEvent)="closeModal($event)"
+    (saveEvent)="addFilm($event)"
+    (editEvent)="editFilm($event)"
+  ></app-film-modal>
+</ng-container>

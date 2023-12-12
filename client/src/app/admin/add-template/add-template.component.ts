@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   AddTemplateService,
   Places,
@@ -6,7 +6,6 @@ import {
   ResponseMatrix,
 } from '../../services/admin/add-template.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AdminCinemas } from '../../services/admin/admin-cinemas.service';
 
 @Component({
   selector: 'app-add-template',
@@ -21,6 +20,7 @@ export class AddTemplateComponent implements OnInit {
   placesTypes: PlacesTypes[] = [];
   selectedType: number = 0;
   sendMatrix: number[][] = [[]];
+
   constructor(
     private addTemplatesService: AddTemplateService,
     private route: ActivatedRoute,
@@ -28,6 +28,7 @@ export class AddTemplateComponent implements OnInit {
   ) {
     this.route.queryParams.subscribe((params) => {
       this.templateId = params['templateId'];
+      this.templateName = params['templateName'];
     });
   }
   ngOnInit(): void {
@@ -52,7 +53,7 @@ export class AddTemplateComponent implements OnInit {
       this.addTemplatesService
         .getTemplateMatrix(this.templateId)
         .subscribe((res: ResponseMatrix) => {
-          this.matrix = res.matr;
+          this.matrix = res.adminPlaceDtos;
         });
     }
     //инициализации матрицы для отправки
@@ -99,16 +100,28 @@ export class AddTemplateComponent implements OnInit {
             this.sendMatrix[i][j] = this.matrix[i][j].placeTypeId;
           }
         }
+        if (this.templateId == undefined) {
+          this.addTemplatesService.sendMatr.CinemaHallTypeName =
+            this.templateName;
+          this.addTemplatesService.sendMatr.TemplatePlaceTypes =
+            this.sendMatrix;
+          this.addTemplatesService.createMatrix().subscribe((response) => {
+            if (response.status === 200) {
+              this.router.navigate(['/admin/templates/']);
+            } else alert('Ошибка! Создание не выполнено!');
+          });
+        } else {
+          this.addTemplatesService.updMatr.CinemaHallTypeId = this.templateId;
+          this.addTemplatesService.updMatr.CinemaHallTypeName =
+            this.templateName;
+          this.addTemplatesService.updMatr.TemplatePlaceTypes = this.sendMatrix;
 
-        this.addTemplatesService.sendMatr.CinemaHallTypeName =
-          this.templateName;
-        this.addTemplatesService.sendMatr.TemplatePlaceTypes = this.sendMatrix;
-
-        this.addTemplatesService.sendMatrix().subscribe((response) => {
-          if (response.status === 200) {
-            this.router.navigate(['/admin/templates/']);
-          } else alert('Ошибка! Удаление не выполнено!');
-        });
+          this.addTemplatesService.updateMatrix().subscribe((response) => {
+            if (response.status === 200) {
+              this.router.navigate(['/admin/templates/']);
+            } else alert('Ошибка! Изменение не выполнено!');
+          });
+        }
       }
     } else alert('Введите название шаблона!');
   }

@@ -2,6 +2,10 @@
   margin: 15px;
 }
 
+.types>img:hover {
+  cursor: pointer;
+}
+
 h1 {
   margin-bottom: 0.5em;
   font-family: 'Poppins', sans-serif;
@@ -24,7 +28,7 @@ table, tr, th, td {
   transition: 0.2s;
 }
 
-td {
+th, td {
   vertical-align: middle;
   padding: 0.5em;
 }
@@ -34,4 +38,9 @@ td {
   justify-content: center;
   align-items: center;
   gap: 0.5em;
+}
+
+.type-color {
+  width: 20px;
+  height: 20px;
 }

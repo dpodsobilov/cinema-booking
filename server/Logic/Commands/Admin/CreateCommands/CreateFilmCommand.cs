@@ -77,7 +77,7 @@ public class CreateFilmCommandHandler : IRequestHandler<CreateFilmCommand>
                     throw new Exception("Такого жанра не существует");
                 }
             }
-            
+
             // сначала добавляем фильм
             var newFilm = new Film
             {
@@ -87,7 +87,7 @@ public class CreateFilmCommandHandler : IRequestHandler<CreateFilmCommand>
                 Description = request.Description,
                 Year = request.Year,
                 IsDeleted = false,
-                Poster = FilmManager.StringToByteArray(request.Poster)
+                Poster = System.Convert.FromBase64String(request.Poster)
             };
             await _applicationContext.Films.AddAsync(newFilm, cancellationToken);
             await _applicationContext.SaveChangesAsync(cancellationToken);
