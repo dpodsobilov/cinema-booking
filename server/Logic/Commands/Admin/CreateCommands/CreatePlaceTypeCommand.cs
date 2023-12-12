@@ -34,23 +34,35 @@ public class CreatePlaceTypeCommandHandler : IRequestHandler<CreatePlaceTypeComm
     public async Task Handle(CreatePlaceTypeCommand request, CancellationToken cancellationToken)
     {
         // Проверяем, существует ли тип места с таким названием
-        var otherPlaceType = await _applicationContext.PlaceTypes
+        var oldPlaceType = await _applicationContext.PlaceTypes
             .Where(pt => pt.PlaceTypeName.ToLower().Equals(request.Name))
             .FirstOrDefaultAsync(cancellationToken);
 
-        if (otherPlaceType != null)
+        // Если такой есть и он удалён -> восстанавливаем
+        if (oldPlaceType != null && oldPlaceType.IsDeleted)
         {
-            throw new Exception("Тип места с таким названием уже существует!");
+            oldPlaceType.IsDeleted = false;
+            oldPlaceType.PlaceTypeColor = request.Color;
+            oldPlaceType.DefaultCost = request.Cost;
+            await _applicationContext.SaveChangesAsync(cancellationToken);
+            return;
         }
-        
-        // Если проверка прошла -> создаём
-        var placeType = new PlaceType
+        // Если такого нет -> создаём
+        if (oldPlaceType == null)
         {
-            PlaceTypeName = request.Name,
-            PlaceTypeColor = request.Color,
-            DefaultCost = request.Cost
-        };
-        await _applicationContext.PlaceTypes.AddAsync(placeType, cancellationToken);
-        await _applicationContext.SaveChangesAsync(cancellationToken);
+            // Создали новый тип места
+            var placeType = new PlaceType
+            {
+                PlaceTypeName = request.Name,
+                PlaceTypeColor = request.Color,
+                DefaultCost = request.Cost
+            };
+            await _applicationContext.PlaceTypes.AddAsync(placeType, cancellationToken);
+            await _applicationContext.SaveChangesAsync(cancellationToken);
+            return;
+        }
+
+        // Иначе юзеру придёт ошибка
+        throw new Exception("Тип места с таким названием уже существует!");
     }
 }
