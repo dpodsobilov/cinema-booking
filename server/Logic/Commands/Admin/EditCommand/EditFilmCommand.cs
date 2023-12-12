@@ -59,6 +59,7 @@ public class EditFilmCommandHandler : IRequestHandler<EditFilmCommand>
 
         // Проверяем, не используется ли фильм в расписании
         var sessions = await _applicationContext.Sessions
+            .Where(s => s.IsDeleted == false)
             .Where(s => s.FilmId == request.FilmId)
             .ToListAsync(cancellationToken);
 
