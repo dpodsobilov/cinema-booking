@@ -194,5 +194,11 @@ public class AdminController : ControllerBase
         return Ok();
     }
     
+    [HttpPut("Hall")]
+    public async Task<IActionResult> EditHall(EditHallDto request)
+    {
+        await _mediator.Send(new EditHallCommand(request));
+        return Ok();
+    }
     
 }
