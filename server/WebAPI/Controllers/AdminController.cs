@@ -99,7 +99,7 @@ public class AdminController : ControllerBase
     
     //для таблицы с типами мест
     [HttpGet("PlaceType")]
-    public async Task<IList<AdminGetPlaceTypeDto>> GetPlaceType()
+    public async Task<IList<AdminPlaceTypeDto>> GetPlaceType()
     {
         var placeType = await _mediator.Send(new GetAdminPlaceTypeQuery());
         return placeType;
@@ -226,6 +226,14 @@ public class AdminController : ControllerBase
     public async Task<IActionResult> EditTemplate(EditTemplateDto request)
     {
         await _mediator.Send(new EditTemplateCommand(request));
+        return Ok();
+    }
+    
+    
+    [HttpPut("PlaceType")]
+    public async Task<IActionResult> EditPlaceType(AdminPlaceTypeDto request)
+    {
+        await _mediator.Send(new EditPlaceTypeCommand(request));
         return Ok();
     }
 
