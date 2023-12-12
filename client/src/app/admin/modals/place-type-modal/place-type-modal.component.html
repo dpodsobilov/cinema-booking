@@ -1,0 +1,56 @@
+<div class="outline">
+  <div class="modal">
+    <div class="header">
+      <p>{{ isEditing ? "Изменение типа места" : "Добавление типа места" }}</p>
+      <p class="close" (click)="close()">&times;</p>
+    </div>
+    <div class="form-container">
+      <form
+        autocomplete="off"
+        [formGroup]="placeTypeForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <label>Название</label>
+        <input type="text" formControlName="placeTypeNameControl" />
+        <div class="error" *ngIf="name.invalid && (name.dirty || name.touched)">
+          <div *ngIf="name.errors?.['required']">
+            Поле обязательно для заполнения
+          </div>
+        </div>
+
+        <label>Цвет</label>
+        <input
+          class="color"
+          type="color"
+          formControlName="placeTypeColorControl"
+        />
+        <div
+          class="error"
+          *ngIf="color.invalid && (color.dirty || color.touched)"
+        >
+          <div *ngIf="color.errors?.['required']">Выберите цвет</div>
+        </div>
+
+        <label>Цена</label>
+        <input type="number" formControlName="placeTypeCostControl" />
+        <div class="error" *ngIf="cost.invalid && (cost.dirty || cost.touched)">
+          <div *ngIf="cost.errors?.['required']">Введите цену</div>
+          <div *ngIf="cost.errors?.['min']">
+            Цена должна быть не менее 100 рублей
+          </div>
+        </div>
+
+        <div class="error" *ngIf="!placeTypeForm.valid">{{ errorMessage }}</div>
+
+        <div class="submit-pane">
+          <input
+            class="submit-button"
+            type="submit"
+            value="{{ isEditing ? 'Изменить' : 'Добавить' }}"
+            [disabled]="!placeTypeForm.valid"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

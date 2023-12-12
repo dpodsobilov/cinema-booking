@@ -14,7 +14,7 @@ import { logBuilderStatusWarnings } from '@angular-devkit/build-angular/src/buil
 export class GenreModalComponent implements OnInit {
   genreName: string = '';
   @Input() isEditing = false;
-  @Input() oldGenre: AdminGenre = { genreId: null!, genreName: null! };
+  @Input() oldGenre: AdminGenre = { genreId: 0, genreName: '' };
   @Output() closeEvent = new EventEmitter<boolean>();
   @Output() saveEvent = new EventEmitter<AdminGenreCreation>();
   @Output() editEvent = new EventEmitter<AdminGenre>();
@@ -43,7 +43,7 @@ export class GenreModalComponent implements OnInit {
     this.genreName = this.genreForm.get('genreNameControl')?.value!;
 
     // если старое имя есть, значит мы редактируем
-    if (this.oldGenre.genreId != undefined) {
+    if (this.oldGenre.genreId != 0) {
       this.editEvent.emit({
         genreId: this.oldGenre.genreId,
         genreName: this.genreName,

@@ -33,6 +33,7 @@ public class GetAdminHallQueryHandler : IRequestHandler<GetAdminHallQuery, IList
             CinemaHallId = hall.CinemaHallId,
             CinemaHallName = hall.CinemaHallName,
             CinemaHallTypeName = hall.CinemaHallType.CinemaHallTypeName,
+            CinemaHallTypeId = hall.CinemaHallTypeId,
             CinemaId = hall.CinemaId
         }).ToListAsync(cancellationToken);
         

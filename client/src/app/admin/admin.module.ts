@@ -15,6 +15,10 @@ import { NotFoundComponent } from '../user/not-found/not-found.component';
 import { AddTemplateComponent } from './add-template/add-template.component';
 import { PlaceTypeComponent } from './place-type/place-type.component';
 import { GenreModalComponent } from './modals/genre-modal/genre-modal.component';
+import { PlaceTypeModalComponent } from './modals/place-type-modal/place-type-modal.component';
+import { HallModalComponent } from './modals/hall-modal/hall-modal.component';
+import { CinemaModalComponent } from './modals/cinema-modal/cinema-modal.component';
+import { FilmModalComponent } from './modals/film-modal/film-modal.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +35,10 @@ import { GenreModalComponent } from './modals/genre-modal/genre-modal.component'
     AddTemplateComponent,
     PlaceTypeComponent,
     GenreModalComponent,
+    PlaceTypeModalComponent,
+    HallModalComponent,
+    CinemaModalComponent,
+    FilmModalComponent,
   ],
   imports: [
     SharedModule,
