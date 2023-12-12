@@ -42,6 +42,8 @@ public class CreateCinemaCommandHandler : IRequestHandler<CreateCinemaCommand>
         if (oldCinema != null && oldCinema.IsDeleted)
         {
             oldCinema.IsDeleted = false;
+            // Задаём новый адрес
+            oldCinema.Address = request.Address;
             await _applicationContext.SaveChangesAsync(cancellationToken);
             return;
         }
