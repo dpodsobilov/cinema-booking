@@ -65,9 +65,6 @@ export class AdminCinemasComponent implements OnInit {
           .subscribe((res: AdminCinema[]) => {
             this.cinemas = res;
           });
-        // if (this.adminCinemasService.selectedStr === ) {
-        //   this.adminCinemasService.hallsForSelectedCinema = [];
-        // }
       } else alert('Ошибка! Добавление не выполнено!');
     });
   }
