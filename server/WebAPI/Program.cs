@@ -1,6 +1,7 @@
 using Data;
 using Logic;
 using Logic.Hubs;
+using WebAPI.Extensions;
 using WebAPI.Middlewares;
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
@@ -51,6 +52,8 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.ConfigureExceptionHandler();
 
 app.UseCors("AllowMyOrigins");
 
