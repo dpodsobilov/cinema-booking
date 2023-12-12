@@ -190,10 +190,10 @@ public class AdminController : ControllerBase
         return Ok();
     }
     
-    [HttpPut("Template")]
-    public async Task<IActionResult> EditTemplate(EditTemplateDto request)
+    [HttpPost("PlaceType")]
+    public async Task<IActionResult> CreatePlaceType(CreationPlaceTypeDto request)
     {
-        await _mediator.Send(new EditTemplateCommand(request));
+        await _mediator.Send(new CreatePlaceTypeCommand(request));
         return Ok();
     }
 
@@ -212,6 +212,13 @@ public class AdminController : ControllerBase
     public async Task<IActionResult> EditHall(EditHallDto request)
     {
         await _mediator.Send(new EditHallCommand(request));
+        return Ok();
+    }
+    
+    [HttpPut("Template")]
+    public async Task<IActionResult> EditTemplate(EditTemplateDto request)
+    {
+        await _mediator.Send(new EditTemplateCommand(request));
         return Ok();
     }
 
