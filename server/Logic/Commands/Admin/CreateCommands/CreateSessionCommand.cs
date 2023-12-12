@@ -1,6 +1,7 @@
 ﻿using Data;
 using Data.Models;
 using Logic.DTO.Admin.ForCreating;
+using Logic.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -43,7 +44,7 @@ public class CreateSessionCommandHandler : IRequestHandler<CreateSessionCommand>
 
         if (film == null)
         {
-            throw new Exception("Выбранный фильм не существует");
+            throw new NotFoundException("Выбранный фильм не существует");
         }
         
         // Проверяем, существует ли выбранный кинозал
@@ -54,7 +55,7 @@ public class CreateSessionCommandHandler : IRequestHandler<CreateSessionCommand>
 
         if (cinemaHall == null)
         {
-            throw new Exception("Выбранный кинозал не существует!");
+            throw new NotFoundException("Выбранный кинозал не существует!");
         }
         
         // Проверяем кол-во сеансов в кинозале в выбранный день (должно быть меньше 5)
@@ -66,7 +67,7 @@ public class CreateSessionCommandHandler : IRequestHandler<CreateSessionCommand>
 
         if (sessions.Count >= 5)
         {
-            throw new Exception("В кинозале уже есть 5 сеансов!");
+            throw new NotAllowedException("В кинозале уже есть 5 сеансов!");
         }
         
         
@@ -110,7 +111,7 @@ public class CreateSessionCommandHandler : IRequestHandler<CreateSessionCommand>
 
         if (!cinemaHallIsFree)
         {
-            throw new Exception("Выбранное время накладывается на другой сеанс!");
+            throw new NotAllowedException("Выбранное время накладывается на другой сеанс!");
         }
         
         

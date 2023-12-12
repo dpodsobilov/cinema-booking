@@ -22,21 +22,20 @@ public class DeleteSessionCommandHandler : IRequestHandler<DeleteSessionCommand>
     {
         _applicationContext = applicationContext;
     }
-    
+
     public async Task Handle(DeleteSessionCommand request, CancellationToken cancellationToken)
     {
-        var session = await _applicationContext.Sessions.Where(session => session.SessionId == request.SessionId)
+        var session = await _applicationContext.Sessions
+            .Where(session => session.SessionId == request.SessionId)
             .FirstOrDefaultAsync(cancellationToken);
-        
-        if (session != null)
+
+        if (session == null)
         {
-            session.IsDeleted = true;
-            
-            await _applicationContext.SaveChangesAsync(cancellationToken);
+            throw new Exception("Выбранный сеанс не существует!");
         }
-        else
-        {
-            throw new Exception("Ошибка!");
-        }
+
+        session.IsDeleted = true;
+
+        await _applicationContext.SaveChangesAsync(cancellationToken);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Data;
 using Logic.DTO.Admin.ForEditing;
+using Logic.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -44,7 +45,7 @@ public class EditSessionCommandHandler : IRequestHandler<EditSessionCommand>
 
         if (session == null)
         {
-            throw new Exception("Выбранного сеанса не существует!");
+            throw new NotFoundException("Выбранного сеанса не существует!");
         }
 
         // Проверяем, нет ли билетов на выбранный сеанс
@@ -54,7 +55,7 @@ public class EditSessionCommandHandler : IRequestHandler<EditSessionCommand>
 
         if (ticket != null)
         {
-            throw new Exception("На выбранный сеанс уже забронированы билеты!");
+            throw new NotAllowedException("На выбранный сеанс уже забронированы билеты!");
         }
         
         // Проверяем, существует ли выбранный фильм
@@ -65,7 +66,7 @@ public class EditSessionCommandHandler : IRequestHandler<EditSessionCommand>
 
         if (film == null)
         {
-            throw new Exception("Выбранный фильм не существует");
+            throw new NotFoundException("Выбранный фильм не существует");
         }
         
         // Проверяем, существует ли выбранный кинозал
@@ -76,7 +77,7 @@ public class EditSessionCommandHandler : IRequestHandler<EditSessionCommand>
 
         if (cinemaHall == null)
         {
-            throw new Exception("Выбранный кинозал не существует!");
+            throw new NotFoundException("Выбранный кинозал не существует!");
         }
         
         
@@ -130,7 +131,7 @@ public class EditSessionCommandHandler : IRequestHandler<EditSessionCommand>
 
         if (!cinemaHallIsFree)
         {
-            throw new Exception("Выбранное время накладывается на другой сеанс!");
+            throw new NotAllowedException("Выбранное время накладывается на другой сеанс!");
         }
 
         // Если проверки пройдены -> редактируем
