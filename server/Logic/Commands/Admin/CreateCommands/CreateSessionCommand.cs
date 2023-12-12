@@ -123,5 +123,7 @@ public class CreateSessionCommandHandler : IRequestHandler<CreateSessionCommand>
                 FilmId = request.FilmId,
                 CinemaHallId = request.CinemaHallId
             }, cancellationToken);
+
+        await _applicationContext.SaveChangesAsync(cancellationToken);
     }
 }
