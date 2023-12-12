@@ -203,6 +203,13 @@ public class AdminController : ControllerBase
         await _mediator.Send(new CreatePlaceTypeCommand(request));
         return Ok();
     }
+    
+    [HttpPost("Session")]
+    public async Task<IActionResult> CreateSession(CreationSessionDto request)
+    {
+        await _mediator.Send(new CreateSessionCommand(request));
+        return Ok();
+    }
 
     #endregion
 
