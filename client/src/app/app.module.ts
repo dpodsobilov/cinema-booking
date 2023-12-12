@@ -17,6 +17,7 @@ import { ErrorComponent } from './user/error/error.component';
 import { TicketComponent } from './user/ticket/ticket.component';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
 import { SharedModule } from './shared/shared.module';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { SharedModule } from './shared/shared.module';
     TicketComponent,
     MainLayoutComponent,
   ],
-  imports: [AppRoutingModule, BrowserModule, SharedModule],
+  imports: [AppRoutingModule, BrowserModule, SharedModule, QRCodeModule],
   providers: [
     {
       provide: 'BASE_API_URL',
