@@ -76,6 +76,17 @@ public class EditHallCommandHandler : IRequestHandler<EditHallCommand>
         {
             throw new Exception("Выбранный кинотеатр не существует!");
         }
+
+        // Проверяем, нет ли в выбранном кинотеатре зала с таким же названием
+        var otherCinemaHall = await _applicationContext.CinemaHalls
+            .Where(ch => ch.CinemaHallName.ToLower().Equals(request.CinemaHallName.ToLower()))
+            .Where(ch => ch.CinemaId == request.CinemaId)
+            .FirstOrDefaultAsync(cancellationToken);
+
+        if (otherCinemaHall != null)
+        {
+            throw new Exception("В выбранном кинотеатре уже есть зал с таким названием!");
+        }
         
         // Если проверки пройдены -> редактируем
         cinemaHall.CinemaHallName = request.CinemaHallName;
