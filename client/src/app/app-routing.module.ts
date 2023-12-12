@@ -39,16 +39,6 @@ const routes: Routes = [
       {
         path: 'system-info',
         component: SystemInfoComponent,
-        children: [
-          {
-            path: 'instruction',
-            component: InstructionComponent,
-          },
-          {
-            path: 'dev-info',
-            component: DevInfoComponent,
-          },
-        ],
       },
     ],
   },

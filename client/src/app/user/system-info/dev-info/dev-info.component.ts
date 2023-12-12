@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SystemInfoComponent } from '../system-info.component';
 
 @Component({
   selector: 'app-dev-info',
