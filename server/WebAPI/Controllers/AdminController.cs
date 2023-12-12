@@ -229,11 +229,17 @@ public class AdminController : ControllerBase
         return Ok();
     }
     
-    
     [HttpPut("PlaceType")]
     public async Task<IActionResult> EditPlaceType(AdminPlaceTypeDto request)
     {
         await _mediator.Send(new EditPlaceTypeCommand(request));
+        return Ok();
+    }
+    
+    [HttpPut("Cinema")]
+    public async Task<IActionResult> EditCinema(AdminCinemaDto request)
+    {
+        await _mediator.Send(new EditCinemaCommand(request));
         return Ok();
     }
 
