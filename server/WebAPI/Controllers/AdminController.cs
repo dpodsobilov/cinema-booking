@@ -23,7 +23,9 @@ public class AdminController : ControllerBase
     {
         _mediator = mediator;
     }
-    
+
+    #region Get
+
     [HttpGet("Films")]
     public async Task<IList<AdminFilmDto>> GetFilmsInfo()
     {
@@ -103,6 +105,10 @@ public class AdminController : ControllerBase
         return placeType;
     }
 
+    #endregion
+
+    #region Delete
+
     [HttpDelete("Film")]
     public async Task<IActionResult> DeleteFilm(int filmId)
     {
@@ -144,7 +150,11 @@ public class AdminController : ControllerBase
         await _mediator.Send(new DeleteCinemaCommand(cinemaId));
         return Ok();
     }
-    
+
+    #endregion
+
+    #region Post (Create)
+
     [HttpPost("Genre")]
     public async Task<IActionResult> CreateGenre(CreationGenreDto request)
     {
@@ -186,7 +196,11 @@ public class AdminController : ControllerBase
         await _mediator.Send(new EditTemplateCommand(request));
         return Ok();
     }
-    
+
+    #endregion
+
+    #region Put (Edit)
+
     [HttpPut("Genre")]
     public async Task<IActionResult> EditGenre(AdminGenreDto request)
     {
@@ -200,5 +214,7 @@ public class AdminController : ControllerBase
         await _mediator.Send(new EditHallCommand(request));
         return Ok();
     }
+
+    #endregion
     
 }
