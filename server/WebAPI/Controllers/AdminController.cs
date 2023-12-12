@@ -256,6 +256,13 @@ public class AdminController : ControllerBase
         await _mediator.Send(new EditFilmCommand(request));
         return Ok();
     }
+    
+    [HttpPut("Session")]
+    public async Task<IActionResult> EditSession(EditSessionDto request)
+    {
+        await _mediator.Send(new EditSessionCommand(request));
+        return Ok();
+    }
 
     #endregion
     
