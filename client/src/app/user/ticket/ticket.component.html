@@ -30,8 +30,20 @@
       [ngClass]="{
         'button-active': isUpcoming
       }"
+      (click)="downloadTicket()"
     >
       Скачать билет
     </button>
   </div>
 </div>
+<canvas #canvasElement>
+  <qrcode
+    *ngIf="qrCodeData !== ''"
+    [width]="150"
+    elementType="img"
+    qrdata="{{ qrCodeData }}"
+  ></qrcode>
+</canvas>
+<canvas #imageElement>
+  <img src="../../../assets/images/background.png" />
+</canvas>

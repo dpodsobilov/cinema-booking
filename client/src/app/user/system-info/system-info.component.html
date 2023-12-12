@@ -1,0 +1,27 @@
+<div class="content-container">
+  <h1>Справка о системе бронирования</h1>
+
+  <div class="select-info">
+    <input
+      id="dev-info"
+      type="button"
+      value="Информация о разработчиках"
+      [ngClass]="{ active: isDevInfo }"
+      (click)="isDevInfo = true"
+    />
+
+    <input
+      type="button"
+      value="Справка пользователя"
+      [ngClass]="{ active: !isDevInfo }"
+      (click)="isDevInfo = false"
+    />
+  </div>
+
+  <div *ngIf="isDevInfo"><app-dev-info></app-dev-info></div>
+  <div *ngIf="!isDevInfo"><app-instruction></app-instruction></div>
+
+  <div class="info-container">
+    <router-outlet> </router-outlet>
+  </div>
+</div>
