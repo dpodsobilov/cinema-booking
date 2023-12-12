@@ -1,5 +1,6 @@
 ﻿using Data;
 using Data.Models;
+using Logic.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -37,7 +38,7 @@ public class DeletePlaceTypeCommandHandler : IRequestHandler<DeletePlaceTypeComm
 
         if (placeType == null)
         {
-            throw new Exception("Выбранный тип места не существует!");
+            throw new NotFoundException("Выбранный тип места не существует!");
         }
 
         // Проверяем, не используется ли тип места в НЕудалённых шаблонах (точнее в их местах)
@@ -57,7 +58,7 @@ public class DeletePlaceTypeCommandHandler : IRequestHandler<DeletePlaceTypeComm
 
         if (place != null)
         {
-            throw new Exception("Выбранный тип места используется в шаблонах кинозала!");
+            throw new NotAllowedException("Выбранный тип места используется в шаблонах кинозала!");
         }
 
         // Если проверки пройдены успешно -> удаляем

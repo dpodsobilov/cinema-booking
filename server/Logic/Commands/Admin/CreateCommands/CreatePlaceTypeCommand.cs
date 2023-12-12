@@ -1,6 +1,7 @@
 ﻿using Data;
 using Data.Models;
 using Logic.DTO.Admin.ForCreating;
+using Logic.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -63,6 +64,6 @@ public class CreatePlaceTypeCommandHandler : IRequestHandler<CreatePlaceTypeComm
         }
 
         // Иначе юзеру придёт ошибка
-        throw new Exception("Тип места с таким названием уже существует!");
+        throw new NotAllowedException("Тип места с таким названием уже существует!");
     }
 }

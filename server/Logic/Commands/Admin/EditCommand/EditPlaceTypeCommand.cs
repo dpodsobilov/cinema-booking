@@ -1,6 +1,7 @@
 ﻿using Data;
 using Data.Models;
 using Logic.DTO.Admin;
+using Logic.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -43,7 +44,7 @@ public class EditPlaceTypeCommandHandler : IRequestHandler<EditPlaceTypeCommand>
 
         if (placeType == null)
         {
-            throw new Exception("Выбранный тип места не существует!");
+            throw new NotFoundException("Выбранный тип места не существует!");
         }
 
         // Проверяем, не используется ли тип места в НЕудалённых шаблонах (точнее в их местах)
@@ -63,7 +64,7 @@ public class EditPlaceTypeCommandHandler : IRequestHandler<EditPlaceTypeCommand>
 
         if (place != null)
         {
-            throw new Exception("Выбранный тип места используется в шаблонах кинозала!");
+            throw new NotAllowedException("Выбранный тип места используется в шаблонах кинозала!");
         }
         
         // Проверяем, нет ли типа с выбранным названием
@@ -74,7 +75,7 @@ public class EditPlaceTypeCommandHandler : IRequestHandler<EditPlaceTypeCommand>
 
         if (otherPlaceType != null)
         {
-            throw new Exception("Тип места с выбранным названием уже существует!");
+            throw new NotAllowedException("Тип места с выбранным названием уже существует!");
         }
 
         // Если проверки прошли успешно -> редактируем
