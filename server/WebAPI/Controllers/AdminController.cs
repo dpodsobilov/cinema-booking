@@ -23,7 +23,7 @@ public class AdminController : ControllerBase
     {
         _mediator = mediator;
     }
-    
+
     [HttpGet("Films")]
     public async Task<IList<AdminFilmDto>> GetFilmsInfo()
     {
@@ -101,6 +101,14 @@ public class AdminController : ControllerBase
     {
         var placeType = await _mediator.Send(new GetAdminPlaceTypeQuery());
         return placeType;
+    }
+
+    // для карточки фильма
+    [HttpGet("Film")]
+    public async Task<EditFilmDto> GetFilmCardInfo(int filmId)
+    {
+        var film = await _mediator.Send(new GetAdminFilmCardInfoQuery(filmId));
+        return film;
     }
 
     [HttpDelete("Film")]
