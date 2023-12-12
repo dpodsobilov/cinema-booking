@@ -1,6 +1,6 @@
-﻿namespace Logic.DTO.Admin.ForEditing;
+﻿namespace Logic.DTO.Admin;
 
-public class EditFilmDto
+public class AdminFilmCardInfoDto
 {
     public int FilmId { get; set; }
     public string FilmName { get; set; } = null!;

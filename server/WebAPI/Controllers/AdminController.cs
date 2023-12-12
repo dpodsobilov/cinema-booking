@@ -105,7 +105,7 @@ public class AdminController : ControllerBase
 
     // для карточки фильма
     [HttpGet("Film")]
-    public async Task<EditFilmDto> GetFilmCardInfo(int filmId)
+    public async Task<AdminFilmCardInfoDto> GetFilmCardInfo(int filmId)
     {
         var film = await _mediator.Send(new GetAdminFilmCardInfoQuery(filmId));
         return film;

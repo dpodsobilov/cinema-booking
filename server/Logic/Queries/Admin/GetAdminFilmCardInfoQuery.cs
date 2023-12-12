@@ -1,12 +1,12 @@
 ﻿using Data;
-using Logic.DTO.Admin.ForEditing;
+using Logic.DTO.Admin;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Query.ExpressionTranslators.Internal;
 
 namespace Logic.Queries.Admin;
 
-public class GetAdminFilmCardInfoQuery : IRequest<EditFilmDto> {
+public class GetAdminFilmCardInfoQuery : IRequest<AdminFilmCardInfoDto> {
     public int FilmId { get; }
 
     public GetAdminFilmCardInfoQuery(int FilmId)
@@ -15,7 +15,7 @@ public class GetAdminFilmCardInfoQuery : IRequest<EditFilmDto> {
     }
 }
 
-public class GetAdminFilmCardInfoQueryHandler : IRequestHandler<GetAdminFilmCardInfoQuery, EditFilmDto>
+public class GetAdminFilmCardInfoQueryHandler : IRequestHandler<GetAdminFilmCardInfoQuery, AdminFilmCardInfoDto>
 {
     private readonly ApplicationContext _applicationContext;
 
@@ -24,7 +24,7 @@ public class GetAdminFilmCardInfoQueryHandler : IRequestHandler<GetAdminFilmCard
         _applicationContext = applicationContext;
     }
 
-    public async Task<EditFilmDto> Handle(GetAdminFilmCardInfoQuery request, CancellationToken cancellationToken)
+    public async Task<AdminFilmCardInfoDto> Handle(GetAdminFilmCardInfoQuery request, CancellationToken cancellationToken)
     {
         var film = await _applicationContext.Films.Where(film => film.FilmId == request.FilmId).FirstOrDefaultAsync(cancellationToken);
 
@@ -36,7 +36,7 @@ public class GetAdminFilmCardInfoQueryHandler : IRequestHandler<GetAdminFilmCard
         var filmGenres = await _applicationContext.FilmGenres.Where(filmGenres => filmGenres.FilmId == film.FilmId)
             .Select(fg => fg.GenreId).ToArrayAsync(cancellationToken);
 
-        var filmCardInfoDto = new EditFilmDto
+        var filmCardInfoDto = new AdminFilmCardInfoDto
         {
             FilmId = film.FilmId,
             FilmName = film.FilmName,
