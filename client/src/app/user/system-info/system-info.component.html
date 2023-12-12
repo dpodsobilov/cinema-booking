@@ -7,7 +7,6 @@
       type="button"
       value="Информация о разработчиках"
       [ngClass]="{ active: isDevInfo }"
-      routerLink="dev-info"
       (click)="isDevInfo = true"
     />
 
@@ -15,10 +14,12 @@
       type="button"
       value="Справка пользователя"
       [ngClass]="{ active: !isDevInfo }"
-      routerLink="instruction"
       (click)="isDevInfo = false"
     />
   </div>
+
+  <div *ngIf="isDevInfo"><app-dev-info></app-dev-info></div>
+  <div *ngIf="!isDevInfo"><app-instruction></app-instruction></div>
 
   <div class="info-container">
     <router-outlet> </router-outlet>

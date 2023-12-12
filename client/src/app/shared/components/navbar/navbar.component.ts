@@ -45,6 +45,6 @@ export class NavbarComponent {
   }
 
   goSystemInfo() {
-    this.router.navigate(['/system-info/dev-info']);
+    this.router.navigate(['/system-info']);
   }
 }
