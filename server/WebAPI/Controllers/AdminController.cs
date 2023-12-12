@@ -150,6 +150,13 @@ public class AdminController : ControllerBase
         await _mediator.Send(new DeleteCinemaCommand(cinemaId));
         return Ok();
     }
+    
+    [HttpDelete("PlaceType")]
+    public async Task<IActionResult> CreatePlaceType(int placeTypeId)
+    {
+        await _mediator.Send(new DeletePlaceTypeCommand(placeTypeId));
+        return Ok();
+    }
 
     #endregion
 
