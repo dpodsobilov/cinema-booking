@@ -88,7 +88,7 @@ public class EditFilmCommandHandler : IRequestHandler<EditFilmCommand>
         film.FilmCoefficient = request.FilmCoefficient;
         film.Description = request.Description;
         film.Year = request.Year;
-        film.Poster = FilmManager.StringToByteArray(request.Poster);
+        film.Poster = Convert.FromBase64String(request.Poster);
 
         // Удаляем старые жанры фильма
         var oldFilmGenres = await _applicationContext.FilmGenres

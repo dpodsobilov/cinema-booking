@@ -87,7 +87,7 @@ public class CreateFilmCommandHandler : IRequestHandler<CreateFilmCommand>
                 Description = request.Description,
                 Year = request.Year,
                 IsDeleted = false,
-                Poster = System.Convert.FromBase64String(request.Poster)
+                Poster = Convert.FromBase64String(request.Poster)
             };
             await _applicationContext.Films.AddAsync(newFilm, cancellationToken);
             await _applicationContext.SaveChangesAsync(cancellationToken);
