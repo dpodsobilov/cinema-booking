@@ -20,6 +20,7 @@ import { SharedModule } from './shared/shared.module';
 import { SystemInfoComponent } from './user/system-info/system-info.component';
 import { DevInfoComponent } from './user/system-info/dev-info/dev-info.component';
 import { InstructionComponent } from './user/system-info/instruction/instruction.component';
+import { NgOptimizedImage } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { InstructionComponent } from './user/system-info/instruction/instruction
     DevInfoComponent,
     InstructionComponent,
   ],
-  imports: [AppRoutingModule, BrowserModule, SharedModule],
+  imports: [AppRoutingModule, BrowserModule, SharedModule, NgOptimizedImage],
   providers: [
     {
       provide: 'BASE_API_URL',

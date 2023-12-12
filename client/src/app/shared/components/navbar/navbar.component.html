@@ -5,54 +5,55 @@
       <img src="../../../../assets/images/logo.png" />
     </a>
   </div>
-
-  <!--авторизован -->
-
-  <div *ngIf="isAuthenticated" class="nav-right">
+  <div class="nav-bar">
     <input
       class="my-tickets"
       type="button"
       value="Справка"
       (click)="goSystemInfo()"
     />
-    <input
-      *ngIf="isAdmin === 1 && layout === 'admin'"
-      class="my-tickets"
-      type="button"
-      value="Режим пользователя"
-      (click)="goUser()"
-    />
-    <input
-      *ngIf="isAdmin === 1 && layout === 'user'"
-      class="my-tickets"
-      type="button"
-      value="Режим администратор"
-      (click)="goAdmin()"
-    />
-    <input
-      *ngIf="layout === 'user'"
-      class="my-tickets"
-      type="button"
-      value="Мои билеты"
-      routerLink="/tickets"
-    />
-    <input
-      class="logout"
-      type="button"
-      value="Выйти"
-      (click)="logout()"
-      routerLink=""
-    />
-  </div>
+    <!--авторизован -->
 
-  <!-- не авторизован -->
-  <div *ngIf="!isAuthenticated" class="nav-right-not-auth">
-    <input class="login" type="button" value="Войти" routerLink="/login" />
-    <input
-      class="register"
-      type="button"
-      value="Регистрация"
-      routerLink="/register"
-    />
+    <div *ngIf="isAuthenticated" class="nav-right">
+      <input
+        *ngIf="isAdmin === 1 && layout === 'admin'"
+        class="my-tickets"
+        type="button"
+        value="Режим пользователя"
+        (click)="goUser()"
+      />
+      <input
+        *ngIf="isAdmin === 1 && layout === 'user'"
+        class="my-tickets"
+        type="button"
+        value="Режим администратор"
+        (click)="goAdmin()"
+      />
+      <input
+        *ngIf="layout === 'user'"
+        class="my-tickets"
+        type="button"
+        value="Мои билеты"
+        routerLink="/tickets"
+      />
+      <input
+        class="logout"
+        type="button"
+        value="Выйти"
+        (click)="logout()"
+        routerLink=""
+      />
+    </div>
+
+    <!-- не авторизован -->
+    <div *ngIf="!isAuthenticated" class="nav-right-not-auth">
+      <input class="login" type="button" value="Войти" routerLink="/login" />
+      <input
+        class="register"
+        type="button"
+        value="Регистрация"
+        routerLink="/register"
+      />
+    </div>
   </div>
 </div>

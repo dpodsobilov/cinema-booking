@@ -1,0 +1,30 @@
+.main-list > li > ol {
+  margin-left: 50px;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.main-list {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.main-list > li > p {
+  margin-top: 50px;
+}
+
+.main-list > li > ol > p {
+  margin-top: 30px;
+}
+
+.main-list > li > ol > li > p {
+  margin-bottom: 30px;
+  margin-top: 35px;
+}
+
+img {
+  border: 1px solid whitesmoke;
+  border-radius: 10px;
+  height: 616px;
+  width: 1200px
+}
