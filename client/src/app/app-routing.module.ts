@@ -13,6 +13,9 @@ import { ErrorComponent } from './user/error/error.component';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
 import { adminGuard } from './services/admin/admin.guard';
 import { loginGuard } from './services/login.guard';
+import { SystemInfoComponent } from './user/system-info/system-info.component';
+import { InstructionComponent } from './user/system-info/instruction/instruction.component';
+import { DevInfoComponent } from './user/system-info/dev-info/dev-info.component';
 
 const routes: Routes = [
   {
@@ -33,6 +36,20 @@ const routes: Routes = [
       { path: 'order-status', component: SuccessComponent },
       { path: 'error', component: ErrorComponent },
       { path: 'tickets', component: UserTicketsComponent },
+      {
+        path: 'system-info',
+        component: SystemInfoComponent,
+        children: [
+          {
+            path: 'instruction',
+            component: InstructionComponent,
+          },
+          {
+            path: 'dev-info',
+            component: DevInfoComponent,
+          },
+        ],
+      },
     ],
   },
   {
