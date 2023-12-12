@@ -42,7 +42,7 @@ public class CreateFilmCommandHandler : IRequestHandler<CreateFilmCommand>
     public async Task Handle(CreateFilmCommand request, CancellationToken cancellationToken)
     {
         // Получаем длительность в формате бд: "n часов m минут"
-        var duration = GetDuration(request.Hours, request.Minutes);
+        var duration = FilmManager.GetDuration(request.Hours, request.Minutes);
 
         // Пытаемся найти такой экзмепляр в бд
         var oldFilm = await _applicationContext.Films
@@ -87,7 +87,7 @@ public class CreateFilmCommandHandler : IRequestHandler<CreateFilmCommand>
                 Description = request.Description,
                 Year = request.Year,
                 IsDeleted = false,
-                Poster = System.Convert.FromBase64String(request.Poster)
+                Poster = Convert.FromBase64String(request.Poster)
             };
             await _applicationContext.Films.AddAsync(newFilm, cancellationToken);
             await _applicationContext.SaveChangesAsync(cancellationToken);
@@ -108,45 +108,5 @@ public class CreateFilmCommandHandler : IRequestHandler<CreateFilmCommand>
 
         // Иначе юзеру придёт ошибка
         throw new Exception("Ты человек хороший, иди отдохни, пожалуйста! Есть же ж уже такой фильм");
-    }
-
-
-    private static string GetDuration(string hours, string minutes)
-    {
-        var minutesValue = int.Parse(minutes);
-        var hoursValue = int.Parse(hours);
-
-        var minutesWord = "минут";
-        if (minutesValue % 10 == 1 && minutesValue != 11)
-        {
-            minutesWord = "минута";
-        }
-        else if ((minutesValue % 10 == 2 || minutesValue % 10 == 3 || minutesValue % 10 == 4) &&
-                 (minutesValue < 10 || minutesValue > 20))
-        {
-            minutesWord = "минуты";
-        }
-
-        var hoursWord = "часов";
-        if ((hoursValue % 10 == 1 && hoursValue != 11) && (hoursValue < 10 || hoursValue > 20))
-        {
-            hoursWord = "час";
-        }
-        else if ((hoursValue % 10 == 2 || hoursValue % 10 == 3 || hoursValue % 10 == 4) &&
-                 (hoursValue < 10 || hoursValue > 20))
-        {
-            hoursWord = "часа";
-        }
-
-        return $"{hoursValue} {hoursWord} {minutesValue} {minutesWord}";
-    }
-    
-    public static byte[] StringToByteArray(String str)
-    {
-        var NumberChars = str.Length;
-        var bytes = new byte[NumberChars / 2];
-        for (var i = 0; i < NumberChars; i += 2)
-            bytes[i / 2] = Convert.ToByte(str.Substring(i, 2), 16);
-        return bytes;
     }
 }

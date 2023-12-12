@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Logic.Queries.Admin;
 
-public class GetAdminPlaceTypeQuery : IRequest<IList<AdminGetPlaceTypeDto>> { }
+public class GetAdminPlaceTypeQuery : IRequest<IList<AdminPlaceTypeDto>> { }
 
-public class GetAdminPlaceTypeQueryHandler : IRequestHandler<GetAdminPlaceTypeQuery, IList<AdminGetPlaceTypeDto>>
+public class GetAdminPlaceTypeQueryHandler : IRequestHandler<GetAdminPlaceTypeQuery, IList<AdminPlaceTypeDto>>
 {
     private readonly ApplicationContext _applicationContext;
 
@@ -16,11 +16,11 @@ public class GetAdminPlaceTypeQueryHandler : IRequestHandler<GetAdminPlaceTypeQu
         _applicationContext = applicationContext;
     }
     
-    public async Task<IList<AdminGetPlaceTypeDto>> Handle(GetAdminPlaceTypeQuery request, CancellationToken cancellationToken)
+    public async Task<IList<AdminPlaceTypeDto>> Handle(GetAdminPlaceTypeQuery request, CancellationToken cancellationToken)
     {
         var placeType = await _applicationContext.PlaceTypes
             .Where(type => type.IsDeleted == false)
-            .Select(type => new AdminGetPlaceTypeDto()
+            .Select(type => new AdminPlaceTypeDto()
             {
                 TypeId = type.PlaceTypeId,
                 Name = type.PlaceTypeName,

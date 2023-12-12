@@ -24,6 +24,8 @@ public class AdminController : ControllerBase
         _mediator = mediator;
     }
 
+    #region Get
+
     [HttpGet("Films")]
     public async Task<IList<AdminFilmDto>> GetFilmsInfo()
     {
@@ -97,7 +99,7 @@ public class AdminController : ControllerBase
     
     //для таблицы с типами мест
     [HttpGet("PlaceType")]
-    public async Task<IList<AdminGetPlaceTypeDto>> GetPlaceType()
+    public async Task<IList<AdminPlaceTypeDto>> GetPlaceType()
     {
         var placeType = await _mediator.Send(new GetAdminPlaceTypeQuery());
         return placeType;
@@ -110,6 +112,10 @@ public class AdminController : ControllerBase
         var film = await _mediator.Send(new GetAdminFilmCardInfoQuery(filmId));
         return film;
     }
+
+    #endregion
+
+    #region Delete
 
     [HttpDelete("Film")]
     public async Task<IActionResult> DeleteFilm(int filmId)
@@ -153,6 +159,17 @@ public class AdminController : ControllerBase
         return Ok();
     }
     
+    [HttpDelete("PlaceType")]
+    public async Task<IActionResult> CreatePlaceType(int placeTypeId)
+    {
+        await _mediator.Send(new DeletePlaceTypeCommand(placeTypeId));
+        return Ok();
+    }
+
+    #endregion
+
+    #region Post (Create)
+
     [HttpPost("Genre")]
     public async Task<IActionResult> CreateGenre(CreationGenreDto request)
     {
@@ -188,13 +205,24 @@ public class AdminController : ControllerBase
         return Ok();
     }
     
-    [HttpPut("Template")]
-    public async Task<IActionResult> EditTemplate(EditTemplateDto request)
+    [HttpPost("PlaceType")]
+    public async Task<IActionResult> CreatePlaceType(CreationPlaceTypeDto request)
     {
-        await _mediator.Send(new EditTemplateCommand(request));
+        await _mediator.Send(new CreatePlaceTypeCommand(request));
         return Ok();
     }
     
+    [HttpPost("Session")]
+    public async Task<IActionResult> CreateSession(CreationSessionDto request)
+    {
+        await _mediator.Send(new CreateSessionCommand(request));
+        return Ok();
+    }
+
+    #endregion
+
+    #region Put (Edit)
+
     [HttpPut("Genre")]
     public async Task<IActionResult> EditGenre(AdminGenreDto request)
     {
@@ -202,5 +230,48 @@ public class AdminController : ControllerBase
         return Ok();
     }
     
+    [HttpPut("Hall")]
+    public async Task<IActionResult> EditHall(EditHallDto request)
+    {
+        await _mediator.Send(new EditHallCommand(request));
+        return Ok();
+    }
+    
+    [HttpPut("Template")]
+    public async Task<IActionResult> EditTemplate(EditTemplateDto request)
+    {
+        await _mediator.Send(new EditTemplateCommand(request));
+        return Ok();
+    }
+    
+    [HttpPut("PlaceType")]
+    public async Task<IActionResult> EditPlaceType(AdminPlaceTypeDto request)
+    {
+        await _mediator.Send(new EditPlaceTypeCommand(request));
+        return Ok();
+    }
+    
+    [HttpPut("Cinema")]
+    public async Task<IActionResult> EditCinema(AdminCinemaDto request)
+    {
+        await _mediator.Send(new EditCinemaCommand(request));
+        return Ok();
+    }
+    
+    [HttpPut("Film")]
+    public async Task<IActionResult> EditFilm(EditFilmDto request)
+    {
+        await _mediator.Send(new EditFilmCommand(request));
+        return Ok();
+    }
+    
+    [HttpPut("Session")]
+    public async Task<IActionResult> EditSession(EditSessionDto request)
+    {
+        await _mediator.Send(new EditSessionCommand(request));
+        return Ok();
+    }
+
+    #endregion
     
 }

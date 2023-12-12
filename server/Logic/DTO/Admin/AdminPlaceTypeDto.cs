@@ -1,6 +1,6 @@
 namespace Logic.DTO.Admin;
 
-public class AdminGetPlaceTypeDto
+public class AdminPlaceTypeDto
 {
     public int TypeId { get; set; }
     public string Name { get; set; } = null!;
