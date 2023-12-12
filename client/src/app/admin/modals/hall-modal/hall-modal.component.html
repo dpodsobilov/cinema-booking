@@ -39,7 +39,7 @@
         </div>
 
         <label>Кинотеатр</label>
-        <select formControlName="cinemaName">
+        <select formControlName="cinemaId">
           <option [value]="null" disabled>Выберите кинотеатр</option>
           <option [value]="cinema.cinemaId" *ngFor="let cinema of cinemas">
             {{ cinema.cinemaName }}
@@ -47,9 +47,9 @@
         </select>
         <div
           class="error"
-          *ngIf="cinemaName.invalid && (cinemaName.dirty || cinemaName.touched)"
+          *ngIf="cinemaId.invalid && (cinemaId.dirty || cinemaId.touched)"
         >
-          <div *ngIf="cinemaName.errors?.['required']">
+          <div *ngIf="cinemaId.errors?.['required']">
             Поле обязательно для заполнения
           </div>
         </div>

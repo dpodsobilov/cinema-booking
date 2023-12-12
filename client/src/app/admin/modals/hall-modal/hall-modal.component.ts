@@ -55,7 +55,7 @@ export class HallModalComponent {
       hallTypeName: new FormControl(this.oldHall.cinemaHallTypeName, [
         Validators.required,
       ]),
-      cinemaName: new FormControl(this.oldHall.cinemaId, [Validators.required]),
+      cinemaId: new FormControl(this.oldHall.cinemaId, [Validators.required]),
     });
   }
 
@@ -69,8 +69,8 @@ export class HallModalComponent {
     return this.hallForm.controls['hallTypeName'];
   }
 
-  get cinemaName() {
-    return this.hallForm.controls['cinemaName'];
+  get cinemaId() {
+    return this.hallForm.controls['cinemaId'];
   }
 
   close() {
@@ -80,20 +80,20 @@ export class HallModalComponent {
   onSubmit() {
     const hallName = this.hallForm.get('hallName')?.value!;
     const hallTypeName = this.hallForm.get('hallTypeName')?.value!;
-    const cinemaName = this.hallForm.get('cinemaName')?.value!;
+    const cinemaId = this.hallForm.get('cinemaId')?.value!;
 
     if (this.oldHall.cinemaHallId != 0) {
       this.editEvent.emit({
         cinemaHallId: this.oldHall.cinemaHallId,
         cinemaHallName: hallName,
         cinemaHallTypeName: hallTypeName,
-        cinemaId: cinemaName,
+        cinemaId: cinemaId,
       });
     } else {
       this.saveEvent.emit({
         cinemaHallName: hallName,
         cinemaHallTypeName: hallTypeName,
-        cinemaId: cinemaName,
+        cinemaId: cinemaId,
       });
     }
 
