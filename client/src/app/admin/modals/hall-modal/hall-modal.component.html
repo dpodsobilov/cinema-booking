@@ -18,7 +18,7 @@
         </div>
 
         <label>Шаблон</label>
-        <select formControlName="hallTypeName">
+        <select formControlName="hallTypeId">
           <option [value]="null" disabled>Выберите шаблон</option>
           <option
             [value]="hallType.templateId"
@@ -29,11 +29,9 @@
         </select>
         <div
           class="error"
-          *ngIf="
-            hallTypeName.invalid && (hallTypeName.dirty || hallTypeName.touched)
-          "
+          *ngIf="hallTypeId.invalid && (hallTypeId.dirty || hallTypeId.touched)"
         >
-          <div *ngIf="hallTypeName.errors?.['required']">
+          <div *ngIf="hallTypeId.errors?.['required']">
             Поле обязательно для заполнения
           </div>
         </div>

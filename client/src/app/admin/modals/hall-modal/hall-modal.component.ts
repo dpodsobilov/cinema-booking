@@ -4,6 +4,7 @@ import {
   AdminCinemasService,
   AdminHall,
   AdminHallCreation,
+  AdminHallEditing,
 } from '../../../services/admin/admin-cinemas.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
@@ -18,15 +19,15 @@ import {
 })
 export class HallModalComponent {
   @Input() isEditing = false;
-  @Input() oldHall: AdminHall = {
+  @Input() oldHall: AdminHallEditing = {
     cinemaHallId: 0,
     cinemaHallName: '',
-    cinemaHallTypeName: '',
+    cinemaHallTypeId: 0,
     cinemaId: 0,
   };
   @Output() closeEvent = new EventEmitter<boolean>();
   @Output() saveEvent = new EventEmitter<AdminHallCreation>();
-  @Output() editEvent = new EventEmitter<AdminHall>();
+  @Output() editEvent = new EventEmitter<AdminHallEditing>();
   templates: AdminTemplates[] = [];
   cinemas: AdminCinema[] = [];
 
@@ -52,7 +53,7 @@ export class HallModalComponent {
       hallName: new FormControl(this.oldHall.cinemaHallName, [
         Validators.required,
       ]),
-      hallTypeName: new FormControl(this.oldHall.cinemaHallTypeName, [
+      hallTypeId: new FormControl(this.oldHall.cinemaHallTypeId, [
         Validators.required,
       ]),
       cinemaId: new FormControl(this.oldHall.cinemaId, [Validators.required]),
@@ -65,8 +66,8 @@ export class HallModalComponent {
     return this.hallForm.controls['hallName'];
   }
 
-  get hallTypeName() {
-    return this.hallForm.controls['hallTypeName'];
+  get hallTypeId() {
+    return this.hallForm.controls['hallTypeId'];
   }
 
   get cinemaId() {
@@ -79,21 +80,21 @@ export class HallModalComponent {
 
   onSubmit() {
     const hallName = this.hallForm.get('hallName')?.value!;
-    const hallTypeName = this.hallForm.get('hallTypeName')?.value!;
+    const hallTypeId = this.hallForm.get('hallTypeId')?.value!;
     const cinemaId = this.hallForm.get('cinemaId')?.value!;
 
     if (this.oldHall.cinemaHallId != 0) {
       this.editEvent.emit({
-        cinemaHallId: this.oldHall.cinemaHallId,
+        cinemaHallId: +this.oldHall.cinemaHallId,
         cinemaHallName: hallName,
-        cinemaHallTypeName: hallTypeName,
-        cinemaId: cinemaId,
+        cinemaHallTypeId: +hallTypeId,
+        cinemaId: +cinemaId,
       });
     } else {
       this.saveEvent.emit({
         cinemaHallName: hallName,
-        cinemaHallTypeName: hallTypeName,
-        cinemaId: cinemaId,
+        cinemaHallTypeId: +hallTypeId,
+        cinemaId: +cinemaId,
       });
     }
 

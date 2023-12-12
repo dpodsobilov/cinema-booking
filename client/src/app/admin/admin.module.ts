@@ -17,6 +17,7 @@ import { PlaceTypeComponent } from './place-type/place-type.component';
 import { GenreModalComponent } from './modals/genre-modal/genre-modal.component';
 import { PlaceTypeModalComponent } from './modals/place-type-modal/place-type-modal.component';
 import { HallModalComponent } from './modals/hall-modal/hall-modal.component';
+import { CinemaModalComponent } from './modals/cinema-modal/cinema-modal.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { HallModalComponent } from './modals/hall-modal/hall-modal.component';
     GenreModalComponent,
     PlaceTypeModalComponent,
     HallModalComponent,
+    CinemaModalComponent,
   ],
   imports: [
     SharedModule,

@@ -7,16 +7,29 @@ export interface AdminCinema {
   cinemaAddress: string;
 }
 
+export interface AdminCinemaCreation {
+  cinemaName: string;
+  address: string;
+}
+
 export interface AdminHall {
   cinemaHallId: number;
   cinemaHallName: string;
   cinemaHallTypeName: string;
+  cinemaHallTypeId: number;
+  cinemaId: number;
+}
+
+export interface AdminHallEditing {
+  cinemaHallId: number;
+  cinemaHallName: string;
+  cinemaHallTypeId: number;
   cinemaId: number;
 }
 
 export interface AdminHallCreation {
   cinemaHallName: string;
-  cinemaHallTypeName: string;
+  cinemaHallTypeId: number;
   cinemaId: number;
 }
 
@@ -40,6 +53,19 @@ export class AdminCinemasService {
       this.baseUrl + '/Admin/Halls?' + 'param=' + cinemaId,
     );
   }
+
+  addCinema(cinema: AdminCinemaCreation) {
+    return this.http.post(this.baseUrl + '/Admin/Cinema?', cinema, {
+      observe: 'response',
+    });
+  }
+
+  editCinema(cinema: AdminCinema) {
+    return this.http.put(this.baseUrl + '/Admin/Cinema?', cinema, {
+      observe: 'response',
+    });
+  }
+
   deleteCinema(cinemaId: number) {
     return this.http.delete(
       this.baseUrl + '/Admin/Cinema?' + 'cinemaId=' + cinemaId,
@@ -55,7 +81,7 @@ export class AdminCinemasService {
     });
   }
 
-  editHall(hall: AdminHall) {
+  editHall(hall: AdminHallEditing) {
     return this.http.put(this.baseUrl + '/Admin/Hall?', hall, {
       observe: 'response',
     });

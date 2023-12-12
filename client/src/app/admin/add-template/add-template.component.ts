@@ -100,7 +100,6 @@ export class AddTemplateComponent implements OnInit {
             this.sendMatrix[i][j] = this.matrix[i][j].placeTypeId;
           }
         }
-        console.log(this.templateId);
         if (this.templateId == undefined) {
           this.addTemplatesService.sendMatr.CinemaHallTypeName =
             this.templateName;
