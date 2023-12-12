@@ -50,7 +50,7 @@ public class EditHallCommandHandler : IRequestHandler<EditHallCommand>
             .Where(s => s.CinemaHallId == request.CinemaHallId)
             .ToListAsync(cancellationToken);
 
-        if (sessions != null)
+        if (sessions.Count != 0)
         {
             throw new Exception("Этот зал уже используется в расписании сеансов!");
         }
