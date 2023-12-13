@@ -30,6 +30,7 @@
       [ngClass]="{
         'button-active': isUpcoming
       }"
+      [disabled]="!isUpcoming"
       (click)="downloadTicket()"
     >
       Скачать билет

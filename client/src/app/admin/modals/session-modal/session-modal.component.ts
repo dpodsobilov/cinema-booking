@@ -96,7 +96,7 @@ export class SessionModalComponent {
   }
 
   makeDateTime(date: string, time: string): string {
-    const res = new Date(date + 'T' + time + ':00');
+    const res = new Date(date + 'T' + time + ':00Z');
     return res.toISOString();
   }
 
@@ -130,7 +130,7 @@ export class SessionModalComponent {
     const date = this.sessionForm.get('dateControl')?.value!;
     const time = this.sessionForm.get('timeControl')?.value!;
     const isoDateTime = this.makeDateTime(date, time);
-
+    console.log(date, time, isoDateTime);
     if (this.oldSession.sessionId != 0) {
       this.editEvent.emit({
         sessionId: this.oldSession.sessionId,
