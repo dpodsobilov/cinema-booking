@@ -1,4 +1,5 @@
 using Data;
+using Logic.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,38 +26,42 @@ public class DeleteHallCommandHandler : IRequestHandler<DeleteHallCommand>
     
     public async Task Handle(DeleteHallCommand request, CancellationToken cancellationToken)
     {
-        var hallId = new List<int>();
-        
-        var halls = await _applicationContext.CinemaHalls
+        //находим кинозал
+        var hall = await _applicationContext.CinemaHalls
             .Where(hall => hall.CinemaHallId == request.CinemaHallId)
-            .Select(hall => hall)
+            .FirstOrDefaultAsync(cancellationToken);
+
+        if (hall == null)
+        {
+            throw new NotFoundException("Выбранный кинозал не существует!");
+        }
+        
+        //находим сеансы в кинозале
+        var session = await _applicationContext.Sessions
+            .Where(session => session.CinemaHallId == hall.CinemaHallId && session.IsDeleted == false 
+                   && session.DataTimeSession > DateTime.Now)
+            .FirstOrDefaultAsync(cancellationToken);
+        
+        if (session != null)
+        {
+            throw new NotAllowedException("В выбранном кинозале есть сеансы");
+        }
+        
+        hall.IsDeleted = true;
+        
+        var sessionsDelete = await _applicationContext.Sessions
+            .Where(ses => ses.CinemaHallId == hall.CinemaHallId && ses.IsDeleted == false)
+            .Select(ses => ses)
             .ToListAsync(cancellationToken);
 
-        if (halls.Count != 0)
+        if (sessionsDelete.Count != 0)
         {
-            foreach (var hall in halls)
+            foreach (var sd in sessionsDelete)
             {
-                hall.IsDeleted = true;
-
-                hallId.Add(hall.CinemaHallId);
+                sd.IsDeleted = true;
             }
-
-            var sessions = await _applicationContext.Sessions
-                .Where(session => hallId.Contains(session.CinemaHallId))
-                .Select(session => session)
-                .ToListAsync(cancellationToken);
-
-            if (sessions.Count != 0)
-            {
-                foreach (var session in sessions)
-                {
-                    session.IsDeleted = true;
-                }
-            }
-            else throw new Exception("Ошибка!");
         }
-        else throw new Exception("Ошибка!");
-            
+        
         await _applicationContext.SaveChangesAsync(cancellationToken);
     }
 }
