@@ -22,7 +22,7 @@ public class GetAdminSessionQueryHandler : IRequestHandler<GetAdminSessionQuery,
     {
         //Автоудаление старых сеансов
         var sess = await _applicationContext.Sessions
-            .Where(s => s.IsDeleted == false & s.DataTimeSession < DateTime.Now)
+            .Where(s => s.IsDeleted == false && s.DataTimeSession < DateTime.Now)
             .Select(s => s)
             .ToListAsync(cancellationToken);
         if (sess.Count != 0)
