@@ -31,13 +31,11 @@
         <input type="number" formControlName="yearControl" />
         <div class="error" *ngIf="year.invalid && (year.dirty || year.touched)">
           <div *ngIf="year.errors?.['required']">
-            Часы обязательны для заполнения
+            Год обязателен для заполнения
           </div>
-          <div *ngIf="year.errors?.['min']">
-            Количество часов должно быть не меньше 1900
-          </div>
+          <div *ngIf="year.errors?.['min']">Год должен быть не меньше 1900</div>
           <div *ngIf="year.errors?.['max']">
-            Количество часов должно быть не больше {{ currentYear }}
+            Год должен быть не больше {{ currentYear }}
           </div>
         </div>
 
@@ -98,7 +96,7 @@
             Количество минут должно быть не меньше 0
           </div>
           <div *ngIf="minutes.errors?.['max']">
-            Число должно быть не больше 59
+            Число минут должно быть не больше 59
           </div>
         </div>
 
