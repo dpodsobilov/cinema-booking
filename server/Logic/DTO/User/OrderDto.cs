@@ -1,13 +1,13 @@
-namespace Logic.DTO;
+namespace Logic.DTO.User;
 
-public class OrderDTO
+public class OrderDto
 {
     public int UserId { get; set; }
     public int SessionId { get; set; }
-    public ICollection<PlaceAndCostDTO> PlaceAndCost { get; set; } = null!;
+    public ICollection<PlaceAndCostDto> PlaceAndCost { get; set; } = null!;
 }
 
-public class PlaceAndCostDTO
+public class PlaceAndCostDto
 {
     public int PlaceId { get; set; }
     public decimal Price { get; set; }

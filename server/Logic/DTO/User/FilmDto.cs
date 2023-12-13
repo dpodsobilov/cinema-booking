@@ -1,6 +1,4 @@
-using Data.Models;
-
-namespace Logic.DTO;
+namespace Logic.DTO.User;
 
 public class FilmDto
 {

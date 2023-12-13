@@ -19,8 +19,6 @@ public sealed class ApplicationContext : DbContext
 
     public ApplicationContext()
     {
-        // Database.EnsureDeleted();
-        // Database.EnsureCreated();
         if (Database.EnsureCreated())
         { 
             User user1 = new User { Email = "daria@surf.ru", Password = "123123", Name = "Daria", Surname = "Surf", Role = 0 };
@@ -428,9 +426,8 @@ public sealed class ApplicationContext : DbContext
             SaveChanges();
             
             DateTime date = new DateTime(2023, 1, 20, 10, 30, 00);
-            DateTime _date = new DateTime(2023, 1, 20, 15, 15, 00);
             DateTime date2 = new DateTime(2023, 2, 10, 18, 22, 00);
-            DateTime date3 = new DateTime(2023, 3, 20, 10, 30, 00);
+            DateTime date3 = new DateTime(2023, 1, 20, 15, 15, 00);
             DateTime date4 = new DateTime(2024, 12, 20, 10, 30, 00);
             // Session session1 = new Session { DataTimeSession = date, DataTimeCoefficient = 3, FilmId = film1.FilmId, CinemaHallId = cinemaHall1.CinemaHallId};
             Session session2 = new Session { DataTimeSession = date, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall1.CinemaHallId};
@@ -438,7 +435,7 @@ public sealed class ApplicationContext : DbContext
             Session session4 = new Session { DataTimeSession = date, DataTimeCoefficient = 3, FilmId = film4.FilmId, CinemaHallId = cinemaHall2.CinemaHallId};
             Session session5 = new Session { DataTimeSession = date, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall3.CinemaHallId};
             Session session6 = new Session { DataTimeSession = date2, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall1.CinemaHallId};
-            Session session7 = new Session { DataTimeSession = _date, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall1.CinemaHallId};
+            Session session7 = new Session { DataTimeSession = date3, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall1.CinemaHallId};
             Session session8 = new Session { DataTimeSession = date4, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall1.CinemaHallId };
 
             // Sessions.Add(session1);

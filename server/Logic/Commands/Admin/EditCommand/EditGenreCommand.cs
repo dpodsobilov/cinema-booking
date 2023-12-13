@@ -1,5 +1,5 @@
 ﻿using Data;
-using Logic.DTO;
+using Logic.DTO.Admin;
 using Logic.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

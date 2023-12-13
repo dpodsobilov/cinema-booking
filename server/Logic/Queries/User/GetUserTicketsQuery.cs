@@ -1,9 +1,10 @@
 ﻿using Data;
 using Logic.DTO;
+using Logic.DTO.User;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Logic.Queries;
+namespace Logic.Queries.User;
 
 public class GetUserTicketsQuery : IRequest<AllUsersTicketsDto>
 {

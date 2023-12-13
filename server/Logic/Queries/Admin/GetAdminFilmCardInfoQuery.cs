@@ -2,16 +2,15 @@
 using Logic.DTO.Admin;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Query.ExpressionTranslators.Internal;
 
 namespace Logic.Queries.Admin;
 
 public class GetAdminFilmCardInfoQuery : IRequest<AdminFilmCardInfoDto> {
     public int FilmId { get; }
 
-    public GetAdminFilmCardInfoQuery(int FilmId)
+    public GetAdminFilmCardInfoQuery(int filmId)
     {
-        this.FilmId = FilmId;
+        this.FilmId = filmId;
     }
 }
 
