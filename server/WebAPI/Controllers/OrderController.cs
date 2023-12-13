@@ -1,5 +1,6 @@
 using Logic.Commands;
 using Logic.DTO;
+using Logic.DTO.User;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ public class OrderController : ControllerBase
     }
     
     [HttpPost]
-    public async Task<IActionResult> AddTicket(OrderDTO orderDto)
+    public async Task<IActionResult> AddTicket(OrderDto orderDto)
     {
         await _mediator.Send(new OrderCommand(orderDto));
         return Ok();

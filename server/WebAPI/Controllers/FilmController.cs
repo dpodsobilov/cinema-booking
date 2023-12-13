@@ -1,6 +1,7 @@
 using Logic.DTO;
-using Logic.Queries.GetFilm;
-using Logic.Queries.GetSchedule;
+using Logic.DTO.User;
+using Logic.Queries;
+using Logic.Queries.User;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,12 +17,6 @@ public class FilmController : ControllerBase
     {
         _mediator = mediator;
     }
-    // [HttpPost]
-    // public async Task<FilmDto> GetFilmInfo([FromBody] int filmId)
-    // {
-    //     var film = await _mediator.Send(new GetFilmQuery(filmId));
-    //     return film;
-    // }
     
     [HttpGet]
     public async Task<FilmDto> GetFilmInfo(int param)

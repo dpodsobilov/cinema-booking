@@ -1,9 +1,15 @@
 using Data;
 using Logic.DTO;
+using Logic.DTO.User;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Logic.Queries.GetHomePageFilms;
+namespace Logic.Queries.User;
+
+public class GetHomePageFilmsQuery : IRequest<IList<HomePageDto>>
+{
+    
+}
 
 public class GetHomePageFilmsQueryHandler : IRequestHandler<GetHomePageFilmsQuery, IList<HomePageDto>>
 {
@@ -16,7 +22,7 @@ public class GetHomePageFilmsQueryHandler : IRequestHandler<GetHomePageFilmsQuer
     
     public async Task<IList<HomePageDto>> Handle(GetHomePageFilmsQuery request, CancellationToken cancellationToken)
     {
-        // ДОБАВИТЬ ПРОВЕРКИ ПО ДАТЕ У СЕАНСОВ
+        // TODO: ДОБАВИТЬ ПРОВЕРКИ ПО ДАТЕ У СЕАНСОВ
         
         var cinemas = await _applicationContext.Sessions.Where(session => session.IsDeleted == false
                                             && session.CinemaHall.IsDeleted == false

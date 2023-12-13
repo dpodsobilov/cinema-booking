@@ -1,4 +1,4 @@
-﻿namespace Logic.DTO;
+﻿namespace Logic.DTO.User;
 
 public class AllUsersTicketsDto
 {

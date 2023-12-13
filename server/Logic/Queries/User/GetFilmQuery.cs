@@ -1,11 +1,20 @@
 using Data;
-using Data.Models;
 using Logic.DTO;
-using Logic.Queries.GetHomePageFilms;
+using Logic.DTO.User;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Logic.Queries.GetFilm;
+namespace Logic.Queries.User;
+
+public class GetFilmQuery : IRequest<FilmDto>
+{
+    public int FilmId { get; }
+
+    public GetFilmQuery(int filmId)
+    {
+        FilmId = filmId;
+    }
+}
 
 public class GetFilmQueryHandler : IRequestHandler<GetFilmQuery, FilmDto>
 {

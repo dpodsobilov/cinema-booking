@@ -1,6 +1,7 @@
 ﻿using Data;
 using Data.Models;
 using Logic.DTO.Admin.ForCreating;
+using Logic.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -36,14 +37,14 @@ public class CreateTemplateCommandHandler : IRequestHandler<CreateTemplateComman
         // Если какой-то тип места не существует -> выбрасываем ошибку
         if (! await CheckExistOfPlaceTypes(request, cancellationToken))
         {
-            throw new Exception("Тип места, указанный в шаблоне, не существует");
+            throw new NotFoundException("Тип места, указанный в шаблоне, не существует");
         }
         
         // Пытаемся найти такой шаблон в бд
         var oldCinemaHallType = await  _applicationContext.CinemaHallTypes
             // сравнение по названию
             .Where(cht => cht.CinemaHallTypeName.ToLower().Equals(request.CinemaHallTypeName.ToLower()))
-            // достаём только существующие шаблоны
+            // достаём только существующие шаблоны !!!!!!!!!!!
             .Where(cht => cht.IsDeleted == false)
             .FirstOrDefaultAsync(cancellationToken);
         
@@ -69,8 +70,7 @@ public class CreateTemplateCommandHandler : IRequestHandler<CreateTemplateComman
         }
 
         // Иначе юзеру придёт ошибка
-        throw new Exception("Такой шаблон уже существует!");
-        
+        throw new NotAllowedException("Шаблон с таким названием уже существует!");
     }
 
     /// <summary>

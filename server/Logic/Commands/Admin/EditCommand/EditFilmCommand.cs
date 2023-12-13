@@ -1,6 +1,7 @@
 ﻿using Data;
 using Data.Models;
 using Logic.DTO.Admin.ForEditing;
+using Logic.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -54,7 +55,7 @@ public class EditFilmCommandHandler : IRequestHandler<EditFilmCommand>
 
         if (film == null)
         {
-            throw new Exception("Выбранный фильм не существует!");
+            throw new NotFoundException("Выбранный фильм не существует!");
         }
 
         // Проверяем, не используется ли фильм в расписании
@@ -65,7 +66,7 @@ public class EditFilmCommandHandler : IRequestHandler<EditFilmCommand>
 
         if (sessions.Count != 0)
         {
-            throw new Exception("Выбранный фильм уже используется в расписании!");
+            throw new NotAllowedException("Выбранный фильм уже используется в расписании!");
         }
         
         // Проверка пришедших жанров опущена - предполагаем, что придут "хорошие"
@@ -80,7 +81,7 @@ public class EditFilmCommandHandler : IRequestHandler<EditFilmCommand>
 
         if (otherFilm != null)
         {
-            throw new Exception("Фильм с таким названием и годом выпуска уже существует!");
+            throw new NotAllowedException("Фильм с таким названием и годом выпуска уже существует!");
         }
 
         // Если все проверки пройдены -> редактируем фильм

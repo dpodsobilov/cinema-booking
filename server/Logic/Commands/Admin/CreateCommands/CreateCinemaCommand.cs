@@ -1,6 +1,7 @@
 ﻿using Data;
 using Data.Models;
 using Logic.DTO.Admin.ForCreating;
+using Logic.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -62,6 +63,6 @@ public class CreateCinemaCommandHandler : IRequestHandler<CreateCinemaCommand>
         }
 
         // Иначе юзеру придёт ошибка
-        throw new Exception("Есть же уже такой кинотеатр!");
+        throw new NotAllowedException("Кинотеатр с выбранным названием уже существует!");
     }
 }

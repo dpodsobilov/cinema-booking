@@ -1,4 +1,4 @@
-﻿namespace Logic.DTO;
+﻿namespace Logic.DTO.Admin;
 
 public class AdminFilmDto
 {
