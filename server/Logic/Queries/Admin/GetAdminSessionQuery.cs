@@ -34,6 +34,10 @@ public class GetAdminSessionQueryHandler : IRequestHandler<GetAdminSessionQuery,
             CinemaHallName = session.CinemaHall.CinemaHallName,
             SessionDate = session.DataTimeSession.ToString("dd-MM-yyyy"),
             SessionTime = session.DataTimeSession.ToString("HH:mm"),
+            CinemaHallId = session.CinemaHallId,
+            DataTimeCoefficient = session.DataTimeCoefficient,
+            FilmId = session.FilmId,
+            DataTimeSession = session.DataTimeSession 
         }).ToListAsync(cancellationToken);
         
         return sessions;
