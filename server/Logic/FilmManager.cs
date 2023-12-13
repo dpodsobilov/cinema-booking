@@ -31,13 +31,4 @@ public static class FilmManager
 
         return $"{hoursValue} {hoursWord} {minutesValue} {minutesWord}";
     }
-    
-    public static byte[] StringToByteArray(String str)
-    {
-        var numberChars = str.Length;
-        var bytes = new byte[numberChars / 2];
-        for (var i = 0; i < numberChars; i += 2)
-            bytes[i / 2] = Convert.ToByte(str.Substring(i, 2), 16);
-        return bytes;
-    }
 }
