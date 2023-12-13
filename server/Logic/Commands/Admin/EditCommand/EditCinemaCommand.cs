@@ -1,6 +1,7 @@
 ﻿using Data;
 using Data.Models;
 using Logic.DTO.Admin;
+using Logic.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -41,7 +42,7 @@ public class EditCinemaCommandHandler : IRequestHandler<EditCinemaCommand>
 
         if (cinema == null)
         {
-            throw new Exception("Выбранный кинотеатр не существует!");
+            throw new NotFoundException("Выбранный кинотеатр не существует!");
         }
         
         // Проверяем, не используется ли кинотеатр в расписании
@@ -59,7 +60,7 @@ public class EditCinemaCommandHandler : IRequestHandler<EditCinemaCommand>
 
         if (sessions.Count != 0)
         {
-            throw new Exception("Выбранный кинотеатр уже используется в расписании!");
+            throw new NotAllowedException("Выбранный кинотеатр уже используется в расписании!");
         }
         
         // Проверяем, нет ли другого кинотеатра с таким же названием
@@ -71,7 +72,7 @@ public class EditCinemaCommandHandler : IRequestHandler<EditCinemaCommand>
 
         if (otherCinema != null)
         {
-            throw new Exception("Кинотеатр с выбранным названием уже существует!");
+            throw new NotAllowedException("Кинотеатр с выбранным названием уже существует!");
         }
 
         // Если все проверки пройдены -> редактируем
