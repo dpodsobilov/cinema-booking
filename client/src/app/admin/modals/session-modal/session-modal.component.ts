@@ -96,7 +96,7 @@ export class SessionModalComponent {
   }
 
   makeDateTime(date: string, time: string): string {
-    const res = new Date(date + 'T' + time + ':00');
+    const res = new Date(date + 'T' + time + ':00Z');
     return res.toISOString();
   }
 

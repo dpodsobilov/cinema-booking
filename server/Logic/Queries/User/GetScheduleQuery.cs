@@ -1,5 +1,4 @@
 using Data;
-using Logic.DTO;
 using Logic.DTO.User;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +28,7 @@ public class GetScheduleQueryHandler : IRequestHandler<GetScheduleQuery, IList<F
     {
         var filmSchedules = await _applicationContext.Sessions
             .Where(session => session.FilmId == request.FilmId 
+                              && session.DataTimeSession > DateTime.Now
                               && session.IsDeleted == false
                               && session.CinemaHall.IsDeleted == false
                               && session.CinemaHall.Cinema.IsDeleted == false
