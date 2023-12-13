@@ -1,6 +1,7 @@
 ﻿using Data;
 using Data.Models;
 using Logic.DTO.Admin.ForCreating;
+using Logic.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,7 +30,9 @@ public class CreateGenreCommandHandler : IRequestHandler<CreateGenreCommand>
     {
         // Пытаемся найти такой экзмепляр в бд
         // сравнение по названию жанра
-        var oldGenre = await  _applicationContext.Genres.Where(g => g.GenreName.ToLower().Equals(request.Name.ToLower())).FirstOrDefaultAsync(cancellationToken);
+        var oldGenre = await  _applicationContext.Genres
+            .Where(g => g.GenreName.ToLower().Equals(request.Name.ToLower()))
+            .FirstOrDefaultAsync(cancellationToken);
 
         // Если такой есть и он удалён - восстанавливаем
         if (oldGenre != null && oldGenre.IsDeleted)
@@ -52,6 +55,6 @@ public class CreateGenreCommandHandler : IRequestHandler<CreateGenreCommand>
         }
 
         // Иначе юзеру придёт ошибка
-        throw new Exception("Ты человек хороший, иди отдохни, пожалуйста! Есть же ж уже такой жанр");
+        throw new NotAllowedException("Жанр с выбранным названием уже существует!");
     }
 }
