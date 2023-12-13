@@ -1,6 +1,5 @@
 ﻿using Data;
 using Logic.DTO;
-using Logic.Queries.GetFilm;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

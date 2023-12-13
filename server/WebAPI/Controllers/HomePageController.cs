@@ -1,7 +1,5 @@
-using Data;
 using Logic.DTO;
 using Logic.Queries;
-using Logic.Queries.GetHomePageFilms;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

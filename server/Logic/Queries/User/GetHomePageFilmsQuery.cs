@@ -3,7 +3,12 @@ using Logic.DTO;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Logic.Queries.GetHomePageFilms;
+namespace Logic.Queries;
+
+public class GetHomePageFilmsQuery : IRequest<IList<HomePageDto>>
+{
+    
+}
 
 public class GetHomePageFilmsQueryHandler : IRequestHandler<GetHomePageFilmsQuery, IList<HomePageDto>>
 {

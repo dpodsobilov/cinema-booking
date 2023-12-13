@@ -3,7 +3,17 @@ using Logic.DTO;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace Logic.Queries.GetSchedule;
+namespace Logic.Queries;
+
+public class GetScheduleQuery  : IRequest<IList<FilmScheduleDto>>
+{
+    public int FilmId { get; }
+
+    public GetScheduleQuery(int filmId)
+    {
+        FilmId = filmId;
+    }
+}
 
 public class GetScheduleQueryHandler : IRequestHandler<GetScheduleQuery, IList<FilmScheduleDto>>
 {

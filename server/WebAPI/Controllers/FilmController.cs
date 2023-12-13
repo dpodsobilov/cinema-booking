@@ -1,6 +1,5 @@
 using Logic.DTO;
-using Logic.Queries.GetFilm;
-using Logic.Queries.GetSchedule;
+using Logic.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
