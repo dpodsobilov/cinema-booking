@@ -1,4 +1,5 @@
 using Data;
+using Logic.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,16 +26,14 @@ public class DeleteGenreCommandHandler : IRequestHandler<DeleteGenreCommand>
     
     public async Task Handle(DeleteGenreCommand request, CancellationToken cancellationToken)
     {
-        var genre = await _applicationContext.Genres.Where(genre => genre.GenreId == request.GenreId)
+        var genre = await _applicationContext.Genres.Where(genre => genre.GenreId == request.GenreId 
+                                                                    && genre.IsDeleted == false)
             .FirstOrDefaultAsync(cancellationToken);
         if (genre != null)
         {
             genre.IsDeleted = true;
             await _applicationContext.SaveChangesAsync(cancellationToken);
         }
-        else
-        {
-            throw new Exception("Ошибка!");
-        }
+        else throw new NotFoundException("Выбранный жанр не существует!"); 
     }
 }
