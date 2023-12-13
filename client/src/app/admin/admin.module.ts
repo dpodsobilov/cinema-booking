@@ -19,6 +19,7 @@ import { PlaceTypeModalComponent } from './modals/place-type-modal/place-type-mo
 import { HallModalComponent } from './modals/hall-modal/hall-modal.component';
 import { CinemaModalComponent } from './modals/cinema-modal/cinema-modal.component';
 import { FilmModalComponent } from './modals/film-modal/film-modal.component';
+import { SessionModalComponent } from './modals/session-modal/session-modal.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { FilmModalComponent } from './modals/film-modal/film-modal.component';
     HallModalComponent,
     CinemaModalComponent,
     FilmModalComponent,
+    SessionModalComponent,
   ],
   imports: [
     SharedModule,

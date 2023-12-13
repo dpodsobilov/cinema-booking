@@ -1,0 +1,124 @@
+<div class="outline">
+  <div class="modal">
+    <div class="header">
+      <p>{{ isEditing ? "Изменение сеанса" : "Добавление сеанса" }}</p>
+      <p class="close" (click)="close()">&times;</p>
+    </div>
+    <div class="form-container">
+      <form
+        autocomplete="off"
+        [formGroup]="sessionForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <label>Фильм</label>
+        <select formControlName="filmIdControl">
+          <option [value]="null" disabled>Выберите фильм</option>
+          <option [value]="film.filmId" *ngFor="let film of films">
+            {{ film.filmName }}
+          </option>
+        </select>
+        <div
+          class="error"
+          *ngIf="filmId.invalid && (filmId.dirty || filmId.touched)"
+        >
+          <div *ngIf="filmId.errors?.['required']">
+            Поле обязательно для заполнения
+          </div>
+        </div>
+
+        <label>Кинотеатр</label>
+        <select formControlName="cinemaIdControl">
+          <option [value]="null" disabled>Выберите кинотеатр</option>
+          <option
+            [value]="cinema.cinemaId"
+            *ngFor="let cinema of cinemas"
+            (change)="selectStr(cinema.cinemaId)"
+          >
+            {{ cinema.cinemaName }}
+          </option>
+        </select>
+        <div
+          class="error"
+          *ngIf="cinemaId.invalid && (cinemaId.dirty || cinemaId.touched)"
+        >
+          <div *ngIf="cinemaId.errors?.['required']">
+            Поле обязательно для заполнения
+          </div>
+        </div>
+
+        <label>Кинозал</label>
+        <select
+          formControlName="cinemaHallIdControl"
+          (click)="selectStr(+cinemaId.value)"
+        >
+          <option [value]="null" disabled>Выберите кинозал</option>
+          <option
+            [value]="hall.cinemaHallId"
+            *ngFor="let hall of this.adminCinemasService.hallsForSelectedCinema"
+          >
+            {{ hall.cinemaHallName }}
+          </option>
+        </select>
+        <div
+          class="error"
+          *ngIf="
+            cinemaHallId.invalid && (cinemaHallId.dirty || cinemaHallId.touched)
+          "
+        >
+          <div *ngIf="cinemaHallId.errors?.['required']">
+            Поле обязательно для заполнения
+          </div>
+        </div>
+
+        <label>Коэффициент на дату</label>
+        <input type="number" formControlName="coefficientControl" />
+        <div
+          class="error"
+          *ngIf="
+            coefficient.invalid && (coefficient.dirty || coefficient.touched)
+          "
+        >
+          <div *ngIf="coefficient.errors?.['required']">
+            Коэффициент обязателен для заполнения
+          </div>
+          <div *ngIf="coefficient.errors?.['min']">
+            Коэффициент должен быть не меньше 1
+          </div>
+        </div>
+
+        <label>Дата</label>
+        <input type="text" formControlName="dateControl" />
+        <div class="error" *ngIf="date.invalid && (date.dirty || date.touched)">
+          <div *ngIf="date.errors?.['required']">
+            Дата обязательна для заполнения
+          </div>
+          <div *ngIf="date.errors?.['pattern']">
+            Введите дату в формате ГГГГ-ММ-ДД
+          </div>
+        </div>
+
+        <label>Время</label>
+        <input type="text" formControlName="timeControl" />
+        <div class="error" *ngIf="time.invalid && (time.dirty || time.touched)">
+          <div *ngIf="time.errors?.['required']">
+            Время обязательно для заполнения
+          </div>
+          <div *ngIf="time.errors?.['pattern']">
+            Введите время в формате ЧЧ-ММ
+          </div>
+        </div>
+
+        <div class="error" *ngIf="!sessionForm.valid">{{ errorMessage }}</div>
+
+        <div class="submit-pane">
+          <input
+            class="submit-button"
+            type="submit"
+            value="{{ isEditing ? 'Изменить' : 'Добавить' }}"
+            [disabled]="!sessionForm.valid"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
