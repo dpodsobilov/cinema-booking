@@ -22,9 +22,8 @@ public class GetHomePageFilmsQueryHandler : IRequestHandler<GetHomePageFilmsQuer
     
     public async Task<IList<HomePageDto>> Handle(GetHomePageFilmsQuery request, CancellationToken cancellationToken)
     {
-        // TODO: ДОБАВИТЬ ПРОВЕРКИ ПО ДАТЕ У СЕАНСОВ
-        
         var cinemas = await _applicationContext.Sessions.Where(session => session.IsDeleted == false
+                                            && session.DataTimeSession > DateTime.Now                              
                                             && session.CinemaHall.IsDeleted == false
                                             && session.CinemaHall.Cinema.IsDeleted == false
                                             && session.CinemaHall.CinemaHallType.IsDeleted == false)
@@ -46,6 +45,7 @@ public class GetHomePageFilmsQueryHandler : IRequestHandler<GetHomePageFilmsQuer
         {
             var films = await _applicationContext.Sessions.
                 Where(session => session.CinemaHall.Cinema.CinemaId == cinema.CinemaId 
+                                 && session.DataTimeSession > DateTime.Now
                                  && session.Film.IsDeleted == false
                                  && session.CinemaHall.IsDeleted == false
                                  && session.CinemaHall.Cinema.IsDeleted == false

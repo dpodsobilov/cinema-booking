@@ -20,6 +20,21 @@ public class GetAdminSessionQueryHandler : IRequestHandler<GetAdminSessionQuery,
     
     public async Task<IList<AdminSessionDto>> Handle(GetAdminSessionQuery request, CancellationToken cancellationToken)
     {
+        //Автоудаление старых сеансов
+        var sess = await _applicationContext.Sessions
+            .Where(s => s.IsDeleted == false & s.DataTimeSession < DateTime.Now)
+            .Select(s => s)
+            .ToListAsync(cancellationToken);
+        if (sess.Count != 0)
+        {
+            foreach (var ses in sess)
+            {
+                ses.IsDeleted = true;
+            }
+
+            await _applicationContext.SaveChangesAsync(cancellationToken);
+        }
+        
         var sessions = await _applicationContext.Sessions
             .Where(session => session.IsDeleted == false)
             .OrderByDescending(session => session.CinemaHall.Cinema.CinemaName)
