@@ -10,7 +10,7 @@
         </option>
       </select>
     </div>
-    <img src="./assets/images/svg/add.svg" alt="" />
+    <img src="./assets/images/svg/add.svg" alt="" (click)="openModal()" />
     <table>
       <tr>
         <th>#</th>
@@ -33,7 +33,11 @@
         <td class="session-name">{{ session.sessionTime }}</td>
         <td>
           <div class="buttons">
-            <img src="./assets/images/svg/edit.svg" alt="" />
+            <img
+              src="./assets/images/svg/edit.svg"
+              alt=""
+              (click)="openModal(session)"
+            />
             <img
               src="./assets/images/svg/delete.svg"
               alt=""
@@ -45,3 +49,13 @@
     </table>
   </div>
 </div>
+
+<ng-container *ngIf="isModalOpen">
+  <app-session-modal
+    [oldSession]="oldSession"
+    [isEditing]="isEditing"
+    (closeEvent)="closeModal($event)"
+    (saveEvent)="addSession($event)"
+    (editEvent)="editSession($event)"
+  ></app-session-modal>
+</ng-container>
