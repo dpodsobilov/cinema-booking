@@ -1,7 +1,24 @@
 <div class="instruction">
+  <h2>Оглавление</h2>
+  <ol class="contents">
+    <li [routerLink]="['/system-info']" fragment="viewSchedule">
+      Просмотр расписания
+    </li>
+    <li [routerLink]="['/system-info']" fragment="register">Регистрация</li>
+    <li [routerLink]="['/system-info']" fragment="login">Авторизация</li>
+    <li [routerLink]="['/system-info']" fragment="book">
+      Бронирование билетов
+    </li>
+    <li [routerLink]="['/system-info']" fragment="viewTicket">
+      Просмотр билетов
+    </li>
+    <li [routerLink]="['/system-info']" fragment="downloadTicket">
+      Скачивание билетов
+    </li>
+  </ol>
   <ol class="main-list">
-    <li class="schedule-check-up" type="I">
-      <p>Просмотр расписания</p>
+    <li class="schedule-check-up">
+      <p id="viewSchedule">Просмотр расписания</p>
       <ol class="schedule-list">
         <p>Для просмотра расписания сеансов на кинофильм необходимо:</p>
         <li>
@@ -29,8 +46,8 @@
         </p>
       </ol>
     </li>
-    <li class="registration" type="I">
-      <p>Регистрация</p>
+    <li class="registration">
+      <p id="register">Регистрация</p>
       <ol class="registration-list">
         <p>Для того, чтобы зарегистрироваться в системе, необходимо:</p>
         <li>
@@ -56,8 +73,8 @@
         </li>
       </ol>
     </li>
-    <li class="authorization" type="I">
-      <p>Авторизация</p>
+    <li class="authorization">
+      <p id="login">Авторизация</p>
       <ol class="authorization-list">
         <p>Для того, чтобы авторизоваться в системе, необходимо:</p>
         <li>
@@ -83,8 +100,8 @@
         </li>
       </ol>
     </li>
-    <li class="ticket-book" type="I">
-      <p>Бронирование билетов</p>
+    <li class="ticket-book">
+      <p id="book">Бронирование билетов</p>
       <ol class="ticket-book-list">
         <p>Для бронирования билетов, необходимо:</p>
         <li>
@@ -142,8 +159,8 @@
         </li>
       </ol>
     </li>
-    <li class="ticket-check-up" type="I">
-      <p>Просмотр билетов</p>
+    <li class="ticket-check-up">
+      <p id="viewTicket">Просмотр билетов</p>
       <ol class="ticket-check-up-list">
         <p>Для того, чтобы просмотреть имеющиеся билеты, необходимо:</p>
         <li>
@@ -184,8 +201,8 @@
         </li>
       </ol>
     </li>
-    <li class="download-ticket" type="I">
-      <p>Скачать билеты</p>
+    <li class="download-ticket">
+      <p id="downloadTicket">Скачать билеты</p>
       <ol class="authorization-list">
         <p>Для того, чтобы скачать билет на сеанс, необходимо:</p>
         <li>
@@ -214,3 +231,4 @@
     </li>
   </ol>
 </div>
+<app-scroll-to-top></app-scroll-to-top>
