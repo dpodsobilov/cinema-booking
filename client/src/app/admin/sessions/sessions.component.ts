@@ -6,6 +6,7 @@ import {
   AdminSessionService,
 } from '../../services/admin/admin-session.service';
 import { find } from 'rxjs';
+import { CustomError } from '../../services/admin/admin-cinemas.service';
 
 @Component({
   selector: 'app-sessions',
@@ -98,7 +99,6 @@ export class SessionsComponent implements OnInit {
 
   addSession(session: AdminSessionCreation) {
     this.newSession = session;
-    console.log(this.newSession);
     this.adminSessionService.addSession(this.newSession).subscribe({
       next: (response) => {
         this.adminSessionService
@@ -107,8 +107,8 @@ export class SessionsComponent implements OnInit {
             this.sessions = res;
           });
       },
-      error: (e) => {
-        alert('Ошибка добавления');
+      error: (e: CustomError) => {
+        alert('Ошибка: ' + e.error.Message);
       },
     });
   }
@@ -123,21 +123,24 @@ export class SessionsComponent implements OnInit {
             this.sessions = res;
           });
       },
-      error: (e) => {
-        alert('Ошибка изменения');
+      error: (e: CustomError) => {
+        alert('Ошибка: ' + e.error.Message);
       },
     });
   }
 
   deleteSession(sessionId: number) {
-    this.adminSessionService.deleteSession(sessionId).subscribe((response) => {
-      if (response.status === 200) {
+    this.adminSessionService.deleteSession(sessionId).subscribe({
+      next: (response) => {
         this.adminSessionService
           .getSessions()
           .subscribe((res: AdminSession[]) => {
             this.sessions = res;
           });
-      } else alert('Ошибка! Удаление не выполнено!');
+      },
+      error: (e: CustomError) => {
+        alert('Ошибка: ' + e.error.Message);
+      },
     });
   }
 }

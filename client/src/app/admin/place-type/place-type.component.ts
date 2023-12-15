@@ -4,7 +4,7 @@ import {
   AdminPlaceTypeCreation,
   PlaceTypeService,
 } from '../../services/admin/place-type.service';
-import { AdminGenre } from '../../services/admin/admin-film.service';
+import { CustomError } from '../../services/admin/admin-cinemas.service';
 @Component({
   selector: 'app-place-type',
   templateUrl: './place-type.component.html',
@@ -44,33 +44,42 @@ export class PlaceTypeComponent implements OnInit {
   addPlaceType(placeType: AdminPlaceTypeCreation) {
     this.newPlaceType = placeType;
 
-    this.placeTypeService.addType(this.newPlaceType).subscribe((response) => {
-      if (response.status === 200) {
+    this.placeTypeService.addType(this.newPlaceType).subscribe({
+      next: (response) => {
         this.placeTypeService.getTypes().subscribe((res: PlaceType[]) => {
           this.types = res;
         });
-      } else alert('Ошибка! Добавление не выполнено!');
+      },
+      error: (e: CustomError) => {
+        alert('Ошибка: ' + e.error.Message);
+      },
     });
   }
 
   editPlaceType(placeType: PlaceType) {
     this.oldPlaceType = placeType;
-    this.placeTypeService.editType(placeType).subscribe((response) => {
-      if (response.status === 200) {
+    this.placeTypeService.editType(placeType).subscribe({
+      next: (response) => {
         this.placeTypeService.getTypes().subscribe((res: PlaceType[]) => {
           this.types = res;
         });
-      } else alert('Ошибка! Изменение не выполнено!');
+      },
+      error: (e: CustomError) => {
+        alert('Ошибка: ' + e.error.Message);
+      },
     });
   }
 
   deleteType(placeTypeId: number) {
-    this.placeTypeService.deleteType(placeTypeId).subscribe((response) => {
-      if (response.status === 200) {
+    this.placeTypeService.deleteType(placeTypeId).subscribe({
+      next: (response) => {
         this.placeTypeService.getTypes().subscribe((res: PlaceType[]) => {
           this.types = res;
         });
-      } else alert('Ошибка! Удаление не выполнено!');
+      },
+      error: (e: CustomError) => {
+        alert('Ошибка: ' + e.error.Message);
+      },
     });
   }
 }

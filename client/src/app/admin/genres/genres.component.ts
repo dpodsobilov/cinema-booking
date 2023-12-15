@@ -5,6 +5,7 @@ import {
   AdminGenre,
   AdminGenreCreation,
 } from '../../services/admin/admin-film.service';
+import { CustomError } from '../../services/admin/admin-cinemas.service';
 
 @Component({
   selector: 'app-genres',
@@ -44,33 +45,42 @@ export class GenresComponent implements OnInit {
 
   addGenre(genre: AdminGenreCreation) {
     this.newGenre = genre;
-    this.adminFilmService.addGenre(this.newGenre).subscribe((response) => {
-      if (response.status === 200) {
+    this.adminFilmService.addGenre(this.newGenre).subscribe({
+      next: (response) => {
         this.adminFilmService.getGenres().subscribe((res: AdminGenre[]) => {
           this.genres = res;
         });
-      } else alert('Ошибка! Добавление не выполнено!');
+      },
+      error: (e: CustomError) => {
+        alert('Ошибка: ' + e.error.Message);
+      },
     });
   }
 
   editGenre(genre: AdminGenre) {
     this.oldGenre = genre;
-    this.adminFilmService.editGenre(genre).subscribe((response) => {
-      if (response.status === 200) {
+    this.adminFilmService.editGenre(genre).subscribe({
+      next: (response) => {
         this.adminFilmService.getGenres().subscribe((res: AdminGenre[]) => {
           this.genres = res;
         });
-      } else alert('Ошибка! Изменение не выполнено!');
+      },
+      error: (e: CustomError) => {
+        alert('Ошибка: ' + e.error.Message);
+      },
     });
   }
 
   deleteGenre(genreId: number) {
-    this.adminFilmService.deleteGenre(genreId).subscribe((response) => {
-      if (response.status === 200) {
+    this.adminFilmService.deleteGenre(genreId).subscribe({
+      next: (response) => {
         this.adminFilmService.getGenres().subscribe((res: AdminGenre[]) => {
           this.genres = res;
         });
-      } else alert('Ошибка! Удаление не выполнено!');
+      },
+      error: (e: CustomError) => {
+        alert('Ошибка: ' + e.error.Message);
+      },
     });
   }
 }
