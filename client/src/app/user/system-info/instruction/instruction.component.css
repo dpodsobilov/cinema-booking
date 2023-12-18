@@ -1,12 +1,25 @@
-.main-list > li > ol {
-  margin-left: 50px;
-  font-size: 22px;
-  font-weight: 500;
+ol {
+  list-style: upper-roman;
+}
+
+.contents {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.contents > li:hover {
+  cursor: pointer;
 }
 
 .main-list {
   font-size: 28px;
   font-weight: bold;
+}
+
+.main-list > li > ol {
+  margin-left: 50px;
+  font-size: 22px;
+  font-weight: 500;
 }
 
 .main-list > li > p {
