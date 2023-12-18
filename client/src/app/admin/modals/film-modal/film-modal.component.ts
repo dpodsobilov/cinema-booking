@@ -115,7 +115,6 @@ export class FilmModalComponent {
 
     myReader.onloadend = (e) => {
       this.image = myReader.result!.toString().split(',')[1];
-      console.log(this.image);
     };
     myReader.readAsDataURL(file);
   }

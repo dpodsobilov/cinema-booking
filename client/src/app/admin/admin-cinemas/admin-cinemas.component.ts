@@ -4,9 +4,8 @@ import {
   AdminCinemaCreation,
   AdminCinemasService,
   AdminHall,
+  CustomError,
 } from '../../services/admin/admin-cinemas.service';
-import { AdminSession } from '../../services/admin/admin-session.service';
-import { logBuilderStatusWarnings } from '@angular-devkit/build-angular/src/builders/browser-esbuild/builder-status-warnings';
 
 @Component({
   selector: 'app-admin-cinemas',
@@ -58,22 +57,25 @@ export class AdminCinemasComponent implements OnInit {
   addCinema(cinema: AdminCinemaCreation) {
     this.newCinema = cinema;
 
-    this.adminCinemasService.addCinema(this.newCinema).subscribe((response) => {
-      if (response.status === 200) {
+    this.adminCinemasService.addCinema(this.newCinema).subscribe({
+      next: (response) => {
         this.adminCinemasService
           .getCinemas()
           .subscribe((res: AdminCinema[]) => {
             this.cinemas = res;
           });
-      } else alert('Ошибка! Добавление не выполнено!');
+      },
+      error: (e: CustomError) => {
+        alert('Ошибка: ' + e.error.Message);
+      },
     });
   }
 
   editCinema(cinema: AdminCinema) {
     this.oldCinema = cinema;
 
-    this.adminCinemasService.editCinema(cinema).subscribe((response) => {
-      if (response.status === 200) {
+    this.adminCinemasService.editCinema(cinema).subscribe({
+      next: (response) => {
         this.adminCinemasService
           .getCinemas()
           .subscribe((res: AdminCinema[]) => {
@@ -82,13 +84,16 @@ export class AdminCinemasComponent implements OnInit {
         if (this.adminCinemasService.selectedStr === cinema.cinemaId) {
           this.adminCinemasService.hallsForSelectedCinema = [];
         }
-      } else alert('Ошибка! Изменение не выполнено!');
+      },
+      error: (e: CustomError) => {
+        alert('Ошибка: ' + e.error.Message);
+      },
     });
   }
 
   deleteCinema(cinemaId: number) {
-    this.adminCinemasService.deleteCinema(cinemaId).subscribe((response) => {
-      if (response.status === 200) {
+    this.adminCinemasService.deleteCinema(cinemaId).subscribe({
+      next: (response) => {
         this.adminCinemasService
           .getCinemas()
           .subscribe((res: AdminCinema[]) => {
@@ -97,7 +102,10 @@ export class AdminCinemasComponent implements OnInit {
         if (this.adminCinemasService.selectedStr === cinemaId) {
           this.adminCinemasService.hallsForSelectedCinema = [];
         }
-      } else alert('Ошибка! Удаление не выполнено!');
+      },
+      error: (e: CustomError) => {
+        alert('Ошибка: ' + e.error.Message);
+      },
     });
   }
 }

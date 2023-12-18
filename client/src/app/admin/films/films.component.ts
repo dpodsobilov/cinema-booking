@@ -5,6 +5,7 @@ import {
   AdminFilmEditing,
   AdminFilmService,
 } from '../../services/admin/admin-film.service';
+import { CustomError } from '../../services/admin/admin-cinemas.service';
 
 @Component({
   selector: 'app-films',
@@ -52,8 +53,8 @@ export class FilmsComponent implements OnInit {
           this.oldFilm = response;
           this.isModalOpen = true;
         },
-        error: (e) => {
-          alert('Выбранный фильм не доступен');
+        error: (e: CustomError) => {
+          alert('Ошибка: ' + e.error.Message);
         },
       });
       this.isEditing = true;
@@ -98,7 +99,7 @@ export class FilmsComponent implements OnInit {
         });
       },
       error: (e) => {
-        alert('Ошибка! Добавление не выполнено!');
+        alert('Ошибка: ' + e.error.Message);
       },
     });
   }
@@ -113,18 +114,21 @@ export class FilmsComponent implements OnInit {
         });
       },
       error: (e) => {
-        alert('Ошибка! Изменение не выполнено!');
+        alert('Ошибка: ' + e.error.Message);
       },
     });
   }
 
   deleteFilm(filmId: number) {
-    this.adminFilmService.deleteFilm(filmId).subscribe((response) => {
-      if (response.status === 200) {
+    this.adminFilmService.deleteFilm(filmId).subscribe({
+      next: (response) => {
         this.adminFilmService.getFilms().subscribe((res: AdminFilm[]) => {
           this.films = res;
         });
-      } else alert('Ошибка! Удаление не выполнено!');
+      },
+      error: (e: CustomError) => {
+        alert('Ошибка: ' + e.error.Message);
+      },
     });
   }
 }

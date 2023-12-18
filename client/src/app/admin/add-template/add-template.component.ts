@@ -6,6 +6,7 @@ import {
   ResponseMatrix,
 } from '../../services/admin/add-template.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CustomError } from '../../services/admin/admin-cinemas.service';
 
 @Component({
   selector: 'app-add-template',
@@ -105,10 +106,13 @@ export class AddTemplateComponent implements OnInit {
             this.templateName;
           this.addTemplatesService.sendMatr.TemplatePlaceTypes =
             this.sendMatrix;
-          this.addTemplatesService.createMatrix().subscribe((response) => {
-            if (response.status === 200) {
+          this.addTemplatesService.createMatrix().subscribe({
+            next: (response) => {
               this.router.navigate(['/admin/templates/']);
-            } else alert('Ошибка! Создание не выполнено!');
+            },
+            error: (e: CustomError) => {
+              alert('Ошибка: ' + e.error.Message);
+            },
           });
         } else {
           this.addTemplatesService.updMatr.CinemaHallTypeId = this.templateId;
@@ -116,10 +120,13 @@ export class AddTemplateComponent implements OnInit {
             this.templateName;
           this.addTemplatesService.updMatr.TemplatePlaceTypes = this.sendMatrix;
 
-          this.addTemplatesService.updateMatrix().subscribe((response) => {
-            if (response.status === 200) {
+          this.addTemplatesService.updateMatrix().subscribe({
+            next: (response) => {
               this.router.navigate(['/admin/templates/']);
-            } else alert('Ошибка! Изменение не выполнено!');
+            },
+            error: (e: CustomError) => {
+              alert('Ошибка: ' + e.error.Message);
+            },
           });
         }
       }

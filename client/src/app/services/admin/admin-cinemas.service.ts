@@ -33,6 +33,15 @@ export interface AdminHallCreation {
   cinemaId: number;
 }
 
+export interface CustomError extends Error {
+  error: ErrorInfo;
+}
+
+export interface ErrorInfo {
+  Message: string;
+  StatusCode: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })

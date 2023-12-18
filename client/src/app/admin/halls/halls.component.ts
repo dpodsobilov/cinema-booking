@@ -4,6 +4,7 @@ import {
   AdminHall,
   AdminHallCreation,
   AdminHallEditing,
+  CustomError,
 } from '../../services/admin/admin-cinemas.service';
 
 @Component({
@@ -54,44 +55,50 @@ export class HallsComponent implements OnInit {
   addHall(hall: AdminHallCreation) {
     this.newHall = hall;
 
-    this.adminCinemasService.addHall(this.newHall).subscribe((response) => {
-      if (response.status === 200) {
+    this.adminCinemasService.addHall(this.newHall).subscribe({
+      next: (response) => {
         this.adminCinemasService
           .getHalls(this.adminCinemasService.selectedStr)
           .subscribe((res: AdminHall[]) => {
             this.adminCinemasService.hallsForSelectedCinema = res;
           });
-      } else alert('Ошибка! Добавление не выполнено!');
+      },
+      error: (e: CustomError) => {
+        alert('Ошибка: ' + e.error.Message);
+      },
     });
   }
 
   editHall(hall: AdminHallEditing) {
     this.oldHall = hall;
 
-    this.adminCinemasService.editHall(this.oldHall).subscribe((response) => {
-      if (response.status === 200) {
-        this.adminCinemasService
-          .getHalls(this.adminCinemasService.selectedStr)
-          .subscribe((res: AdminHall[]) => {
-            this.adminCinemasService.hallsForSelectedCinema = res;
-          });
-      } else alert('Ошибка! Изменение не выполнено!');
+    this.adminCinemasService.editHall(this.oldHall).subscribe({
+      next: (response) => {
+        if (response.status === 200) {
+          this.adminCinemasService
+            .getHalls(this.adminCinemasService.selectedStr)
+            .subscribe((res: AdminHall[]) => {
+              this.adminCinemasService.hallsForSelectedCinema = res;
+            });
+        } else alert('Ошибка! Изменение не выполнено!');
+      },
+      error: (e: CustomError) => {
+        alert('Ошибка: ' + e.error.Message);
+      },
     });
   }
 
   deleteHall(cinemaHallId: number) {
     this.adminCinemasService.deleteHall(cinemaHallId).subscribe({
       next: (response) => {
-        // if (response.status === 200) {
         this.adminCinemasService
           .getHalls(this.adminCinemasService.selectedStr)
           .subscribe((res: AdminHall[]) => {
             this.adminCinemasService.hallsForSelectedCinema = res;
           });
-        // }
       },
-      error: (e) => {
-        alert(`Ошибка! Удаление не выполнено!`);
+      error: (e: CustomError) => {
+        alert('Ошибка: ' + e.error.Message);
       },
     });
   }
