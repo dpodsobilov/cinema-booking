@@ -7,9 +7,36 @@ export interface AdminFilm {
   filmName: string;
 }
 
+export interface AdminFilmCreation {
+  filmName: string;
+  hours: string;
+  minutes: string;
+  filmCoefficient: number;
+  description: string;
+  year: number;
+  poster: string;
+  genres: number[];
+}
+
+export interface AdminFilmEditing {
+  filmId: number;
+  filmName: string;
+  hours: string;
+  minutes: string;
+  filmCoefficient: number;
+  description: string;
+  year: number;
+  poster: string;
+  genres: number[];
+}
+
 export interface AdminGenre {
   genreId: number;
   genreName: string;
+}
+
+export interface AdminGenreCreation {
+  name: string;
 }
 
 @Injectable({
@@ -29,6 +56,24 @@ export class AdminFilmService {
     return this.http.get<AdminGenre[]>(this.baseUrl + '/Admin/Genres');
   }
 
+  getFilm(filmId: number): Observable<AdminFilmEditing> {
+    return this.http.get<AdminFilmEditing>(
+      this.baseUrl + '/Admin/Film?' + 'filmId=' + filmId,
+    );
+  }
+
+  addFilm(film: AdminFilmCreation) {
+    return this.http.post(this.baseUrl + '/Admin/Film?', film, {
+      observe: 'response',
+    });
+  }
+
+  editFilm(film: AdminFilmEditing) {
+    return this.http.put(this.baseUrl + '/Admin/Film?', film, {
+      observe: 'response',
+    });
+  }
+
   deleteFilm(filmId: number) {
     return this.http.delete(
       this.baseUrl + '/Admin/Film?' + 'filmId=' + filmId,
@@ -36,6 +81,18 @@ export class AdminFilmService {
         observe: 'response',
       },
     );
+  }
+
+  addGenre(genre: AdminGenreCreation) {
+    return this.http.post(this.baseUrl + '/Admin/Genre?', genre, {
+      observe: 'response',
+    });
+  }
+
+  editGenre(genre: AdminGenre) {
+    return this.http.put(this.baseUrl + '/Admin/Genre?', genre, {
+      observe: 'response',
+    });
   }
 
   deleteGenre(genreId: number) {

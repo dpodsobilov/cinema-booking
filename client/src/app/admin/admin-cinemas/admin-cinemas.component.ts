@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  AdminCinemas,
+  AdminCinema,
+  AdminCinemaCreation,
   AdminCinemasService,
-  AdminHalls,
+  AdminHall,
+  CustomError,
 } from '../../services/admin/admin-cinemas.service';
-import { AdminSession } from '../../services/admin/admin-session.service';
 
 @Component({
   selector: 'app-admin-cinemas',
@@ -12,12 +13,17 @@ import { AdminSession } from '../../services/admin/admin-session.service';
   styleUrls: ['./admin-cinemas.component.css'],
 })
 export class AdminCinemasComponent implements OnInit {
-  cinemas: AdminCinemas[] = [];
+  cinemas: AdminCinema[] = [];
   selectedString: any;
+  isModalOpen: boolean = false;
+  newCinema: AdminCinemaCreation = { cinemaName: '', address: '' };
+  oldCinema: AdminCinema = { cinemaId: 0, cinemaName: '', cinemaAddress: '' };
+  isEditing: boolean = false;
+
   constructor(public adminCinemasService: AdminCinemasService) {}
 
   ngOnInit(): void {
-    this.adminCinemasService.getCinemas().subscribe((res: AdminCinemas[]) => {
+    this.adminCinemasService.getCinemas().subscribe((res: AdminCinema[]) => {
       this.cinemas = res;
     });
   }
@@ -27,23 +33,79 @@ export class AdminCinemasComponent implements OnInit {
     this.adminCinemasService.selectedStr = str;
     this.adminCinemasService.hallsForSelectedCinema = [];
 
-    this.adminCinemasService.getHalls(str).subscribe((res: AdminHalls[]) => {
+    this.adminCinemasService.getHalls(str).subscribe((res: AdminHall[]) => {
       this.adminCinemasService.hallsForSelectedCinema = res;
     });
   }
 
-  cinemaDelete(cinemaId: number) {
-    this.adminCinemasService.deleteCinema(cinemaId).subscribe((response) => {
-      if (response.status === 200) {
+  openModal(oldCinema?: AdminCinema) {
+    this.isModalOpen = true;
+
+    if (oldCinema != undefined) {
+      this.oldCinema = oldCinema;
+      this.isEditing = true;
+    }
+  }
+
+  closeModal(isClose: boolean) {
+    this.newCinema = { cinemaName: '', address: '' };
+    this.oldCinema = { cinemaId: 0, cinemaName: '', cinemaAddress: '' };
+    this.isModalOpen = !isClose;
+    this.isEditing = false;
+  }
+
+  addCinema(cinema: AdminCinemaCreation) {
+    this.newCinema = cinema;
+
+    this.adminCinemasService.addCinema(this.newCinema).subscribe({
+      next: (response) => {
         this.adminCinemasService
           .getCinemas()
-          .subscribe((res: AdminCinemas[]) => {
+          .subscribe((res: AdminCinema[]) => {
+            this.cinemas = res;
+          });
+      },
+      error: (e: CustomError) => {
+        alert('Ошибка: ' + e.error.Message);
+      },
+    });
+  }
+
+  editCinema(cinema: AdminCinema) {
+    this.oldCinema = cinema;
+
+    this.adminCinemasService.editCinema(cinema).subscribe({
+      next: (response) => {
+        this.adminCinemasService
+          .getCinemas()
+          .subscribe((res: AdminCinema[]) => {
+            this.cinemas = res;
+          });
+        if (this.adminCinemasService.selectedStr === cinema.cinemaId) {
+          this.adminCinemasService.hallsForSelectedCinema = [];
+        }
+      },
+      error: (e: CustomError) => {
+        alert('Ошибка: ' + e.error.Message);
+      },
+    });
+  }
+
+  deleteCinema(cinemaId: number) {
+    this.adminCinemasService.deleteCinema(cinemaId).subscribe({
+      next: (response) => {
+        this.adminCinemasService
+          .getCinemas()
+          .subscribe((res: AdminCinema[]) => {
             this.cinemas = res;
           });
         if (this.adminCinemasService.selectedStr === cinemaId) {
           this.adminCinemasService.hallsForSelectedCinema = [];
         }
-      } else alert('Ошибка! Удаление не выполнено!');
+      },
+      error: (e: CustomError) => {
+        alert('Ошибка: ' + e.error.Message);
+      },
     });
   }
 }

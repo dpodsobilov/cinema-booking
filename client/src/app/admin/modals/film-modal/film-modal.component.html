@@ -1,0 +1,162 @@
+<div class="outline">
+  <div class="modal">
+    <div class="header">
+      <p>{{ isEditing ? "Изменение фильма" : "Добавление фильма" }}</p>
+      <p class="close" (click)="close()">&times;</p>
+    </div>
+    <div class="form-container">
+      <form autocomplete="off" [formGroup]="filmForm" (ngSubmit)="onSubmit()">
+        <label>Название</label>
+        <input type="text" formControlName="nameControl" />
+        <div class="error" *ngIf="name.invalid && (name.dirty || name.touched)">
+          <div *ngIf="name.errors?.['required']">
+            Поле обязательно для заполнения
+          </div>
+        </div>
+
+        <label>Описание</label>
+        <textarea type="text" formControlName="descriptionControl"></textarea>
+        <div
+          class="error"
+          *ngIf="
+            description.invalid && (description.dirty || description.touched)
+          "
+        >
+          <div *ngIf="description.errors?.['required']">
+            Поле обязательно для заполнения
+          </div>
+        </div>
+
+        <label>Год</label>
+        <input type="number" formControlName="yearControl" />
+        <div class="error" *ngIf="year.invalid && (year.dirty || year.touched)">
+          <div *ngIf="year.errors?.['required']">
+            Год обязателен для заполнения
+          </div>
+          <div *ngIf="year.errors?.['min']">Год должен быть не меньше 1900</div>
+          <div *ngIf="year.errors?.['max']">
+            Год должен быть не больше {{ currentYear }}
+          </div>
+        </div>
+
+        <div class="small-inputs">
+          <div class="time">
+            <div class="hours">
+              <label>Часы</label>
+              <input
+                class="hours-input"
+                type="number"
+                formControlName="hoursControl"
+              />
+            </div>
+
+            <div class="minutes">
+              <label>Минуты</label>
+              <input
+                class="minutes-input"
+                type="number"
+                formControlName="minutesControl"
+              />
+            </div>
+          </div>
+
+          <div class="coeff">
+            <label>Коэффициент цены</label>
+            <input
+              class="coeff-input"
+              type="number"
+              formControlName="coefficientControl"
+            />
+          </div>
+        </div>
+
+        <div
+          class="error"
+          *ngIf="hours.invalid && (hours.dirty || hours.touched)"
+        >
+          <div *ngIf="hours.errors?.['required']">
+            Часы обязательны для заполнения
+          </div>
+          <div *ngIf="hours.errors?.['min']">
+            Количество часов должно быть не меньше 0
+          </div>
+          <div *ngIf="hours.errors?.['max']">
+            Количество часов должно быть не больше 3
+          </div>
+        </div>
+
+        <div
+          class="error"
+          *ngIf="minutes.invalid && (minutes.dirty || minutes.touched)"
+        >
+          <div *ngIf="minutes.errors?.['required']">
+            Минуты обязательно для заполнения
+          </div>
+          <div *ngIf="minutes.errors?.['min']">
+            Количество минут должно быть не меньше 0
+          </div>
+          <div *ngIf="minutes.errors?.['max']">
+            Число минут должно быть не больше 59
+          </div>
+        </div>
+
+        <div
+          class="error"
+          *ngIf="
+            coefficient.invalid && (coefficient.dirty || coefficient.touched)
+          "
+        >
+          <div *ngIf="coefficient.errors?.['required']">
+            Поле обязательно для заполнения
+          </div>
+          <div *ngIf="coefficient.errors?.['min']">
+            Число должно быть не меньше 1
+          </div>
+        </div>
+
+        <label>Жанры</label>
+        <select multiple formControlName="genreControl">
+          <option [value]="null" disabled>Выберите жанры</option>
+          <option [value]="genre.genreId" *ngFor="let genre of genres">
+            {{ genre.genreName }}
+          </option>
+        </select>
+        <div
+          class="error"
+          *ngIf="genre.invalid && (genre.dirty || genre.touched)"
+        >
+          <div *ngIf="genre.errors?.['required']">
+            Поле обязательно для заполнения
+          </div>
+        </div>
+
+        <label>Обложка</label>
+        <input
+          type="file"
+          accept="image/jpeg,image/jpg,image/png"
+          (change)="changeListener($event)"
+          formControlName="posterControl"
+        />
+        <div
+          class="error"
+          *ngIf="poster.invalid && (poster.dirty || poster.touched)"
+        >
+          <div *ngIf="poster.errors?.['required']">
+            Поле обязательно для заполнения
+          </div>
+        </div>
+
+        <div class="error" *ngIf="!filmForm.valid">{{ errorMessage }}</div>
+
+        <div class="submit-pane">
+          <input
+            class="submit-button"
+            type="submit"
+            value="{{ isEditing ? 'Изменить' : 'Добавить' }}"
+            [disabled]="!filmForm.valid"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

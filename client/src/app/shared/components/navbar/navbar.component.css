@@ -6,7 +6,9 @@ img {
 input {
   margin-right: 10px;
 }
-
+.nav-bar{
+  display: flex;
+}
 .nav {
   font-family: 'Poppins', sans-serif;
   display: flex;

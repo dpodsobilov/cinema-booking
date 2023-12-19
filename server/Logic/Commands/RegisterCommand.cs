@@ -1,6 +1,6 @@
 using Data;
 using Data.Models;
-using Logic.DTO;
+using Logic.DTO.User;
 using MediatR;
 
 namespace Logic.Commands;

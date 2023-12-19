@@ -3,6 +3,7 @@ import {
   AdminTemplates,
   AdminTemplateService,
 } from '../../services/admin/admin-template.service';
+import { CustomError } from '../../services/admin/admin-cinemas.service';
 
 @Component({
   selector: 'app-templates',
@@ -22,16 +23,17 @@ export class TemplatesComponent {
   }
 
   deleteTemplate(templateId: number) {
-    this.adminTemplateService
-      .deleteTemplate(templateId)
-      .subscribe((response) => {
-        if (response.status === 200) {
-          this.adminTemplateService
-            .getTemplates()
-            .subscribe((res: AdminTemplates[]) => {
-              this.templates = res;
-            });
-        } else alert('Ошибка! Удаление не выполнено!');
-      });
+    this.adminTemplateService.deleteTemplate(templateId).subscribe({
+      next: (response) => {
+        this.adminTemplateService
+          .getTemplates()
+          .subscribe((res: AdminTemplates[]) => {
+            this.templates = res;
+          });
+      },
+      error: (e: CustomError) => {
+        alert('Ошибка: ' + e.error.Message);
+      },
+    });
   }
 }

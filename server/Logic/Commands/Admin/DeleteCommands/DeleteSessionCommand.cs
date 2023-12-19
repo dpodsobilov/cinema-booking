@@ -1,4 +1,5 @@
 using Data;
+using Logic.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,21 +23,32 @@ public class DeleteSessionCommandHandler : IRequestHandler<DeleteSessionCommand>
     {
         _applicationContext = applicationContext;
     }
-    
+
     public async Task Handle(DeleteSessionCommand request, CancellationToken cancellationToken)
     {
-        var session = await _applicationContext.Sessions.Where(session => session.SessionId == request.SessionId)
+        //находим сеанс
+        var session = await _applicationContext.Sessions
+            .Where(session => session.SessionId == request.SessionId
+                    && session.IsDeleted == false)
             .FirstOrDefaultAsync(cancellationToken);
         
-        if (session != null)
+        if (session == null)
         {
-            session.IsDeleted = true;
-            
-            await _applicationContext.SaveChangesAsync(cancellationToken);
+            throw new NotFoundException("Выбранный сеанс не существует!");
         }
-        else
+
+        //находим билеты на сеанс
+        var ticket = await _applicationContext.Tickets
+            .Where(ticket => ticket.SessionId == session.SessionId
+                    && session.DataTimeSession > DateTime.Now)
+            .FirstOrDefaultAsync(cancellationToken);
+        
+        if (ticket != null)
         {
-            throw new Exception("Ошибка!");
+         throw new NotAllowedException("На выбранный сеанс проданы билеты!");
         }
+
+        session.IsDeleted = true;
+        await _applicationContext.SaveChangesAsync(cancellationToken);
     }
 }

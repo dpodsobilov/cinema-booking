@@ -1,7 +1,7 @@
 <div class="wrapper">
   <div class="templates">
     <h1>Шаблоны кинозалов</h1>
-    <img src="./assets/images/svg/add.svg" alt="" />
+    <img src="./assets/images/svg/add.svg" alt="" routerLink="add-template" />
     <table>
       <tr>
         <th>#</th>
@@ -16,7 +16,15 @@
         <td class="template-name">{{ template.templateName }}</td>
         <td>
           <div class="buttons">
-            <img src="./assets/images/svg/edit.svg" alt="" />
+            <img
+              src="./assets/images/svg/edit.svg"
+              alt=""
+              routerLink="add-template"
+              [queryParams]="{
+                templateId: template.templateId,
+                templateName: template.templateName
+              }"
+            />
             <img
               src="./assets/images/svg/delete.svg"
               alt=""
@@ -26,5 +34,8 @@
         </td>
       </tr>
     </table>
+  </div>
+  <div class="place-type">
+    <app-place-type></app-place-type>
   </div>
 </div>

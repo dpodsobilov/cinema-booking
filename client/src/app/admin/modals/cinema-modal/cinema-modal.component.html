@@ -1,0 +1,44 @@
+<div class="outline">
+  <div class="modal">
+    <div class="header">
+      <p>{{ isEditing ? "Изменение кинотеатра" : "Добавление кинотеатра" }}</p>
+      <p class="close" (click)="close()">&times;</p>
+    </div>
+    <div class="form-container">
+      <form autocomplete="off" [formGroup]="cinemaForm" (ngSubmit)="onSubmit()">
+        <label>Название</label>
+        <input type="text" formControlName="cinemaNameControl" />
+        <div
+          class="error"
+          *ngIf="cinemaName.invalid && (cinemaName.dirty || cinemaName.touched)"
+        >
+          <div *ngIf="cinemaName.errors?.['required']">
+            Поле обязательно для заполнения
+          </div>
+        </div>
+
+        <label>Адрес</label>
+        <input type="text" formControlName="addressControl" />
+        <div
+          class="error"
+          *ngIf="address.invalid && (address.dirty || address.touched)"
+        >
+          <div *ngIf="address.errors?.['required']">
+            Поле обязательно для заполнения
+          </div>
+        </div>
+
+        <div class="error" *ngIf="!cinemaForm.valid">{{ errorMessage }}</div>
+
+        <div class="submit-pane">
+          <input
+            class="submit-button"
+            type="submit"
+            value="{{ isEditing ? 'Изменить' : 'Добавить' }}"
+            [disabled]="!cinemaForm.valid"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

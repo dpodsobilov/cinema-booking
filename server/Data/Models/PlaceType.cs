@@ -6,6 +6,7 @@ public class PlaceType
     public string PlaceTypeName { get; set; } = null!;
     public string PlaceTypeColor { get; set; } = null!;
     public decimal DefaultCost { get; set; }
+    public bool IsDeleted { get; set; } = false;
     
     // PlaceTypeID -> FK в Place
     public ICollection<Place> Places { get; set; } = null!;

@@ -17,6 +17,11 @@ import { ErrorComponent } from './user/error/error.component';
 import { TicketComponent } from './user/ticket/ticket.component';
 import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component';
 import { SharedModule } from './shared/shared.module';
+import { QRCodeModule } from 'angularx-qrcode';
+import { SystemInfoComponent } from './user/system-info/system-info.component';
+import { DevInfoComponent } from './user/system-info/dev-info/dev-info.component';
+import { InstructionComponent } from './user/system-info/instruction/instruction.component';
+import { NgOptimizedImage } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -33,8 +38,17 @@ import { SharedModule } from './shared/shared.module';
     ErrorComponent,
     TicketComponent,
     MainLayoutComponent,
+    SystemInfoComponent,
+    DevInfoComponent,
+    InstructionComponent,
   ],
-  imports: [AppRoutingModule, BrowserModule, SharedModule],
+  imports: [
+    AppRoutingModule,
+    BrowserModule,
+    SharedModule,
+    QRCodeModule,
+    NgOptimizedImage,
+  ],
   providers: [
     {
       provide: 'BASE_API_URL',

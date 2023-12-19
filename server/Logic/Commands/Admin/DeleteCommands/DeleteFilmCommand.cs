@@ -1,4 +1,5 @@
 using Data;
+using Logic.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,25 +26,29 @@ public class DeleteFilmCommandHandler : IRequestHandler<DeleteFilmCommand>
     
     public async Task Handle(DeleteFilmCommand request, CancellationToken cancellationToken)
     {
-        var film = await _applicationContext.Films.Where(film => film.FilmId == request.FilmId)
+        //получаем фильм
+        var film = await _applicationContext.Films.Where(film => film.FilmId == request.FilmId 
+                                                                 && film.IsDeleted == false)
             .FirstOrDefaultAsync(cancellationToken);
-        if (film != null)
+
+        if (film == null)
         {
-            var sessions = await _applicationContext.Sessions.Where(session => session.FilmId == request.FilmId)
-                .ToListAsync(cancellationToken);
-            
-            foreach (var session in sessions)
-            {
-                session.IsDeleted = true;
-            }
-            
-            film.IsDeleted = true;
-            
-            await _applicationContext.SaveChangesAsync(cancellationToken);
+            throw new NotFoundException("Выбранный фильм не существует");
         }
-        else
+        
+        //находим список непрошедших сеансов
+        var sessions = await _applicationContext.Sessions
+            .Where(session => session.FilmId == request.FilmId 
+                   && session.IsDeleted == false && session.DataTimeSession > DateTime.Now)
+            .ToListAsync(cancellationToken);
+        
+        if (sessions.Count != 0)
         {
-            throw new Exception("Ошибка!");
+            throw new NotAllowedException("На выбранный фильм есть сеансы!");
         }
+
+        film.IsDeleted = true;
+        
+        await _applicationContext.SaveChangesAsync(cancellationToken);
     }
 }

@@ -1,6 +1,6 @@
 using Data;
 using Data.Models;
-using Logic.DTO;
+using Logic.DTO.User;
 using Logic.Hubs;
 using MediatR;
 using Microsoft.AspNetCore.SignalR;
@@ -12,9 +12,9 @@ public class OrderCommand : IRequest
 {
     public int UserId { get; }
     public int SessionId { get; }
-    public ICollection<PlaceAndCostDTO> PlacesAndCost { get; }
+    public ICollection<PlaceAndCostDto> PlacesAndCost { get; }
 
-    public OrderCommand(OrderDTO orderDto)
+    public OrderCommand(OrderDto orderDto)
     {
         UserId = orderDto.UserId;
         SessionId = orderDto.SessionId;
@@ -50,7 +50,7 @@ public class OrderCommandHandler : IRequestHandler<OrderCommand>
     /// <exception cref="Exception"></exception>
     private async Task CreateOrder(OrderCommand request, CancellationToken cancellationToken)
     {
-        foreach (PlaceAndCostDTO element in request.PlacesAndCost)
+        foreach (PlaceAndCostDto element in request.PlacesAndCost)
         {
             var check = _applicationContext.Tickets.Any(t =>
                 (t.SessionId == request.SessionId) && (t.PlaceId == element.PlaceId));

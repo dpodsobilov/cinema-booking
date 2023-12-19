@@ -19,8 +19,6 @@ public sealed class ApplicationContext : DbContext
 
     public ApplicationContext()
     {
-        // Database.EnsureDeleted();
-        // Database.EnsureCreated();
         if (Database.EnsureCreated())
         { 
             User user1 = new User { Email = "daria@surf.ru", Password = "123123", Name = "Daria", Surname = "Surf", Role = 0 };
@@ -32,11 +30,11 @@ public sealed class ApplicationContext : DbContext
             byte[] imgIsland = FileConverter.GetBinaryFile("..\\Data\\temp\\island.png");
             byte[] imgBrother = FileConverter.GetBinaryFile("..\\Data\\temp\\brother.png");
             byte[] imgRussiansPowerlifters = FileConverter.GetBinaryFile("..\\Data\\temp\\bogatyr.png");
-            Film film1 = new Film { FilmName = "Аватар", Duration = "2 часа 42 минуты", FilmCoefficient = 10, Description = "Бывший морпех Джейк Салли прикован к инвалидному креслу. Несмотря на немощное тело, Джейк в душе по-прежнему остается воином. Он получает задание совершить путешествие в несколько световых лет к базе землян на планете Пандора, где корпорации добывают редкий минерал, имеющий огромное значение для выхода Земли из энергетического кризиса.", Poster = imgAvatar};
-            Film film2 = new Film { FilmName = "Стражи Галактики", Duration = "2 часа 01 минута", FilmCoefficient = 10, Description = "Отважному путешественнику Питеру Квиллу попадает в руки таинственный артефакт, принадлежащий могущественному и безжалостному злодею Ронану, строящему коварные планы по захвату Вселенной. Питер оказывается в центре межгалактической охоты, где жертва — он сам.\n\nЕдинственный способ спасти свою жизнь — объединиться с четверкой нелюдимых изгоев: воинственным енотом по кличке Ракета, человекоподобным деревом Грутом, смертельно опасной Гаморой и одержимым жаждой мести Драксом, также известным как Разрушитель. Когда Квилл понимает, какой силой обладает украденный артефакт и какую опасность он представляет для вселенной, одиночка пойдет на все, чтобы сплотить случайных союзников для решающей битвы за судьбу галактики.", Poster = imgGuardians};
-            Film film3 = new Film { FilmName = "Остров проклятых", Duration = "2 часа 18 минут", FilmCoefficient = 10, Description = "Два американских судебных пристава отправляются на один из островов в штате Массачусетс, чтобы расследовать исчезновение пациентки клиники для умалишенных преступников. При проведении расследования им придется столкнуться с паутиной лжи, обрушившимся ураганом и смертельным бунтом обитателей клиники.", Poster = imgIsland};
-            Film film4 = new Film { FilmName = "Брат 2", Duration = "2 часа 07 минут", FilmCoefficient = 10, Description = "Участвуя в программе на телевидении, Данила Багров встречает своих друзей по службе в Чечне. Одного из них внезапно убивают. Выясняется, что у того были неприятности из-за брата-хоккеиста в Америке. Данила должен разобраться. Он вылетает в Америку и за компанию берёт с собой старшего брата.", Poster = imgBrother};
-            Film film5 = new Film { FilmName = "Три богатыря и Шамаханская царица", Duration = "1 час 15 минут", FilmCoefficient = 10, Description = "Легендарная Шамаханская царица, которая сводила с ума многих царей и простых смертных, положила свой глаз и на Киевского князя. Тот заболел любовью странной по ней. Но чтобы доставить в целости и сохранности эту чудо-богиню в Киев-Град, срочно из отпуска вызывают всех троих, уже знакомых нам, богатырей: Алёшу Поповича, Добрыню Никитича и Илью Муромца. Теперь троица должна решить, как быть дальше? Вроде бы и слухи о царице ходят нелестные, и князя жаль.", Poster = imgRussiansPowerlifters};
+            Film film1 = new Film { FilmName = "Аватар", Duration = "2 часа 42 минуты", FilmCoefficient = 10, Year=2009, Description = "Бывший морпех Джейк Салли прикован к инвалидному креслу. Несмотря на немощное тело, Джейк в душе по-прежнему остается воином. Он получает задание совершить путешествие в несколько световых лет к базе землян на планете Пандора, где корпорации добывают редкий минерал, имеющий огромное значение для выхода Земли из энергетического кризиса.", Poster = imgAvatar};
+            Film film2 = new Film { FilmName = "Стражи Галактики", Duration = "2 часа 01 минута", FilmCoefficient = 10, Year=2014, Description = "Отважному путешественнику Питеру Квиллу попадает в руки таинственный артефакт, принадлежащий могущественному и безжалостному злодею Ронану, строящему коварные планы по захвату Вселенной. Питер оказывается в центре межгалактической охоты, где жертва — он сам.\n\nЕдинственный способ спасти свою жизнь — объединиться с четверкой нелюдимых изгоев: воинственным енотом по кличке Ракета, человекоподобным деревом Грутом, смертельно опасной Гаморой и одержимым жаждой мести Драксом, также известным как Разрушитель. Когда Квилл понимает, какой силой обладает украденный артефакт и какую опасность он представляет для вселенной, одиночка пойдет на все, чтобы сплотить случайных союзников для решающей битвы за судьбу галактики.", Poster = imgGuardians};
+            Film film3 = new Film { FilmName = "Остров проклятых", Duration = "2 часа 18 минут", FilmCoefficient = 10, Year=2009, Description = "Два американских судебных пристава отправляются на один из островов в штате Массачусетс, чтобы расследовать исчезновение пациентки клиники для умалишенных преступников. При проведении расследования им придется столкнуться с паутиной лжи, обрушившимся ураганом и смертельным бунтом обитателей клиники.", Poster = imgIsland};
+            Film film4 = new Film { FilmName = "Брат 2", Duration = "2 часа 07 минут", FilmCoefficient = 10, Year=2000, Description = "Участвуя в программе на телевидении, Данила Багров встречает своих друзей по службе в Чечне. Одного из них внезапно убивают. Выясняется, что у того были неприятности из-за брата-хоккеиста в Америке. Данила должен разобраться. Он вылетает в Америку и за компанию берёт с собой старшего брата.", Poster = imgBrother};
+            Film film5 = new Film { FilmName = "Три богатыря и Шамаханская царица", Duration = "1 час 15 минут", FilmCoefficient = 10, Year=2010, Description = "Легендарная Шамаханская царица, которая сводила с ума многих царей и простых смертных, положила свой глаз и на Киевского князя. Тот заболел любовью странной по ней. Но чтобы доставить в целости и сохранности эту чудо-богиню в Киев-Град, срочно из отпуска вызывают всех троих, уже знакомых нам, богатырей: Алёшу Поповича, Добрыню Никитича и Илью Муромца. Теперь троица должна решить, как быть дальше? Вроде бы и слухи о царице ходят нелестные, и князя жаль.", Poster = imgRussiansPowerlifters};
 
             Films.Add(film1);
             Films.Add(film2);
@@ -428,9 +426,8 @@ public sealed class ApplicationContext : DbContext
             SaveChanges();
             
             DateTime date = new DateTime(2023, 1, 20, 10, 30, 00);
-            DateTime _date = new DateTime(2023, 1, 20, 15, 15, 00);
             DateTime date2 = new DateTime(2023, 2, 10, 18, 22, 00);
-            DateTime date3 = new DateTime(2023, 3, 20, 10, 30, 00);
+            DateTime date3 = new DateTime(2023, 1, 20, 15, 15, 00);
             DateTime date4 = new DateTime(2024, 12, 20, 10, 30, 00);
             // Session session1 = new Session { DataTimeSession = date, DataTimeCoefficient = 3, FilmId = film1.FilmId, CinemaHallId = cinemaHall1.CinemaHallId};
             Session session2 = new Session { DataTimeSession = date, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall1.CinemaHallId};
@@ -438,7 +435,7 @@ public sealed class ApplicationContext : DbContext
             Session session4 = new Session { DataTimeSession = date, DataTimeCoefficient = 3, FilmId = film4.FilmId, CinemaHallId = cinemaHall2.CinemaHallId};
             Session session5 = new Session { DataTimeSession = date, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall3.CinemaHallId};
             Session session6 = new Session { DataTimeSession = date2, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall1.CinemaHallId};
-            Session session7 = new Session { DataTimeSession = _date, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall1.CinemaHallId};
+            Session session7 = new Session { DataTimeSession = date3, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall1.CinemaHallId};
             Session session8 = new Session { DataTimeSession = date4, DataTimeCoefficient = 3, FilmId = film3.FilmId, CinemaHallId = cinemaHall1.CinemaHallId };
 
             // Sessions.Add(session1);

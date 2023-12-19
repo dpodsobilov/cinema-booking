@@ -27,7 +27,7 @@ table, tr, th, td {
   transition: 0.2s;
 }
 
-td {
+th, td {
   vertical-align: middle;
   padding: 0.5em;
 }

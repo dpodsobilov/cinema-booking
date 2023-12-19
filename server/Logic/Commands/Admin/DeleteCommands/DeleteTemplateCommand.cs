@@ -1,4 +1,5 @@
 using Data;
+using Logic.Exceptions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,45 +29,64 @@ public class DeleteTemplateCommandHandler : IRequestHandler<DeleteTemplateComman
         var hallId = new List<int>();
         
         var template = await _applicationContext.CinemaHallTypes
-            .Where(template => template.CinemaHallTypeId == request.TemplateId)
+            .Where(template => template.CinemaHallTypeId == request.TemplateId
+                    && template.IsDeleted == false)
             .FirstOrDefaultAsync(cancellationToken);
         
-        if (template != null)
+        if (template == null)
+        {
+            throw new NotFoundException("Выбранный шаблон не существует!");
+        }
+
+        var halls = await _applicationContext.CinemaHalls
+            .Where(hall => hall.CinemaHallTypeId == template.CinemaHallTypeId
+                    && hall.IsDeleted == false)
+            .Select(hall => hall)
+            .ToListAsync(cancellationToken);
+        
+        if (halls.Count == 0)
         {
             template.IsDeleted = true;
-            
-            var halls = await _applicationContext.CinemaHalls
-                .Where(hall => hall.CinemaHallTypeId == request.TemplateId)
-                .Select(hall => hall)
-                .ToListAsync(cancellationToken);
-
-            if (halls.Count != 0)
+            await _applicationContext.SaveChangesAsync(cancellationToken);
+        }
+        
+        else
+        {
+            int counter = 0;
+            foreach (var hall in halls)
             {
-                foreach (var hall in halls)
-                {
-                    hall.IsDeleted = true;
-
-                    hallId.Add(hall.CinemaHallId);
-                }
-
                 var sessions = await _applicationContext.Sessions
-                    .Where(session => hallId.Contains(session.CinemaHallId))
+                    .Where(session => session.CinemaHallId == hall.CinemaHallId && session.IsDeleted == false
+                        && session.DataTimeSession > DateTime.Now)
                     .Select(session => session)
                     .ToListAsync(cancellationToken);
 
-                if (sessions.Count != 0)
+                if (sessions.Count == 0) { counter++; }
+            }
+
+            if (counter == halls.Count)
+            {
+                template.IsDeleted = true;
+                foreach (var hall in halls)
                 {
-                    foreach (var session in sessions)
+                    hall.IsDeleted = true;
+                    
+                    var sessionsDelete = await _applicationContext.Sessions
+                        .Where(ses => ses.CinemaHallId == hall.CinemaHallId && ses.IsDeleted == false)
+                        .Select(ses => ses)
+                        .ToListAsync(cancellationToken);
+
+                    if (sessionsDelete.Count != 0)
                     {
-                        session.IsDeleted = true;
+                        foreach (var sd in sessionsDelete)
+                        {
+                            sd.IsDeleted = true;
+                        }
                     }
                 }
-                else throw new Exception("Ошибка!");
+                await _applicationContext.SaveChangesAsync(cancellationToken);
             }
-            else throw new Exception("Ошибка!");
-            
-            await _applicationContext.SaveChangesAsync(cancellationToken);
+            else throw new NotAllowedException("Шаблон используется!");
         }
-        else throw new Exception("Ошибка!");
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Logic.Commands;
 using Logic.DTO;
+using Logic.DTO.User;
 using Logic.Queries;
+using Logic.Queries.User;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

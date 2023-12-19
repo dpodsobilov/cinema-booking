@@ -1,5 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-
 namespace Data.Models;
 
 public class FilmGenre
